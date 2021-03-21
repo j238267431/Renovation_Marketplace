@@ -8,3 +8,18 @@
 .bb {
   border: solid purple 1px;
 }
+
+.bg-dark-blue {
+  background-color: darkslateblue;
+}
+
+.header-content {
+  padding-top: 1rem;
+  color: linen;
+}
+
+.sub-title {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #8492a6;
+}
