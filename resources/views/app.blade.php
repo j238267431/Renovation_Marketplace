@@ -9,10 +9,10 @@
 </head>
 <body>
 <div id="app">
-    <app-container></app-container>
+    <AppContainer></AppContainer>
 </div>
 
-<script >
+<script>
 </script>
 </body>
 </html>

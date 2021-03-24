@@ -1,5 +1,4 @@
 <?php
-echo 777;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
