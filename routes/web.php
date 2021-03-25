@@ -19,3 +19,9 @@ Route::get('/', function (){
 
 Route::get('/developers', [\App\Http\Controllers\DevelopersController::class, 'index'])
     ->name('developers');
+
+
+Route::get('/customers', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
+Route::get('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'view']);
+
+    
