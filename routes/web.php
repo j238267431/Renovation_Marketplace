@@ -25,9 +25,5 @@ Route::get('/create', function (){
     return view('order.users.create');
 });
 
-//Route::middleware('auth')->group(function() {
-//
-//    Route::get('/', function () {
-//        echo 'it works';
-//    });
-//});
+Route::get('/customers', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
+Route::get('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'view']);
