@@ -19,3 +19,7 @@ Route::get('/', function (){
 
 Route::get('/developers', [\App\Http\Controllers\DevelopersController::class, 'index'])
     ->name('developers');
+
+Route::get('/create', function (){
+    return view('order.users.create');
+});
