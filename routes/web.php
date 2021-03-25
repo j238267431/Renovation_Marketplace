@@ -13,5 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\DevelopersController::class, 'index'])->name('main');
+Route::get('/', function (){
+   echo 'it works';
+});
 
+Route::get('/developers', [\App\Http\Controllers\DevelopersController::class, 'index'])
+    ->name('developers');
