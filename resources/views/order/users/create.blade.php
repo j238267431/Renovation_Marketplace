@@ -21,6 +21,7 @@
             <label class="form-label" for="category1">Определить автоматически</label>
             <input type="radio" id="category2" name="budget" value="self">
             <label class="form-label" for="category2">Я хочу указать категорию</label>
+            <br>
             <input class="button alert-success" type="submit" value="Разместить заказ">
         </form>
         </div>
