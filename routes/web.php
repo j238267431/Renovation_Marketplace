@@ -27,3 +27,4 @@ Route::get('/create', function (){
 
 Route::get('/customers', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
 Route::get('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'view']);
+Route::resource('orders', \App\Http\Controllers\Customers\Orders\OrderController::class);
