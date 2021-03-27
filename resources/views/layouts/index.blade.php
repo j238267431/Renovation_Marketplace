@@ -6,7 +6,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
           integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
 </head>
 
 <style>
@@ -22,7 +22,7 @@
             <nav class="navbar navbar-toggleable">
                 <a class="navbar-collapse col-md" href="#" alt="Строительная биржа">
                     <div class="logo ">
-                        <img src="icon/header_logo.svg" alt="">
+                        <img src="{{asset('icon/header_logo.svg')}}" alt="">
                     </div>
                 </a>
                 <div class="collapse navbar-collapse">
@@ -97,8 +97,7 @@
                 </div>
             </div>
         </div>
-
-
+        @yield('content')
     </main>
 
     <footer>
@@ -146,7 +145,7 @@
                 </div>
             </div>
         </div>
-</div>
+
 </footer>
 </div>
 </body>
