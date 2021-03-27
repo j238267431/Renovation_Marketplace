@@ -22,7 +22,7 @@ Route::get('/developers', [DevelopersController::class, 'index'])
     ->name('developers');
 
 Route::get('/create', function (){
-    return view('order.users.create');
+    return view('customers.orders.create');
 });
 
 Route::get('/customers', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
