@@ -41,6 +41,5 @@ class CreateOrdersTable extends Migration
             $table->dropForeign(['customer_id', 'company_id', 'status_id']);
             $table->dropIfExists();
         });
-        Schema::dropIfExists('orders');
     }
 }
