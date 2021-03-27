@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         Company::factory(5)->create();
         $this->call(StatusSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(CategorySeeder::class);
     }
 }
