@@ -1,7 +1,5 @@
 <pre>
-<?php
 
-var_dump($customers);
+@dump($customers);
 
-?>
 </pre>
