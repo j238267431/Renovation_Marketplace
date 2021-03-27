@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="mb-3">
-            <form class="form" action="" method="POST" enctype="multipart/form-data">
+            <form class="form" action="{{route('orders.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <label class="form-label" for="text" name="text">text</label>
                 <input class="form-control" id="text" type="text" placeholder="Что нужно сделать">

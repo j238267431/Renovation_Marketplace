@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +16,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $companies = Company::all();
+        $tasks = Task::all();
+        return view('home',['companies' => $companies, 'tasks' => $tasks]);
     }
 }
