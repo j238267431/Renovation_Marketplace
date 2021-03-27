@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Customers\Orders;
+namespace App\Http\Controllers\Customers\Task;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customers\Order;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.

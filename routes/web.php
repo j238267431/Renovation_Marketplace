@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\DevelopersController;
+use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,13 +18,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/developers', [DevelopersController::class, 'index'])
+Route::get('/developers', [CompaniesController::class, 'index'])
     ->name('developers');
-
-Route::get('/create', function (){
-    return view('customers.orders.create');
-});
 
 Route::get('/customers', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
 Route::get('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'view']);
-Route::resource('orders', \App\Http\Controllers\Customers\Orders\OrderController::class);
+Route::resource('orders', \App\Http\Controllers\Customers\Task\TaskController::class);
