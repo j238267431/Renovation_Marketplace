@@ -59,7 +59,8 @@
                             <input type="text" class="form-control form-control-lg" id="job_name" name="name"
                                    placeholder="Что нужно сделать?" maxlength="70">
                             <span class="input-group-btn">
-		<button type="submit" class="btn btn-success" data-btn_type="index">Заказать</button>
+{{--		<button type="submit" class="btn btn-success" data-btn_type="index">Заказать</button>--}}
+                                <a class="btn btn-success" href=" {{ route ('tasks.create')}}">Сделать заказ</a>
 		</span>
                         </div>
                         <div class="text_field indent-t10 hidden-xs-down">Например: <a class="dotted">построить дом</a>
