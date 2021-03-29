@@ -43,6 +43,7 @@ class TaskController extends Controller
      */
     public function store(TaskCreate $request)
     {
+
         $data = $request->validated();
         //TODO цена и пользователь не принимается на вход
         $data['user_id'] = 1;
@@ -51,6 +52,7 @@ class TaskController extends Controller
             return redirect()->route('tasks.index')->with('success', 'Заявка успешно добавлена');
         }
         return back()->with('fail', 'Не удалось добавить заявку');
+
     }
 
     /**
