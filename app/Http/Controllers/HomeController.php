@@ -19,6 +19,6 @@ class HomeController extends Controller
     {
         $companies = Company::all();
         $categories = Category::with('tasks')->get();
-        return view('home',['companies' => $companies, 'tasks' => $categories]);
+        return view('home',['companies' => $companies, 'categories' => $categories]);
     }
 }

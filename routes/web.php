@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::resource('/orders', \App\Http\Controllers\Customers\Task\TaskController::class);
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -23,4 +24,3 @@ Route::get('/developers', [CompaniesController::class, 'index'])
 
 Route::get('/customers', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
 Route::get('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'view']);
-Route::resource('orders', \App\Http\Controllers\Customers\Task\TaskController::class);

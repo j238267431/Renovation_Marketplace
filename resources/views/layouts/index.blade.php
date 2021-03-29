@@ -47,7 +47,8 @@
     <main class="content">
         <div class="wrapper tab-content">
             <div class="page_layer page_layer-index text-center-xs-down">
-                <form action="#" method="post" autocomplete="off">
+                <form action="{{route('orders.create')}}" method="get" autocomplete="off">
+                    @csrf
                     <h1 class="lg indent-b10">Строительная биржа</h1>
                     <div class="title indent-b30 dot_divided">
                         <span>Ремонт под ключ</span><span>Малоэтажное строительство</span><span>Безопасные сделки с комиссией <span
