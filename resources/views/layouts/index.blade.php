@@ -47,7 +47,7 @@
     <main class="content">
         <div class="wrapper tab-content">
             <div class="page_layer page_layer-index text-center-xs-down">
-                <form action="{{route('orders.create')}}" method="get" autocomplete="off">
+                <form action="{{route('tasks.create')}}" method="get" autocomplete="off">
                     @csrf
                     <h1 class="lg indent-b10">Строительная биржа</h1>
                     <div class="title indent-b30 dot_divided">
