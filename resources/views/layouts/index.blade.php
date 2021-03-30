@@ -10,7 +10,7 @@
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
   <!-- styles -->
-  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="/css/normalize.css">
 
   <title>СтройХаус</title>
 </head>
@@ -82,11 +82,11 @@
   </div>
 
   <!-- scripts -->
-  <script src="./js/jquery.js"></script>
-  <script src="./js/jquery.visible.min.js"></script>
-  <script src="./js/popper.min.js"></script>
-  <script src="./js/tether.min.js"></script>
-  <script src="./js/bootstrap.js"></script>
-  <script src="./js/bootstrap-typeahead.min.js"></script>
+  <script src="/js/jquery.js"></script>
+  <script src="/js/jquery.visible.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/tether.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <script src="/js/bootstrap-typeahead.min.js"></script>
 </body>
 </html>
