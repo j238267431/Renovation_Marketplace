@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Customers\Task;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TaskCreate;
+use App\Models\Category;
 use App\Models\Customers\Order;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -15,7 +18,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('customers.orders.index');
+        //TODO вывод всех tasks без фильтра и авторизации по пользователю
+        $tasks = Task::all();
+        return view('customers.orders.index', ['tasks' => $tasks]);
     }
 
     /**
@@ -25,19 +30,29 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //TODO сделать шаблон для формы создания заказа
-        return view('customers.orders.create');
+        //TODO доделать шаблон для формы создания заказа
+        $categories = Category::all();
+        return view('customers.orders.create', ['categories' => $categories]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(TaskCreate $request)
     {
-        //
+
+        $data = $request->validated();
+        //TODO цена и пользователь не принимается на вход
+        $data['user_id'] = 1;
+        $create = Task::create($data);
+        if ($create){
+            return redirect()->route('tasks.index')->with('success', 'Заявка успешно добавлена');
+        }
+        return back()->with('fail', 'Не удалось добавить заявку');
+
     }
 
     /**
