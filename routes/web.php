@@ -22,8 +22,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/developers', [CompaniesController::class, 'index'])
     ->name('developers');
 
-Route::get('/customers', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
-Route::get('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'view']);
+// Route::get('/customers', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
+// Route::get('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'view']);
 
 Route::resource('tasks', \App\Http\Controllers\Customers\Task\TaskController::class);
 
