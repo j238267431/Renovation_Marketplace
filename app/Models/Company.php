@@ -29,4 +29,11 @@ class Company extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function offers(): HasMany
+    {
+        return $this->hasMany(Offer::class);
+    }
+
+
 }
