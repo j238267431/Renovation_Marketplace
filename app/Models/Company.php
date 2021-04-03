@@ -35,5 +35,8 @@ class Company extends Model
         return $this->hasMany(Offer::class);
     }
 
-
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
 }
