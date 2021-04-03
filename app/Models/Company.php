@@ -39,4 +39,9 @@ class Company extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
 }

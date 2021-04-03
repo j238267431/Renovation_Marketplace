@@ -36,6 +36,11 @@ class Category extends Model
     {
         return $this->hasMany(Offer::class);
     }
+
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
 }
 
 
