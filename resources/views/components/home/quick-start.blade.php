@@ -1,4 +1,5 @@
-<form action="#" method="post" autocomplete="off">
+<form action="{{route('tasks.create')}}" method="get" autocomplete="off">
+  @csrf
   <input type="hidden" name="action" value="save_task">
 
   <input type="hidden" name="fk" value="">
