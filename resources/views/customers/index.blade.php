@@ -1,5 +1,1 @@
-<pre>
-
-@dump($customers);
-
-</pre>
+ 
