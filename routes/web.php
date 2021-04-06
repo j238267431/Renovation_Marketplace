@@ -26,7 +26,7 @@ Route::get('/developers', [CompaniesController::class, 'index'])
 // Route::get('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'view']);
 
 Route::resource('tasks', \App\Http\Controllers\Customers\Task\TaskController::class);
-Route::resource('companies.reviews', \App\Http\Controllers\FeedbackController::class)
+Route::resource('companies.reviews', \App\Http\Controllers\ReviewController::class)
 ->names([
   'create' => 'companies.reviews.create',
   'store' => 'companies.reviews.store',

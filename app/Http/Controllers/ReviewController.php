@@ -6,7 +6,7 @@ use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class FeedbackController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class FeedbackController extends Controller
     public function index($company_id)
     {
         $reviews = Review::query()->where('company_id', '=', $company_id)->get();
-        return view('customers.feedback.index', [
+        return view('customers.review.index', [
           'reviews' => $reviews,
           'company_id' => $company_id,
         ]);
@@ -31,7 +31,7 @@ class FeedbackController extends Controller
      */
     public function create($company_id)
     {
-        return view('customers.feedback.create', ['company_id' => $company_id]);
+        return view('customers.review.create', ['company_id' => $company_id]);
     }
 
     /**
@@ -73,7 +73,7 @@ class FeedbackController extends Controller
      */
     public function show($company, $review)
     {
-        return view('customers.feedback.show', ['company'=> $company,'review'=>$review]);
+        return view('customers.review.show', ['company'=> $company,'review'=>$review]);
     }
 
     /**
@@ -85,7 +85,7 @@ class FeedbackController extends Controller
     public function edit($company_id, $review_id)
     {
       $review = Review::query()->find($review_id);
-        return view('customers.feedback.edit', ['review' => $review, 'company_id'=>$company_id ]);
+        return view('customers.review.edit', ['review' => $review, 'company_id'=>$company_id ]);
     }
 
     /**
