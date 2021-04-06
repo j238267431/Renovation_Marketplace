@@ -32,14 +32,22 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_id', 'id');
     }
 
+
     public function offers(): HasMany
     {
         return $this->hasMany(Offer::class);
     }
 
+
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
+    }
+
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
     }
 }
 
