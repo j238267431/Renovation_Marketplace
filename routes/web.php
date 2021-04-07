@@ -33,3 +33,7 @@ Route::resource('companies.reviews', \App\Http\Controllers\ReviewController::cla
   'index' => 'companies.reviews.index',
   'destroy' => 'companies.reviews.delete',
 ]);
+
+Route::get('account/customer', function (){
+  return view('account.customer');
+})->name('account.customer');

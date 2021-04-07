@@ -10,7 +10,7 @@
     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
   </li>
   @else
-  <li class="nav-item dropdown"> 
+  <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         {{ Auth::user()->name }}
@@ -19,10 +19,12 @@
       @if (Route::has('account'))
       <a class="dropdown-item" href="{{ route('account') }}">{{ __('Account') }}</a>
       @endif
+        <a class="dropdown-item" href="{{route('account.customer')}}">Я заказчик</a>
       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
         {{ __('Logout') }}
       </a>
+
 
       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf

@@ -2,11 +2,11 @@
 
 @section('content')
   <div class="wrapper tab-content">
-    <!-- <div class="page_layer page_layer-index text-center-xs-down">
+    <div class="page_layer page_layer-index text-center-xs-down">
       <x-home-quick-start></x-home-quick-start>
 
       <x-home-procedure></x-home-procedure>
-    </div> -->
+    </div>
 
     <div class="clearfix tab-pane fade show active" id="tab_pane-main">
       <div class="page_content no_sidebar d-flex flex-column landing">
