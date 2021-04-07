@@ -22,10 +22,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/developers', [CompaniesController::class, 'index'])
     ->name('developers');
 
-// Route::get('/customers', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
-// Route::get('/customers/{id}', [\App\Http\Controllers\CustomerController::class, 'view']);
 
-Route::resource('tasks', \App\Http\Controllers\Customers\Task\TaskController::class);
+Route::resource('tasks', TaskController::class);
+Route::get('categories/{category:id}/tasks', [TaskController::class, 'allFromCategory'])->name('categories.tasks');
+
 Route::resource('companies.reviews', \App\Http\Controllers\FeedbackController::class)
 ->names([
   'create' => 'companies.reviews.create',
