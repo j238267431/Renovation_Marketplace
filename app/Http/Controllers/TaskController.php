@@ -1,27 +1,40 @@
 <?php
 
-namespace App\Http\Controllers\Customers\Task;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+
 use App\Http\Requests\TaskCreate;
 use App\Models\Category;
-use App\Models\Customers\Order;
+use App\Models\Order;
 use App\Models\Task;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Выводит список всех заявок
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
-        //TODO вывод всех tasks без фильтра и авторизации по пользователю
         $tasks = Task::all();
         return view('customers.orders.index', ['tasks' => $tasks]);
     }
+
+
+  /**
+   * Выводит список всех заявок для категории
+   * @param Category $category
+   * @return View
+   */
+    public function allFromCategory(Category $category): View
+    {
+      $tasks = $category->tasks()->get();
+      return view('customers.orders.index', ['tasks' => $tasks]);
+    }
+
 
     /**
      * Show the form for creating a new resource.

@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Company;
-use App\Models\Task;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
-
     /**
-     * Show the application dashboard.
+     * Show home page.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return View
      */
-    public function index()
+    public function index(): Renderable
     {
-        $companies = Company::all();
-        $categories = Category::with('tasks')->get();
-        return view('home',['companies' => $companies, 'categories' => $categories]);
+        return view('home');
     }
 }

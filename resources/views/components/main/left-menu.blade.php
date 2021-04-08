@@ -3,7 +3,7 @@
     @empty($item['submenu'])
       <li class="nav-item">
         <a class="nav-link"
-           href="{{ $item['link'] }}"
+           href="{{ route($item['route']) }}"
            @isset($item['title']) title="{{ $item['title'] }}" @endisset
            @isset($item['rel']) rel="{{ $item['rel'] }}" @endisset>
           {{ $item['value'] }}
@@ -22,7 +22,7 @@
 
           @foreach ($item['submenu'] as $subitem)
             <a class="dropdown-item"
-               href="{{ $subitem['link'] }}"
+               href="{{ route($subitem['route']) }}"
                @isset($subitem['title']) title="{{ $subitem['title'] }}" @endisset
                @isset($subitem['rel']) rel="{{ $subitem['rel'] }}" @endisset>
               {{ $subitem['value'] }}

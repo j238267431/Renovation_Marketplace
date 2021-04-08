@@ -1,5 +1,5 @@
 <div class="block-content text_field text-secondary text-sm-justify page_descr order-5">
-  <h2 class="h1 indent-b20">Строительная биржа - просто и надежно!</h2>
+  <h2 class="h1 indent-b20">Строительная биржа – просто и надежно!</h2>
 
   <p>
     Строительная биржа - это онлайн платформа, представляющая собой удобный способ взаимодействия между заказчиками и

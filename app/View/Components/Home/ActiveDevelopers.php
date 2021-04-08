@@ -2,12 +2,14 @@
 
 namespace App\View\Components\Home;
 
+use App\Models\Company;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class ActiveDevelopers extends Component
 {
+  public $companies = [];
   /**
    * Create a new component instance.
    *
@@ -15,7 +17,7 @@ class ActiveDevelopers extends Component
    */
   public function __construct()
   {
-    //
+    $this->companies = Company::active(12)->withCount(['orders', 'reviews'])->get();
   }
 
   /**
