@@ -37,3 +37,11 @@ Route::resource('companies.reviews', \App\Http\Controllers\ReviewController::cla
 Route::get('account/customer', function (){
   return view('account.customer');
 })->name('account.customer');
+
+Route::get('account/customer/tasks', function (){
+  return view('account.tasks');
+})->name('account.tasks');
+
+Route::get('account/customer/executor', function (){
+  return view('account.executor');
+})->name('account.executor');
