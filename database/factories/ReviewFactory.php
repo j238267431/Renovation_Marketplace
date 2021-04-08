@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Company;
+use App\Models\Category;
+use App\Models\Order;
 use App\Models\Review;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ReviewFactory extends Factory
@@ -23,22 +23,9 @@ class ReviewFactory extends Factory
      */
     public function definition(): array
     {
-        $companyId = $userId = $unique_key = null;
-
-        $companyMaxId = Company::query()->max('id');
-        $userMaxId = User::query()->max('id');
-
-        while (!$unique_key) {
-            $companyId = mt_rand(1, $companyMaxId);
-            $userId = mt_rand(1, $userMaxId);
-            $unique_key = $this->faker
-                ->unique()
-                ->passthrough($companyId . '-' . $userId);
-        }
-
         return [
-            'company_id' => $companyId,
-            'user_id' => $userId,
+            'order_id' => Order::factory()->create()->id,
+            'category_id' => Category::query()->inRandomOrder()->first(),
             'title' => $this->faker->sentence,
             'content' => $this->faker->text,
             'rating' => $this->faker->numberBetween(1, 5),

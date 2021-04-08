@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Order extends Model
 {
@@ -17,18 +18,21 @@ class Order extends Model
         'details',
     ];
 
-    public function customer(): HasOne
+    public function status(): BelongsTo
     {
-        return $this->hasOne(User::class, 'customer_id');
+        return $this->belongsTo(Status::class);
     }
 
-    public function company(): HasOne
+
+    public function user(): BelongsTo
     {
-        return $this->hasOne(Company::class);
+        return $this->belongsTo(User::class, 'customer_id');
     }
 
-    public function status(): HasOne
+
+    public function company(): BelongsTo
     {
-        return $this->hasOne(Status::class);
+        return $this->belongsTo(Company::class);
     }
+
 }
