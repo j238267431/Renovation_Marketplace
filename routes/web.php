@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\CompaniesController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,12 +21,15 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/developers', [CompaniesController::class, 'index'])
-    ->name('developers');
-
+Route::resource('companies', CompanyController::class)->only(['index', 'show']);
 
 Route::resource('tasks', TaskController::class);
-Route::get('categories/{category:id}/tasks', [TaskController::class, 'allFromCategory'])->name('categories.tasks');
+Route::get('categories/{category:id}/tasks', [TaskController::class, 'allFromCategory'])
+  ->name('categories.tasks');
+
+Route::resource('projects', ProjectController::class)->only(['index', 'show']);
+
+
 
 Route::resource('companies.reviews', \App\Http\Controllers\FeedbackController::class)
 ->names([

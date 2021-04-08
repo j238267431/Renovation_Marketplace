@@ -2,12 +2,17 @@
 
 namespace App\View\Components\Home;
 
+use App\Models\Project;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
 class Portfolio extends Component
 {
+  public Collection $projects;
+
+
   /**
    * Create a new component instance.
    *
@@ -15,8 +20,13 @@ class Portfolio extends Component
    */
   public function __construct()
   {
-    //
+    $this->projects = Project::query()
+      ->latest()
+      ->with(['company'])
+      ->take(10)
+      ->get();
   }
+
 
   /**
    * Get the view / contents that represent the component.
@@ -27,4 +37,5 @@ class Portfolio extends Component
   {
     return view('components.home.portfolio');
   }
+
 }

@@ -17,6 +17,7 @@ class CompanyController extends Controller
 
   public function show(Company $company)
   {
-    return 'CompanyController@show';
+    echo 'Страница компании ' . $company->id;
+    var_dump($company);
   }
 }

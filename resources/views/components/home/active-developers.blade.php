@@ -1,7 +1,7 @@
 <div class="order-1">
   <div class="block-header">
     <div class="h2 d-block">Самые активные подрядчики</div>
-    <a class="uppercase float-right hidden-xs-down" href="{{ route('developers.index') }}" rel="nofollow">Все активные</a>
+    <a class="uppercase float-right hidden-xs-down" href="{{ route('companies.index') }}" rel="nofollow">Все активные</a>
   </div>
 
   <ul class="cell_list cell-xs-1 cell-sm-2 cell-lg-3 cell-xl-4">
@@ -11,7 +11,7 @@
           <div class="clearfix user_brief d-flex">
             {{--TODO Исправить разметку (отображение картинок и кол-во столбцов)--}}
             <div class="userpic">
-              <a href="{{ route('developers.show', ['developer' => $company]) }}" rel="nofollow">
+              <a href="{{ route('companies.show', ['company' => $company]) }}" rel="nofollow">
                 <img class="img-fluid"
                      src="{{ $company->cover ?? asset('img/placeholder150.png')}}"
                      alt="{{ $company->name }}">
@@ -20,7 +20,7 @@
 
             <div class="brief">
               <span class="name">
-                <a href="{{ route('developers.show', ['developer' => $company]) }}" rel="nofollow">
+                <a href="{{ route('companies.show', ['company' => $company]) }}" rel="nofollow">
                   {{ $company->name }}
                 </a>
               </span>

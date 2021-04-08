@@ -19,29 +19,28 @@ class LeftMenu extends Component
   {
     $this->menu = [
       [
-        'link' => '/tasks',
-        'value' => 'Работа',
+        'route' => 'tasks.index',
+        'value' => 'Заявки',
         'title' => 'Заявки клиентов',
       ],
       [
         'value' => 'Подрядчики',
         'submenu' => [
-          [ 'link' => '/developers', 'value' => 'Каталог подрядчиков', 'title' => 'Лучшие подрядчики' ],
-          [ 'link' => '/projects', 'value' => 'Проекты подрядчиков', 'title' => 'Популярные проекты' ],
-          [ 'link' => '/portfolio', 'value' => 'Работы подрядчиков', 'title' => 'Примеры работ' ],
+          [ 'route' => 'companies.index', 'value' => 'Каталог подрядчиков', 'title' => 'Лучшие подрядчики' ],
+          [ 'route' => 'projects.index', 'value' => 'Проекты подрядчиков', 'title' => 'Популярные проекты' ],
         ],
       ],
-      [
-        'link' => '/blog',
-        'value' => 'Блог',
-        'title' => 'Блог о строительстве и отделке',
-      ],
-      [
-        'link' => '/forum',
-        'value' => 'Форум',
-        'title' => 'Форум СтройХаус',
-        'rel' => 'nofollow',
-      ],
+//      [
+//        'route' => '/blog',
+//        'value' => 'Блог',
+//        'title' => 'Блог о строительстве и отделке',
+//      ],
+//      [
+//        'route' => '/forum',
+//        'value' => 'Форум',
+//        'title' => 'Форум СтройХаус',
+//        'rel' => 'nofollow',
+//      ],
     ];
   }
 
