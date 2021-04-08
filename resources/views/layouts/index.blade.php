@@ -20,9 +20,6 @@
     <x-main-header></x-main-header>
 
     <main class="content">
-
-      <div class="wrapper tab-content">
-
         @yield('content')
 
       </div>
