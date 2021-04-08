@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 
 class Footer extends Component
 {
+  public $email;
   /**
    * Create a new component instance.
    *
@@ -15,7 +16,7 @@ class Footer extends Component
    */
   public function __construct()
   {
-    //
+    $this->email = env('COMPANY_SUPPORT_EMAIL', 'support@stroyhouse.site');
   }
 
   /**

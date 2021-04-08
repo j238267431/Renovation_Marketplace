@@ -1,51 +1,32 @@
 <div class="block-header border-0 order-2 indent-b10">
   <div class="h2">Заявки по категориям</div>
 
-  <a class="uppercase float-right hidden-xs-down" href="/jobs/" rel="nofollow">Все заказы</a>
+  <a class="uppercase float-right hidden-xs-down" href="{{ route('tasks.index') }}" rel="nofollow">Все заявки</a>
 </div>
 
 <div class="cols_table no_hover divided_cols divided_cols-narrow index index_categories order-2">
   <div class="row">
-    @for ($i = 1; $i <= 3; $i++)
+    @forelse($topCategories as $topCategory)
 
     <div class="col-sm-6 col-lg-4 d-flex align-items-stretch">
       <div class="block-content text_field w-100">
-        <div class="title text-bold indent-b20">Веб-программи-<br>рование и Сайты</div>
+        <div class="title text-bold indent-b20">{{ $topCategory->name }}</div>
 
         <ul class="list-unstyled list-wide">
-          <li>
-            <a href="/jobs/veb-programmirovanie-31/">Веб-программирование</a>
-            <span class="float-right text-muted">448</span>
-          </li>
-
-          <li>
-            <a href="/jobs/sistemy-upravleniya-cms-34/">Системы управления (CMS)</a>
-            <span class="float-right text-muted">167</span>
-          </li>
-
-          <li>
-            <a href="/jobs/html-verstka-32/">HTML-верстка</a>
-            <span class="float-right text-muted">166</span>
-          </li>
-
-          <li>
-            <a href="/jobs/sajty-pod-klyuch-58/">Сайты «под ключ»</a>
-            <span class="float-right text-muted">113</span>
-          </li>
-
-          <li>
-            <a href="/jobs/internet-magaziny-61/">Интернет-магазины</a>
-            <span class="float-right text-muted">71</span>
-          </li>
-
-          <li>
-            <a href="/jobs/testirovanie-sajtov-37/">Тестирование сайтов</a>
-            <span class="float-right text-muted">16</span>
-          </li>
+          @forelse($topCategory->children as $category)
+            <li>
+              <a href="{{ route('categories.tasks', ['category' => $category]) }}">{{ $category->name }}</a>
+              <span class="float-right text-muted">{{ $category->tasks->count() }}</span>
+            </li>
+          @empty
+            <p>В этом разделе нет категорий.</p>
+          @endforelse
         </ul>
+
       </div>
     </div>
-
-    @endfor
+    @empty
+      <p>Ничего не найдено.</p>
+    @endforelse
   </div>
 </div>

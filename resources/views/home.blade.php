@@ -1,6 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
+
   <div class="wrapper tab-content">
     <div class="page_layer page_layer-index text-center-xs-down">
       <x-home-quick-start></x-home-quick-start>
@@ -35,5 +36,8 @@
         <x-home-portfolio></x-home-portfolio>
       </div>
     </div>
+
   </div>
+</div>
+
 @endsection

@@ -2,12 +2,15 @@
 
 namespace App\View\Components\Home;
 
+use App\Models\Category;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
 class Tasks extends Component
 {
+  public Collection $topCategories;
   /**
    * Create a new component instance.
    *
@@ -15,7 +18,7 @@ class Tasks extends Component
    */
   public function __construct()
   {
-    //
+    $this->topCategories = Category::top()->with(['children.tasks'])->get();
   }
 
   /**

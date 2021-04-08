@@ -21,6 +21,8 @@
 
     <main class="content">
         @yield('content')
+
+      </div>
     </main>
 
     <x-main-footer></x-main-footer>

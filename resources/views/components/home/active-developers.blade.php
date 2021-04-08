@@ -1,39 +1,55 @@
 <div class="order-1">
   <div class="block-header">
-    <div class="h2 d-block">Самые активные подрядчики за 1 кв 2021</div>
-
-    <a class="uppercase float-right hidden-xs-down" href="/developers" rel="nofollow">Все активные</a>
+    <div class="h2 d-block">Самые активные подрядчики</div>
+    <a class="uppercase float-right hidden-xs-down" href="{{ route('companies.index') }}" rel="nofollow">Все активные</a>
   </div>
 
   <ul class="cell_list cell-xs-1 cell-sm-2 cell-lg-3 cell-xl-4">
-    @for ($i = 1; $i <= 12; $i++)
-
+    @forelse($companies as $company)
       <li class="click_container-link set_href">
         <div class="pr_block">
           <div class="clearfix user_brief d-flex">
+            {{--TODO Исправить разметку (отображение картинок и кол-во столбцов)--}}
             <div class="userpic">
-              <a href="/users/UliaMotovilova/?account_type=freelancer" rel="nofollow">
-                <img class="img-fluid" src="https://st.weblancer.net/download/4515458_120xs.jpg" alt="">
+              <a href="{{ route('companies.show', ['company' => $company]) }}" rel="nofollow">
+                <img class="img-fluid"
+                     src="{{ $company->cover ?? asset('img/placeholder150.png')}}"
+                     alt="{{ $company->name }}">
               </a>
             </div>
 
             <div class="brief">
               <span class="name">
-                <a href="/users/UliaMotovilova/?account_type=freelancer" rel="nofollow">Юлия М.</a>
+                <a href="{{ route('companies.show', ['company' => $company]) }}" rel="nofollow">
+                  {{ $company->name }}
+                </a>
               </span>
-              <span class="login"><span>UliaMotovilova</span></span>
+              <span class="login"><span>{{ $company->description }}</span></span>
             </div>
           </div>
 
-          <div class="pr_title text_field">Переводы</div>
+          <div class="pr_title text_field">{{ $company->category ?? 'Загородное строительство' }}</div>
 
           <div class="pr_text text_field dot_divided">
-            <span class="text-gold">14 платежей</span>
-            <span class="text-success">1 отзыв</span>
+            <span class="text-gold">Заказы: {{ $company->orders_count }}</span>
+            <span class="text-success">Отзывы: {{ $company->reviews_count }}</span>
           </div>
+
         </div>
       </li>
+    @empty
+      <p>Ничего не найдено.</p>
+    @endforelse
 
-    @endfor
+
+
+
+
+
+
+
+
+
+
   </ul>
 </div>
