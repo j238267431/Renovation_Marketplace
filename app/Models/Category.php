@@ -41,6 +41,7 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_id', 'id');
     }
 
+
     /**
      * Возвращает все заявки для категории
      * @return HasMany
@@ -55,19 +56,23 @@ class Category extends Model
      * Возвращает все услуги для категории
      * @return HasMany
      */
+
     public function offers(): HasMany
     {
         return $this->hasMany(Offer::class);
     }
 
+
     /**
      * Возвращает все проекты для категории
      * @return HasMany
      */
+
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
     }
+
 
 
     /**
@@ -78,6 +83,12 @@ class Category extends Model
     public function scopeTop(Builder $query)
     {
       return $query->whereNull('parent_id');
+    }
+
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
     }
 
 }

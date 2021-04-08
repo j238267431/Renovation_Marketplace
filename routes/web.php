@@ -31,7 +31,8 @@ Route::resource('projects', ProjectController::class)->only(['index', 'show']);
 
 
 
-Route::resource('companies.reviews', \App\Http\Controllers\FeedbackController::class)
+
+Route::resource('companies.reviews', \App\Http\Controllers\ReviewController::class)
 ->names([
   'create' => 'companies.reviews.create',
   'store' => 'companies.reviews.store',

@@ -12,21 +12,35 @@ class Review extends Model
     use HasFactory;
 
     protected $fillable = [
-        'company_id',
-        'user_id',
+        'order_id',
+        'category_id',
         'title',
         'content',
         'rating',
         'recommend',
     ];
 
-    public function user(): BelongsTo
+
+    public function getUserAttribute(): User
     {
-        return $this->belongsTo(User::class);
+        return $this->order->user;
     }
 
-    public function company(): BelongsTo
+
+    public function getCompanyAttribute(): Company
     {
-        return $this->belongsTo(Company::class);
+        return $this->order->company;
+    }
+
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+
+    public function order(): BelongsTo
+    {
+        return $this->belongsTo(Order::class);
     }
 }
