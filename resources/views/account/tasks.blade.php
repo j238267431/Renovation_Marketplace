@@ -12,7 +12,8 @@
                 <div class="dropdown-menu block-content text_field">
                   <ul class="list-unstyled list-wide">
                     <li><a href="{{route('account.customer')}}">Я заказчик</a></li>
-                    <li><b>Список заказов</b></li>
+                    <li><b>Список заявок</b></li>
+                    <li><a href="{{route('account.orders')}}">Список заказов</a></li>
                     <li><a href="{{route('account.executor')}}">Выбранные исполнители</a></li>
                     <li><a href="#">Безопасные платежи</a></li>
                   </ul>
@@ -23,7 +24,7 @@
         </div>
       </div>
       <div class="page_content">
-        <div class="block-content text-muted">нет заказов</div>
+        <div class="block-content text-muted">нет заявок</div>
     </div>
   </div>
 @endsection

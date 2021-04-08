@@ -51,3 +51,7 @@ Route::get('account/customer/tasks', function (){
 Route::get('account/customer/executor', function (){
   return view('account.executor');
 })->name('account.executor');
+
+Route::get('account/customer/orders', function (){
+  return view('account.orders');
+})->name('account.orders');
