@@ -12,8 +12,8 @@
                 <div class="dropdown-menu block-content text_field">
                   <ul class="list-unstyled list-wide">
                     <li><a href="{{route('account.customer')}}">Я заказчик</a></li>
-                    <li><b>Список заявок</b></li>
-                    <li><a href="{{route('account.orders')}}">Список заказов</a></li>
+                    <li><a href="{{route('account.tasks')}}">Список заявок</a></li>
+                    <li><b>Список заказов</b></li>
                     <li><a href="{{route('account.executor')}}">Выбранные исполнители</a></li>
                     <li><a href="#">Безопасные платежи</a></li>
                   </ul>
@@ -25,25 +25,21 @@
       </div>
       <div class="page_content">
         <div class="block-content text-muted">
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th scope="col">Название</th>
-            <th scope="col">Описание</th>
-            <th scope="col">Бюджет</th>
-          </tr>
-          </thead>
-          @foreach($tasks as $task)
-            <tbody>
+          <table class="table table-striped">
+            <thead>
             <tr>
-              <td>{{$task->title}}</td>
-              <td>{{$task->description}}</td>
-              <td>{{$task->budget}}</td>
+              <th scope="col">Описание</th>
             </tr>
-            @endforeach
-            </tbody>
-        </table>
-      </div>
+            </thead>
+            @foreach($orders as $order)
+                <tbody>
+                  <tr>
+                    <td>{{$order->details}}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+          </table>
+        </div>
     </div>
   </div>
 @endsection

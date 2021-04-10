@@ -12,7 +12,8 @@
                 <div class="dropdown-menu block-content text_field">
                   <ul class="list-unstyled list-wide">
                     <li><b>Я заказчик</b></li>
-                    <li><a href="{{route('account.tasks')}}">Список заказов</a></li>
+                    <li><a href="{{route('account.tasks')}}">Список заявок</a></li>
+                    <li><a href="{{route('account.orders')}}">Список заказов</a></li>
                     <li><a href="{{route('account.executor')}}">Выбранные исполнители</a></li>
                     <li><a href="#">Безопасные платежи</a></li>
                   </ul>

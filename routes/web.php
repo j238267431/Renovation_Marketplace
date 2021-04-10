@@ -40,14 +40,14 @@ Route::resource('companies.reviews', \App\Http\Controllers\ReviewController::cla
   'destroy' => 'companies.reviews.delete',
 ]);
 
-Route::get('account/customer', function (){
-  return view('account.customer');
-})->name('account.customer');
-
-Route::get('account/customer/tasks', function (){
-  return view('account.tasks');
-})->name('account.tasks');
-
-Route::get('account/customer/executor', function (){
-  return view('account.executor');
-})->name('account.executor');
+Route::middleware('auth')->group(function(){
+  Route::get('account/customer', function (){
+    return view('account.customer');
+  })->name('account.customer');
+  Route::get('account/customer/tasks', [\App\Http\Controllers\Account\AccountController::class, 'tasks']
+  )->name('account.tasks');
+  Route::get('account/customer/executor', [\App\Http\Controllers\Account\AccountController::class, 'companies'])
+    ->name('account.executor');
+  Route::get('account/customer/orders', [\App\Http\Controllers\Account\AccountController::class, 'orders']
+  )->name('account.orders');
+});
