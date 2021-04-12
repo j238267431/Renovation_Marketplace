@@ -51,3 +51,4 @@ Route::middleware('auth')->prefix('account')->group(function(){
   Route::get('/orders', [\App\Http\Controllers\Account\OrderController::class, 'orders']
   )->name('account.orders');
 });
+

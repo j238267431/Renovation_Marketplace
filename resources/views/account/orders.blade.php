@@ -24,6 +24,7 @@
         </div>
       </div>
       <div class="page_content">
+
         <div class="block-content text-muted">
           <table class="table table-striped">
             <thead>
@@ -42,4 +43,5 @@
         </div>
     </div>
   </div>
+
 @endsection
