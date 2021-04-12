@@ -11,7 +11,6 @@
 
   <!-- styles -->
   <link rel="stylesheet" href="/css/normalize.css">
-
   <title>СтройХаус</title>
 </head>
 
@@ -33,6 +32,7 @@
   <script src="/js/tether.min.js"></script>
   <script src="/js/bootstrap.js"></script>
   <script src="/js/bootstrap-typeahead.min.js"></script>
+
   @stack('js')
 </body>
 </html>
