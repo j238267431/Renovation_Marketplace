@@ -51,3 +51,7 @@ Route::middleware('auth')->group(function(){
   Route::get('account/customer/orders', [\App\Http\Controllers\Account\AccountController::class, 'orders']
   )->name('account.orders');
 });
+
+Route::get('/summernote', function (){
+  return view('account.summernote');
+});
