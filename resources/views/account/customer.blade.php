@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('content')
-@include('components.account.navigation')
+  <x-account.navigation/>
   <div class="wrapper tab-content">
     <div class="clearfix tab-pane fade show active">
       <div class="sidebar">
@@ -11,6 +11,7 @@
                 <a href="#" class="nav-link dropdown-toggle">Навигация</a>
                 <div class="dropdown-menu block-content text_field">
                   <ul class="list-unstyled list-wide">
+{{--                    <x-account.links/>--}}
                     <li><b>Я заказчик</b></li>
                     <li><a href="{{route('account.tasks')}}">Список заявок</a></li>
                     <li><a href="{{route('account.orders')}}">Список заказов</a></li>

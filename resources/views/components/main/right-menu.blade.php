@@ -19,7 +19,7 @@
       @if (Route::has('account'))
       <a class="dropdown-item" href="{{ route('account') }}">{{ __('Account') }}</a>
       @endif
-        <a class="dropdown-item" href="{{route('account.customer')}}">Личный кабинет</a>
+        <a class="dropdown-item" href="{{route('account')}}">Личный кабинет</a>
       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
         {{ __('Logout') }}
