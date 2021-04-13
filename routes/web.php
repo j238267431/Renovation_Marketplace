@@ -23,7 +23,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('companies', CompanyController::class)->only(['index', 'show']);
 
-Route::resource('tasks', TaskController::class);
+Route::middleware('auth')->resource('tasks', TaskController::class);
+
 Route::get('categories/{category:id}/tasks', [TaskController::class, 'allFromCategory'])
   ->name('categories.tasks');
 

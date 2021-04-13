@@ -86,7 +86,6 @@
                       <input onclick="budgetInsert()" id="budget_insert" type="radio" class="form-check-input" name="budget_toggle" value="1" @if(old('budget_toggle') == 1) checked="checked"@endif validate="true">
                       Я хочу указать бюджет
                     </label>
-{{--                    @dd(old('budget_toggle'))--}}
                   </div>
                   @error('budget') <div class="alert alert-danger">
                     @foreach($errors->get('budget') as $error)
