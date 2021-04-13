@@ -8,7 +8,7 @@
     @forelse($companies as $company)
       <li class="click_container-link set_href">
         <div class="pr_block">
-          <div class="clearfix user_brief d-flex">
+          <div class="clearfix user_brief">
             {{--TODO Исправить разметку (отображение картинок и кол-во столбцов)--}}
             <div class="userpic">
               <a href="{{ route('companies.show', ['company' => $company]) }}" rel="nofollow">
