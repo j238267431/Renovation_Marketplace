@@ -77,13 +77,13 @@
                 <fieldset class="form-group">
                   <div class="form-check-inline">
                     <label class="form-check-label">
-                      <input onclick="budgetInsert()" type="radio" class="form-check-input" name="budget_toggle" value="0" checked="checked" validate="true">
+                      <input onclick="budgetInsert()" type="radio" class="form-check-input" name="budget_toggle" value="0" @if(old('category_toggle') == 0) checked="checked"@else checked=""@endif validate="true">
                       Компании предложат цены
                     </label>
                   </div>
                   <div class="form-check-inline">
                     <label class="form-check-label">
-                      <input onclick="budgetInsert()" id="budget_insert" type="radio" class="form-check-input" name="budget_toggle" value="1" validate="true">
+                      <input onclick="budgetInsert()" id="budget_insert" type="radio" class="form-check-input" name="budget_toggle" value="1" @if(old('category_toggle') == 1) checked="checked"@else checked=""@endif validate="true">
                       Я хочу указать бюджет
                     </label>
                   </div>
@@ -93,7 +93,7 @@
                     @endforeach
                   </div>
                   @enderror
-                  <div class="input-group amount indent-t20" style="display: none" id="set_budget">
+                  <div class="input-group amount indent-t20" @if(old('category_toggle') == 0) style="display: none"@endif id="set_budget">
                     <input type="number" class="form-control" id="budget" name="budget" placeholder="Сумма в руб." value min="1" autocomplete="off" validate="true">
                     <div class="input-group-addon">РУБ</div>
                   </div>
@@ -104,19 +104,19 @@
                     <fieldset>
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input onclick="categoryInsert()" type="radio" class="form-check-input" name="category_toggle" value="0" checked="checked" validate="true">
+                          <input onclick="categoryInsert()" type="radio" class="form-check-input" name="category_toggle" value="0" @if(old('category_toggle') == 0) checked="checked"@else checked=""@endif validate="true">
                           Определить автоматически
                         </label>
                       </div>
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input onclick="categoryInsert()" id="category_insert" type="radio" class="form-check-input" name="category_toggle" value="1" validate="true">
+                          <input onclick="categoryInsert()" id="category_insert" type="radio" class="form-check-input" name="category_toggle" value="1" @if(old('category_toggle') == 1) checked="checked"@else checked=""@endif validate="true">
                           Я хочу указать категорию
                         </label>
                       </div>
                     </fieldset>
                   </div>
-                  <div class="indent-t20" style="display: none" id="category_select">
+                  <div class="indent-t20" @if(old('category_toggle') == 0) style="display: none"@endif  id="category_select">
                     <div class="form-group row bootstrap_css category_select">
 {{--                      <div class="form-group col-sm-6 mb-sm-0">--}}
 {{--                        <label for="parent_category_id" class="form-control-label">Раздел</label>--}}
@@ -127,9 +127,9 @@
                       <div class="form-group col-sm-6 mb-sm-0">
                         <label for="category" class="form-control-label">Категория</label>
                         <select name="category_id" id="category" class="form-control">
-                          <option disabled selected value="No">Укажите категорию</option>
+                          <option disabled  value="No" @if(old('category_id')) '' @else selected @endif>Укажите категорию</option>
                           @foreach($categories as $category)
-                            <option value="{{$category->id}}" @if(old('category') == $category->name)"selected"@else""@endif>{{$category->name}}</option>
+                            <option value="{{$category->id}}" @if(old('category_id') == $category->id) selected @else""@endif>{{$category->name}}</option>
                           @endforeach
                         </select>
                       </div>
