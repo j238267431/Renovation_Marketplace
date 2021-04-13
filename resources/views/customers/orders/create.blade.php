@@ -77,15 +77,16 @@
                 <fieldset class="form-group">
                   <div class="form-check-inline">
                     <label class="form-check-label">
-                      <input onclick="budgetInsert()" type="radio" class="form-check-input" name="budget_toggle" value="0" @if(old('category_toggle') == 0) checked="checked"@else checked=""@endif validate="true">
+                      <input onclick="budgetInsert()" type="radio" class="form-check-input" name="budget_toggle" value="0" @if(old('budget_toggle') == 0) checked="checked"@endif validate="true">
                       Компании предложат цены
                     </label>
                   </div>
                   <div class="form-check-inline">
                     <label class="form-check-label">
-                      <input onclick="budgetInsert()" id="budget_insert" type="radio" class="form-check-input" name="budget_toggle" value="1" @if(old('category_toggle') == 1) checked="checked"@else checked=""@endif validate="true">
+                      <input onclick="budgetInsert()" id="budget_insert" type="radio" class="form-check-input" name="budget_toggle" value="1" @if(old('budget_toggle') == 1) checked="checked"@endif validate="true">
                       Я хочу указать бюджет
                     </label>
+{{--                    @dd(old('budget_toggle'))--}}
                   </div>
                   @error('budget') <div class="alert alert-danger">
                     @foreach($errors->get('budget') as $error)
@@ -94,7 +95,7 @@
                   </div>
                   @enderror
                   <div class="input-group amount indent-t20" @if(old('category_toggle') == 0) style="display: none"@endif id="set_budget">
-                    <input type="number" class="form-control" id="budget" name="budget" placeholder="Сумма в руб." value min="1" autocomplete="off" validate="true">
+                    <input type="number" class="form-control" id="budget" name="budget" placeholder="Сумма в руб." value="{{old('budget')}}" value min="1" autocomplete="off" validate="true">
                     <div class="input-group-addon">РУБ</div>
                   </div>
                 </fieldset>
@@ -104,13 +105,13 @@
                     <fieldset>
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input onclick="categoryInsert()" type="radio" class="form-check-input" name="category_toggle" value="0" @if(old('category_toggle') == 0) checked="checked"@else checked=""@endif validate="true">
+                          <input onclick="categoryInsert()" type="radio" class="form-check-input" name="category_toggle" value="0" @if(old('category_toggle') == 0) checked="checked"@endif validate="true">
                           Определить автоматически
                         </label>
                       </div>
                       <div class="form-check-inline">
                         <label class="form-check-label">
-                          <input onclick="categoryInsert()" id="category_insert" type="radio" class="form-check-input" name="category_toggle" value="1" @if(old('category_toggle') == 1) checked="checked"@else checked=""@endif validate="true">
+                          <input onclick="categoryInsert()" id="category_insert" type="radio" class="form-check-input" name="category_toggle" value="1" @if(old('category_toggle') == 1) checked="checked"@endif validate="true">
                           Я хочу указать категорию
                         </label>
                       </div>
