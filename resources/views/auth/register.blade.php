@@ -1,6 +1,15 @@
 @extends('layouts.index')
 
 @section('content')
+<div class="page_header">
+    <div class="wrapper cols_table no_hover">
+        <div class="row">
+            <div class="col page_header_content">
+                <h1>Регистрация</h1>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

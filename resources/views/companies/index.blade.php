@@ -17,7 +17,7 @@
         <div class="navbar-collapse">
           <div>
             <div class="block-content">
-              <a class="btn btn-success btn-md btn-block" href="#" data-btn_type="freelancers" rel="nofollow">
+              <a class="btn btn-success btn-md btn-block" href="{{ route('tasks.create') }}" data-btn_type="freelancers" rel="nofollow">
                 <b>Разместить заказ</b>
               </a>
             </div>
