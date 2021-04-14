@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('content')
-  <x-account.navigation/>
+  <x-account.navigation :hasCompany="$hasCompany"/>
   <div class="wrapper tab-content">
     <div class="clearfix tab-pane fade show active">
       <div class="sidebar">
@@ -10,14 +10,7 @@
               <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle">Навигация</a>
                 <div class="dropdown-menu block-content text_field">
-                  <ul class="list-unstyled list-wide">
-{{--                    <x-account.links/>--}}
-                    <li><b>Я заказчик</b></li>
-                    <li><a href="{{route('account.tasks')}}">Список заявок</a></li>
-                    <li><a href="{{route('account.orders')}}">Список заказов</a></li>
-                    <li><a href="{{route('account.executor')}}">Выбранные исполнители</a></li>
-                    <li><a href="#">Безопасные платежи</a></li>
-                  </ul>
+                  <x-account.right-menu/>
                 </div>
               </div>
             </div>

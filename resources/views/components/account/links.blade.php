@@ -1,5 +1,13 @@
-<li><a class="nav-link {{ request()->routeIs('account')?'active':'' }}" href="{{route('account')}}">Я заказчик</a></li>
-<li><a class="nav-link {{ request()->routeIs('account.tasks')?'active':'' }}" href="{{route('account.tasks')}}">Список заявок</a></li>
-<li><a class="nav-link {{ request()->routeIs('account.orders')?'active':'' }}" href="{{route('account.orders')}}">Список заказов</a></li>
-<li><a class="nav-link {{ request()->routeIs('account.executor')?'active':'' }}" href="{{route('account.executor')}}">Выбранные исполнители</a></li>
-<li><a href="#">Безопасные платежи</a></li>
+<ul class="list-unstyled list-wide">
+  @if(request()->routeIs('company.index'))
+    <li><b>Мои компании</b></li>
+  @else
+    <li><a href="{{route('company.index')}}">Мои компании</a></li>
+  @endif
+    <li><a href="#">Отклики на заявки</a></li>
+  <li><a href="#">Заказы в работе</a></li>
+  <li><a href="#">Готовые проекты</a></li>
+  <li><a href="#">Портфолио</a></li>
+  <li><a href="#">Цены на услуги</a></li>
+  <li><a href="#">Рейтинг</a></li>
+</ul>

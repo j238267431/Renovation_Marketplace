@@ -6,6 +6,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Account\CompanyController as AccountCompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('companies', CompanyController::class)->only(['index', 'show']);
 
 Route::middleware('auth')->resource('tasks', TaskController::class);
+Route::middleware('auth')->resource('company', AccountCompanyController::class);
 
 Route::get('categories/{category:id}/tasks', [TaskController::class, 'allFromCategory'])
   ->name('categories.tasks');
@@ -42,9 +44,8 @@ Route::resource('companies.reviews', \App\Http\Controllers\ReviewController::cla
 ]);
 
 Route::middleware('auth')->prefix('account')->group(function(){
-  Route::get('/', function (){
-    return view('account.customer');
-  })->name('account');
+  Route::get('/', [\App\Http\Controllers\Account\AccountController::class, 'index']
+  )->name('account');
   Route::get('/tasks', [\App\Http\Controllers\Account\TaskController::class, 'tasks']
   )->name('account.tasks');
   Route::get('/executor', [\App\Http\Controllers\Account\ExecutorController::class, 'companies'])
