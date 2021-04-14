@@ -21,13 +21,20 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::group(['prefix' => 'companies'], function (){
+    Route::get('/active', [CompanyController::class, 'activeIndex'])->name('companies.active');
+    Route::get('/{company:id}/projects', [ProjectController::class, 'showAllProjectsOfOneCompany'])
+        ->name('companyProjects');
+});
+
+
+Route::resource('projects', ProjectController::class)->only(['index', 'show']);
 Route::resource('companies', CompanyController::class)->only(['index', 'show']);
 
 Route::resource('tasks', TaskController::class);
 Route::get('categories/{category:id}/tasks', [TaskController::class, 'allFromCategory'])
   ->name('categories.tasks');
 
-Route::resource('projects', ProjectController::class)->only(['index', 'show']);
 
 
 
