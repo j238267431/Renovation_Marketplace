@@ -12,7 +12,13 @@ use App\Models\User;
 class AccountController extends Controller
 {
 
+public function index()
+{
+  $user = Auth::user();
+  $hasCompany = $this->hasCompany($user);
 
+  return view('account.customer', ['user' => $user, 'hasCompany' => $hasCompany]);
+}
 
 
 

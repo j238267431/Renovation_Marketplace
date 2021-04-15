@@ -5,12 +5,17 @@
         <h1>Я заказчик</h1>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Строительная биржа</a></li>
-          <li class="breadcrumb-item"><a href="#">Аккаунт</a></li>
-          <li class="breadcrumb-item active">"Личный кабинет"</li>
+          <li class="breadcrumb-item active">Личный кабинет</li>
         </ol>
       </div>
       <div class="col-aut d-flex flex-column page_header_sidebar">
+        <a class="btn btn-success" href="{{route('company.create')}}">Создать компанию</a>
       </div>
+      @if($hasCompany)
+      <div class="col-aut d-flex flex-column page_header_sidebar">
+        <a class="btn btn-success" href="{{route('company.index')}}">Мои компании</a>
+      </div>
+      @endif
     </div>
   </div>
 </div>
