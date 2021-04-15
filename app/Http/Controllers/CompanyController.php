@@ -16,10 +16,11 @@ class CompanyController extends Controller
    */
   public function index()
   {
-
+        $categories = Category::all();
       $companies = Company::inRandomOrder()->paginate($this->countOnePagePaginate);
         return view('companies.index', [
-        'companies' => $companies,
+            'companies' => $companies,
+            'categories' => $categories
         ]);
 
   }
