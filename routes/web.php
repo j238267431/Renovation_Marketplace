@@ -31,7 +31,8 @@ Route::group(['prefix' => 'companies'], function (){
 Route::resource('projects', ProjectController::class)->only(['index', 'show']);
 Route::resource('companies', CompanyController::class)->only(['index', 'show']);
 
-Route::resource('tasks', TaskController::class);
+Route::middleware('auth')->resource('tasks', TaskController::class);
+
 Route::get('categories/{category:id}/tasks', [TaskController::class, 'allFromCategory'])
   ->name('categories.tasks');
 
@@ -47,18 +48,14 @@ Route::resource('companies.reviews', \App\Http\Controllers\ReviewController::cla
   'destroy' => 'companies.reviews.delete',
 ]);
 
-Route::get('account/customer', function (){
-  return view('account.customer');
-})->name('account.customer');
-
-Route::get('account/customer/tasks', function (){
-  return view('account.tasks');
-})->name('account.tasks');
-
-Route::get('account/customer/executor', function (){
-  return view('account.executor');
-})->name('account.executor');
-
-Route::get('account/customer/orders', function (){
-  return view('account.orders');
-})->name('account.orders');
+Route::middleware('auth')->prefix('account')->group(function(){
+  Route::get('/', function (){
+    return view('account.customer');
+  })->name('account');
+  Route::get('/tasks', [\App\Http\Controllers\Account\TaskController::class, 'tasks']
+  )->name('account.tasks');
+  Route::get('/executor', [\App\Http\Controllers\Account\ExecutorController::class, 'companies'])
+    ->name('account.executor');
+  Route::get('/orders', [\App\Http\Controllers\Account\OrderController::class, 'orders']
+  )->name('account.orders');
+});

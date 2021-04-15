@@ -10,8 +10,8 @@
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
   <!-- styles -->
+  <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="/css/normalize.css">
-
   <title>СтройХаус</title>
 </head>
 
@@ -33,6 +33,11 @@
   <script src="/js/tether.min.js"></script>
   <script src="/js/bootstrap.js"></script>
   <script src="/js/bootstrap-typeahead.min.js"></script>
+
+  <!-- summernote css/js -->
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
   @stack('js')
 </body>
 </html>

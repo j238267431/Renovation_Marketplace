@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+
 use Illuminate\View\View;
 
+use App\Models\Category;
 
 class CompanyController extends Controller
 {
@@ -14,10 +16,12 @@ class CompanyController extends Controller
    */
   public function index()
   {
+
       $companies = Company::inRandomOrder()->paginate($this->countOnePagePaginate);
         return view('companies.index', [
         'companies' => $companies,
         ]);
+
   }
 
     /**
@@ -35,7 +39,10 @@ class CompanyController extends Controller
 
   public function show(Company $company)
   {
-      echo 'Страница компании ' . $company->id;
-      var_dump($company);
+
+    return view('companies.show', [
+      'company' => $company
+    ]);
+
   }
 }
