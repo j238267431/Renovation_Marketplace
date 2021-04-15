@@ -39,6 +39,17 @@
                   <p>Нет категорий</p>
                   @endif
 
+{{/*
+<h1>Все заказы</h1>
+    <br>
+    <div>
+        @foreach($tasks as $task)
+            <a href="{{route('tasks.show',['task' => $task->id])}}">{{$task->id}}</a>
+            <h4>{{$task->title}}</h4>
+            <p>{{$task->description}}</p>
+            <p>{{$task->categoryName->name}}</p>
+            <br><br>
+*/}}
                 </div>
               </div>
             </div>
@@ -82,6 +93,10 @@
         @endif
       </div>
     </div>
+{{/*
+    {{$tasks->links()}}
+@endsection
+*/}}
   </div>
 </div>
 @endsection
