@@ -19,8 +19,8 @@ class TaskController extends Controller
      */
     public function index(): View
     {
-        $tasks = Task::all();
-        return view('customers.orders.index', ['tasks' => $tasks]);
+      $tasks = Task::latest('id')->paginate(4);
+      return view('customers.orders.index', ['tasks' => $tasks]);
     }
 
 
@@ -48,12 +48,12 @@ class TaskController extends Controller
         return view('customers.orders.create', ['categories' => $categories]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param \App\Http\Requests\TaskCreate $request
+   * @return \Illuminate\Http\RedirectResponse
+   */
     public function store(TaskCreate $request)
     {
 
@@ -71,11 +71,14 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Customers\Order  $order
+     * @param  \App\Models\Task $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Task $task)
     {
+        $user = $task->with('user')->get();
+//        dd($user);
+        dd($task->user()->firstOrFail());
         //TODO order object from index method
         return view('customers.orders.show', [
             'order' => 12
@@ -85,10 +88,10 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Customers\Order  $order
+     * @param  \App\Models\Task $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Task $task)
     {
         return view('customers.orders.edit');
     }
@@ -97,10 +100,10 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Customers\Order  $order
+     * @param  \App\Models\Task $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Task $task)
     {
         //
     }
@@ -108,10 +111,10 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Customers\Order  $order
+     * @param  \App\Models\Task $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Task $task)
     {
         //
     }
