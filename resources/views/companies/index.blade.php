@@ -101,6 +101,7 @@
         @empty
           <p>Ничего не найдено.</p>
         @endforelse
+            {{$companies->links()}}
       </div>
     </div>
   </div>

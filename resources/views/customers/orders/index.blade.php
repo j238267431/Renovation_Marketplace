@@ -88,15 +88,18 @@
           <div class="col-sm-4 text-sm-right"><span class="text-muted">Открыт <span data-toggle="tooltip" title="" data-timestamp="1618322266" class="time_ago" data-original-title="13.04.2021 в 16:57">17 часов назад</span></span></div>
         </div>
         @endforeach
+            {{$tasks->links()}}
         @else
         Нет заказов
         @endif
       </div>
     </div>
 
-{{--    {{$tasks->links()}}--}}
+
 {{--@endsection--}}
 
   </div>
+
 </div>
+
 @endsection
