@@ -77,11 +77,13 @@ class TaskController extends Controller
     public function show(Task $task)
     {
         $user = $task->with('user')->get();
+        $id = $task->id;
 //        dd($user);
-        dd($task->user()->firstOrFail());
+//        dd($task->user()->firstOrFail());
         //TODO order object from index method
         return view('customers.orders.show', [
-            'order' => 12
+            'id' => $id,
+            'task' => $task,
         ]);
     }
 

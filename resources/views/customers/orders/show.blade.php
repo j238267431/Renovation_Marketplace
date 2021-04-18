@@ -44,7 +44,7 @@
             <div class="float-right text-muted block-top_right hidden-sm-up">
               <span data-toggle="tooltip" title="" data-timestamp="1618322266" class="time_ago" data-original-title="13.04.2021 в 16:57">17 часов назад</span>
             </div>
-            <p>{{ $task->description }}</p>
+            <p>{!! $task->description !!}</p>
           </div>
         </div>
       </div>
