@@ -11,7 +11,7 @@
           <div class="clearfix user_brief">
             {{--TODO Исправить разметку (отображение картинок и кол-во столбцов)--}}
             <div class="userpic">
-              <a href="{{ route('companies.show', ['company' => $company]) }}" rel="nofollow">
+              <a href="{{ route('companies.show', $company) }}" rel="nofollow">
                 <img class="img-fluid"
                      src="{{ $company->cover ?? asset('img/placeholder150.png')}}"
                      alt="{{ $company->name }}">
@@ -20,7 +20,7 @@
 
             <div class="brief">
               <span class="name">
-                <a href="{{ route('companies.show', ['company' => $company]) }}" rel="nofollow">
+                <a href="{{ route('companies.show', $company) }}" rel="nofollow">
                   {{ $company->name }}
                 </a>
               </span>

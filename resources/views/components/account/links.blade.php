@@ -1,8 +1,8 @@
 <ul class="list-unstyled list-wide">
-  @if(request()->routeIs('company.index'))
+  @if(request()->routeIs('account.companies.index'))
     <li><b>Мои компании</b></li>
   @else
-    <li><a href="{{route('company.index')}}">Мои компании</a></li>
+    <li><a href="{{route('account.companies.index')}}">Мои компании</a></li>
   @endif
     <li><a href="#">Отклики на заявки</a></li>
   <li><a href="#">Заказы в работе</a></li>

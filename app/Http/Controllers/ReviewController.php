@@ -2,43 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Review;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     * '
+     * Выводит все отзывы обо всех компаниях
      *
-     *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index($company_id)
+    public function index(): View
     {
-        $reviews = Review::query()->where('company_id', '=', $company_id)->get();
-        return view('customers.review.index', [
+        $reviews = Review::all();
+
+        return view('review.index', [
           'reviews' => $reviews,
-          'company_id' => $company_id,
+        ]);
+    }
+
+    /**
+     * Выводит все отзывы конкретной компании
+     * @param \App\Models\Company $company
+     * @return View
+     */
+    public function allFromCompany(Company $company): View
+    {
+        $reviews = $company->reviews;
+
+        return view('companies.reviews.index', [
+            'reviews' => $reviews,
+            'company' => $company,
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create($company_id)
     {
-        return view('customers.review.create', ['company_id' => $company_id]);
+        return view('review.create', ['company_id' => $company_id]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request, $company_id)
     {
@@ -66,26 +82,29 @@ class ReviewController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Выводит конкретный отзыв
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Review $review
+     * @return View
      */
-    public function show($company, $review)
+    public function show(Review $review): View
     {
-        return view('customers.review.show', ['company'=> $company,'review'=>$review]);
+        return view('review.show', [
+            'company' => $review->company,
+            'review'  => $review,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($company_id, $review_id)
     {
       $review = Review::query()->find($review_id);
-        return view('customers.review.edit', ['review' => $review, 'company_id'=>$company_id ]);
+        return view('review.edit', ['review' => $review, 'company_id'=>$company_id ]);
     }
 
     /**
@@ -93,7 +112,7 @@ class ReviewController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $company_id, $id)
     {
@@ -114,7 +133,7 @@ class ReviewController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($company_id, $review_id)
     {
