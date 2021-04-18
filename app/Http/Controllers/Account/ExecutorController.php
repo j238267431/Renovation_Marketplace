@@ -12,8 +12,8 @@ class ExecutorController extends Controller
   public function companies()
   {
     $user = Auth::user();
-    $hasCompany = $this->hasCompany($user);
-    $orders = User::find(Auth::id())->orders;
+    $hasCompany = $user->companies()->exists();
+    $orders = $user->orders();
     return view('account.executor', ['orders' => $orders, 'hasCompany' => $hasCompany]);
   }
 }

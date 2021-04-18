@@ -9,9 +9,5 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public function hasCompany($user)
-    {
-      return !empty($user->companies);
-    }
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests; 
 }
