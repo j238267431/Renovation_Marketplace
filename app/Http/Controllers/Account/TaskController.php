@@ -13,7 +13,7 @@ class TaskController extends Controller
   {
     $user = Auth::user();
     $hasCompany = $this->hasCompany($user);
-    $tasks = Auth::user()->tasks;
+    $tasks = Auth::user()->tasks()->paginate(4);
     return view('account.tasks', ['tasks' => $tasks, 'hasCompany' => $hasCompany]);
   }
 }

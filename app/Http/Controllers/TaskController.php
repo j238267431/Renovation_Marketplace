@@ -38,7 +38,8 @@ class TaskController extends Controller
       return view('customers.orders.index', [
           'tasks' => $tasks,
           'categories' => $categories,
-          'categoryId' => $categoryId]);
+          'categoryId' => $categoryId,
+          'categoryName' => $category->name]);
     }
 
 

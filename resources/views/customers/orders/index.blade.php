@@ -5,7 +5,7 @@
   <div class="wrapper cols_table no_hover">
     <div class="row">
       <div class="col page_header_content">
-        <h1>Все заказы</h1>
+          <a href="{{route('tasks.index')}}"><h1>Все заказы</h1></a>
       </div>
     </div>
   </div>
@@ -93,11 +93,11 @@
                   <div class="text_field text-inline"><span class="snippet">{!! $task->description !!}</div>
               </div>
               <div class="col-sm-2 text-sm-right">
-                  <div class="float-right float-sm-none title amount indent-xs-b0"><span data-toggle="tooltip" title="" data-original-title="725 грн • 1 959 руб">$25</span></div>
+                  <div class="float-right float-sm-none title amount indent-xs-b0"><span data-toggle="tooltip" title="" data-original-title="725 грн • 1 959 руб">@if($task->budget){{$task->budget}} &#8381;@else цена не указана @endif</span></div>
                   <div class="float-left float-sm-none text_field">23 заявки</div>
               </div>
-              <div class="col-sm-8 text-muted dot_divided d-flex"><span class="text-nowrap"><a class="text-muted" href="/jobs/nejming-i-slogany-86/">Нейминг и&nbsp;Слоганы</a></span></div>
-              <div class="col-sm-4 text-sm-right"><span class="text-muted">Открыт <span data-toggle="tooltip" title="" data-timestamp="1618322266" class="time_ago" data-original-title="13.04.2021 в 16:57">17 часов назад</span></span></div>
+              <div class="col-sm-8 text-muted dot_divided d-flex"><span class="text-nowrap"><a class="text-muted" href="{{route('categories.tasks', ['category'=>$task->categoryName->id])}}">@if(isset($categoryName)){{$categoryName}}@else{{$task->categoryName->name}}@endif</a></span></div>
+              <div class="col-sm-4 text-sm-right"><span class="text-muted">Открыт <span data-toggle="tooltip" title="" data-timestamp="1618322266" class="time_ago" data-original-title="13.04.2021 в 16:57">{{$task->created_at->diffForHumans()}}</span></span></div>
           </div>
           @empty
               <div class="row click_container-link set_href">
@@ -106,6 +106,7 @@
                   </div>
               </div>
           @endforelse
+          {{$tasks->links()}}
       </div>
     </div>
 
