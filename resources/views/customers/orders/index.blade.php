@@ -28,11 +28,18 @@
                 <div class="dropdown-menu block-content text_field">
                     <ul class="list-unstyled list-wide category_tree toggle_parents">
                     @forelse($categories as $category)
-                        @if($category->id == $categoryId)
-                            <li>
-                                <b>{{$category->name}}</b>
-                                <span class="num"> {{$category->tasks->count()}}</span>
-                            </li>
+                        @if(isset($categoryId))
+                            @if($category->id == $categoryId)
+                                <li>
+                                    <b>{{$category->name}}</b>
+                                    <span class="num"> {{$category->tasks->count()}}</span>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{route('categories.tasks', ['category' => $category->id])}}"> {{$category->name}} </a>
+                                    <span class="num"> {{$category->tasks->count()}}</span>
+                                </li>
+                            @endif
                         @else
                             <li>
                                 <a href="{{route('categories.tasks', ['category' => $category->id])}}"> {{$category->name}} </a>
