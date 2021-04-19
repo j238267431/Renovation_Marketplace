@@ -20,7 +20,8 @@ class TaskController extends Controller
     public function index(): View
     {
       $tasks = Task::latest('id')->paginate(4);
-      return view('customers.orders.index', ['tasks' => $tasks]);
+      $categories = Category::all();
+      return view('customers.orders.index', ['tasks' => $tasks, 'categories' => $categories]);
     }
 
 
@@ -31,8 +32,13 @@ class TaskController extends Controller
    */
     public function allFromCategory(Category $category): View
     {
-      $tasks = $category->tasks()->get();
-      return view('customers.orders.index', ['tasks' => $tasks]);
+      $tasks = $category->tasks()->paginate(4);
+        $categories = Category::all();
+        $categoryId = $category->id;
+      return view('customers.orders.index', [
+          'tasks' => $tasks,
+          'categories' => $categories,
+          'categoryId' => $categoryId]);
     }
 
 
