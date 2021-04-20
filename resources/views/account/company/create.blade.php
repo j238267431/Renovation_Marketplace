@@ -11,73 +11,6 @@
       </div>
     </div>
   </div>
-<<<<<<< HEAD
-</div>
-<div class="wrapper tab-content">
-  <div class="clearfix tab-pane fade show active" id="tab_pane-main">
-    <div class="page_content no_sidebar">
-      <form class="form" action="{{ route('company.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
-        @csrf
-        <div class="cols_table no_hover">
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
-                <label for="name" class="form-control-label">Название компании</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Как называется Ваша компания" value="{{ old('name') }}">
-              </div>
-              @error('name')
-              <div class="alert alert-danger">
-                @foreach($errors->get('name') as $error)
-                {{$error}}
-                @endforeach
-              </div>
-              @enderror
-              
-              <div class="form-group">
-                <label for="name" class="form-control-label">Телефон</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="телефон для связи в формате 9 123 456 78 90" value="{{ old('phone') }}">
-              </div>
-              @error('phone')
-              <div class="alert alert-danger">
-                @foreach($errors->get('phone') as $error)
-                {{$error}}
-                @endforeach
-              </div>
-              @enderror
-              
-              <div class="form-group">
-                <label for="name" class="form-control-label">Электронная почта</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Адрес электронной почты" value="{{ old('email') }}">
-              </div>
-              @error('email')
-              <div class="alert alert-danger">
-                @foreach($errors->get('email') as $error)
-                {{$error}}
-                @endforeach
-              </div>
-              @enderror
-              
-              <div class="form-group">
-                <label for="name" class="form-control-label">Адрес</label>
-                <input type="text" class="form-control" id="address" name="address" placeholder="Адрес расположения офиса" value="{{ old('address') }}">
-              </div>
-              @error('address')
-              <div class="alert alert-danger">
-                @foreach($errors->get('address') as $error)
-                {{$error}}
-                @endforeach
-              </div>
-              @enderror
-              
-              <div class="form-group">
-                <div class="attachment file buttons">
-                  <div id="files_form">
-                    <a href="" class="btn btn-secondary btn-file upload">
-                      <span class="icon-attachment"></span>
-                      Логотип компании
-                      <input type="file" class="uploader" name="cover" value>
-                    </a>
-=======
   <div class="wrapper tab-content">
     <div class="clearfix tab-pane fade show active" id="tab_pane-main">
       <div class="page_content no_sidebar">
@@ -135,7 +68,6 @@
                         <input type="file" class="uploader" name="file[]" multiple="multiple" value>
                       </a>
                     </div>
->>>>>>> eba6c839c6f55ef6752cbdee9cb6c02d67819230
                   </div>
                 </div>
               </div>
