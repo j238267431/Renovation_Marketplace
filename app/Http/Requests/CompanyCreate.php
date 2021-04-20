@@ -25,11 +25,11 @@ class CompanyCreate extends FormRequest
   {
     return [
       'name'          => 'required|min:2',
-      'phone'         => 'required|min:5',
+      'phone'         => 'required|min:11',
       'email'         => 'required|email:rfc,dns',
-      'cover'         => 'sometimes|file',
-      'address'       => 'required|min:10',
-      'description'   => 'required|min:10', 
+      'cover'         => 'sometimes|file|mimetypes:image/bmp,image/png,image/jpeg|max:1024|dimensions:width=150,height=150',
+      'address'       => 'required|string|min:10',
+      'description'   => 'required|string|min:10', 
     ];
   }
   public function messages()

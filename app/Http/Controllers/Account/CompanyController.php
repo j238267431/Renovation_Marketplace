@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -43,7 +44,12 @@ class CompanyController extends Controller
    */
   public function store(CompanyCreate $request)
   {
-    $data = $request->validated();
+    $data = $request->validated(); 
+    if ($request->file('cover')) {
+      $filePath = Storage::putFile('public', $request->file('cover'));
+      $data["cover"] = Storage::url($filePath); 
+    }
+
     $company = Company::create($data);
 
     if ($company) {
@@ -57,7 +63,7 @@ class CompanyController extends Controller
     }
     return back()->with('fail', 'Не удалось создать компанию');
   }
-
+  
   /**
    * Display the specified resource.
    *
