@@ -12,8 +12,8 @@ class OrderController extends Controller
   public function orders()
   {
     $user = Auth::user();
-    $hasCompany = $this->hasCompany($user);
-    $orders = Auth::user()->orders;
+    $hasCompany = $user->companies()->exists();
+    $orders = $user->orders();
     return view('account.orders', ['orders' => $orders, 'hasCompany' => $hasCompany]);
   }
 }

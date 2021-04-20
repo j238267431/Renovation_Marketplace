@@ -9,16 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function hasCompany($user)
-    {
-        return true; // todo метод даёт ошибку Undefined offset: 0, надо исправить
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests; 
 
-      $companies = $user->companies;
-      if($companies[0]->id){
-        return true;
-      }
-      return false;
-    }
 }
