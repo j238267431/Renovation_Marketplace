@@ -39,7 +39,7 @@
             @endforeach
             </tbody>
         </table>
-            {{$tasks->links}}
+            {{$tasks->links()}}
       </div>
     </div>
   </div>

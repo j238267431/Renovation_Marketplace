@@ -38,6 +38,8 @@
                   @else
                   <p>Нет категорий</p>
                   @endif
+<<<<<<< HEAD
+=======
 
 
 {{--<h1>Все заказы</h1>--}}
@@ -50,6 +52,7 @@
 {{--            <p>{{$task->categoryName->name}}</p>--}}
 {{--            <br><br>--}}
 
+>>>>>>> eba6c839c6f55ef6752cbdee9cb6c02d67819230
                 </div>
               </div>
             </div>
@@ -81,7 +84,11 @@
             <div class="text_field text-inline"><span class="snippet">{!! $task->description !!}</div>
           </div>
           <div class="col-sm-2 text-sm-right">
-            <div class="float-right float-sm-none title amount indent-xs-b0"><span data-toggle="tooltip" title="" data-original-title="725 грн • 1 959 руб">$25</span></div>
+            <div class="float-right float-sm-none title amount indent-xs-b0">
+              <span data-toggle="tooltip" title="" data-original-title="725 грн • 1 959 руб">
+                {{ $task->budget }}
+              </span>
+            </div>
             <div class="float-left float-sm-none text_field">23 заявки</div>
           </div>
           <div class="col-sm-8 text-muted dot_divided d-flex"><span class="text-nowrap"><a class="text-muted" href="/jobs/nejming-i-slogany-86/">Нейминг и&nbsp;Слоганы</a></span></div>
@@ -94,12 +101,19 @@
         @endif
       </div>
     </div>
+<<<<<<< HEAD
+=======
 
 
 {{--@endsection--}}
 
+>>>>>>> eba6c839c6f55ef6752cbdee9cb6c02d67819230
   </div>
 
 </div>
+<<<<<<< HEAD
+@endsection
+=======
 
 @endsection
+>>>>>>> eba6c839c6f55ef6752cbdee9cb6c02d67819230
