@@ -19,6 +19,7 @@ use App\View\Components\Main\{
   Logo,
   RightMenu
 };
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -59,5 +60,6 @@ class AppServiceProvider extends ServiceProvider
     Blade::component(Tasks::class, 'home-tasks');
     Blade::component(Portfolio::class, 'home-portfolio');
     Blade::component(TopCategories::class, 'home-top-categories');
+    Paginator::useBootstrap();
   }
 }

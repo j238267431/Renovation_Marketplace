@@ -1,8 +1,8 @@
 <ul class="list-unstyled list-wide">
-  @if(request()->routeIs('account'))
-    <li><b>Я заказчик</b></li>
+  @if(request()->routeIs('account.index'))
+    <li><b>Личный кабинет</b></li>
   @else
-    <li><a href="{{route('account')}}">Я заказчик</a></li>
+    <li><a href="{{route('account.index')}}">Личный кабинет</a></li>
   @endif
     @if(request()->routeIs('account.tasks'))
       <li><b>Список заявок</b></li>
@@ -19,5 +19,5 @@
     @else
       <li><a href="{{route('account.executor')}}">Выбранные исполнители</a></li>
     @endif
-  <li><a href="#">Безопасные платежи</a></li>
+{{--  <li><a href="#">Безопасные платежи</a></li>--}}
 </ul>

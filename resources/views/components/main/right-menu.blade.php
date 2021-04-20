@@ -16,10 +16,7 @@
         {{ Auth::user()->name }}
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-      @if (Route::has('account'))
-      <a class="dropdown-item" href="{{ route('account') }}">{{ __('Account') }}</a>
-      @endif
-        <a class="dropdown-item" href="{{route('account')}}">Личный кабинет</a>
+        <a class="dropdown-item" href="{{ route('account.index') }}">Личный кабинет</a>
       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
         {{ __('Logout') }}

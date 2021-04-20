@@ -15,7 +15,7 @@
   <div class="wrapper tab-content">
     <div class="clearfix tab-pane fade show active" id="tab_pane-main">
       <div class="page_content no_sidebar">
-        <form class="form" action="{{route('company.store')}}" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form class="form" action="{{route('account.companies.store')}}" method="POST" enctype="multipart/form-data" autocomplete="off">
           @csrf
           <div class="cols_table no_hover">
             <div class="row">

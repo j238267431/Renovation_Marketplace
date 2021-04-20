@@ -67,22 +67,24 @@ class TaskController extends Controller
     return back()->with('fail', 'Не удалось добавить заявку');
   }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  \App\Models\Task $task
-   * @return \Illuminate\Http\Response
-   */
-  public function show(Task $task)
-  {
-    $user = $task->with('user')->get();
-    //        dd($user);
-    dd($task->user()->firstOrFail());
-    //TODO order object from index method
-    return view('customers.orders.show', [
-      'order' => 12
-    ]);
-  }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Task $task
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Task $task)
+    {
+        $user = $task->with('user')->get();
+        $id = $task->id;
+
+        return view('customers.orders.show', [
+            'id' => $id,
+            'task' => $task,
+        ]);
+    }
+
 
   /**
    * Show the form for editing the specified resource.

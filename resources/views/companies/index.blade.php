@@ -1,48 +1,27 @@
 @extends('layouts.index')
 
 @section('content')
+{{-- Список полей компании --}}
+{{--   $company->name --}}
+{{--   $company->cover ?? '<Нет картинки> --}}
+{{--   $company->description --}}
+{{--   $company->phone --}}
+{{--   $company->email --}}
+{{--   $company->address --}}
+{{--   $company->orders->count() --}}
+{{--   $company->reviews->count()--}}
 
+  @include('includes.title', ['title' => 'Все организации'])
 
-{{--  <div class="container">--}}
-{{--    <div class="mb-3">--}}
-{{--        <h1>Страница всех компаний с сылкой перехода к проектам компании</h1>--}}
-{{--      @forelse($companies as $company)--}}
-{{--        <a href="{{ route('companyProjects', ['company' => $company->id])}} ">{{$company->id}}</a> <br>--}}
-{{--        {{ $company->name }} <br>--}}
-{{--        {{ $company->cover ?? '<Нет картинки>'}} <br>--}}
-{{--        {{ $company->description }} <br>--}}
-{{--        {{ $company->phone }} <br>--}}
-{{--        {{ $company->email }} <br>--}}
-{{--        {{ $company->address }} <br>--}}
-{{--        {{ $company->orders->count() }} <br>--}}
-{{--        {{ $company->reviews->count() }} <br>--}}
-{{--        <hr style="border-color: black">--}}
-{{--      @empty--}}
-{{--        <p>Ничего не найдено.</p>--}}
-{{--      @endforelse--}}
-{{--      {{$companies->links()}}--}}
-{{--    </div>--}}
-{{--  </div>--}}
-{{--@endsection--}}
-
-
-<div class="page_header">
-  <div class="wrapper cols_table no_hover">
-    <div class="row">
-      <div class="col page_header_content">
-        <h1>Все организации</h1>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="wrapper tab-content">
+  <div class="wrapper tab-content">
   <div class="clearfix tab-pane fade show active" id="tab_pane-main">
     <div class="sidebar sidebar-left">
       <div class="navbar navbar-toggleable">
         <div class="navbar-collapse">
           <div>
             <div class="block-content">
-              <a class="btn btn-success btn-md btn-block" href="{{ route('tasks.create') }}" data-btn_type="freelancers" rel="nofollow">
+              <a class="btn btn-success btn-md btn-block" href="{{ route('tasks.create') }}"
+                 data-btn_type="freelancers" rel="nofollow">
                 <b>Разместить заказ</b>
               </a>
             </div>
@@ -53,20 +32,10 @@
                 <div class="dropdown-menu block-content text_field">
                   <ul class="list-unstyled list-wide category_tree toggle_parents">
                     @foreach ($categories as $category)
-                    <li>
-                      <a>{{ $category->name }}</a>
-                      <span class="num">{{ $category->projects->count() }}</span>
-                      <!-- <ul class="collapse" aria-expanded="false">
-                        <li>
-                          <a href="#" data-category_id="35">Наполнение сайтов</a>
-                          <span class="num" data-cat_count="35">10</span>
-                        </li>
-                        <li>
-                          <a href="#" data-category_id="54">Системное администрирование</a>
-                          <span class="num" data-cat_count="54">8</span>
-                        </li>
-                      </ul> -->
-                    </li>
+                      <li>
+                        <a>{{ $category->name }}</a>
+                        <span class="num">{{ $category->projects->count() }}</span>
+                      </li>
                     @endforeach
                   </ul>
 
@@ -81,59 +50,58 @@
       <div class="cols_table no_hover indent-b10">
         <div class="row">
           <div class="col">
-            <form action="/freelancers/">
+            {{-- Форма поиска --}}
+            <form action="#">
               <input type="hidden" name="action" value="search">
-              <input type="text" class="form-control form-control-md form-control-branded typeahead autosubmit" name="query" placeholder="Поиск по фрилансерам" autocomplete="off">
-              <ul class="typeahead dropdown-menu">
-              </ul>
+              <input type="text"
+                     class="form-control form-control-md form-control-branded typeahead autosubmit"
+                     name="query" placeholder="Найти подрядчика" autocomplete="off">
               <a class="btn btn-transparent btn-submit" title="Найти">
-                <i class="icon-search">
-                </i>
-              </a>
+                <i class="icon-search"></i></a>
             </form>
           </div>
-          <div class="col-sm-5 col-md-4 col-lg-3">
-            <a class="btn btn-secondary btn-md btn-block need_login" data-toggle="modal" data-target="#advanced_search">Расширенный поиск</a>
+          <div class="col-sm-5 col-md-4 col-lg-3 m-auto">
+            <a class="" data-toggle="modal" data-target="#advanced_search">Расширенный поиск</a>
           </div>
         </div>
       </div>
-      <div class="cols_table divided_rows freelancers">
+      <div class="cols_table divided_rows">
         @forelse($companies as $company)
+          <div class="row">
+            {{-- Картинка и отзывы --}}
+            <div class="col-12 col-md-3">
 
-        <div class="row">
-          <div class="col-12 col-sm-8">
-            <div class="user_brief">
               <div class="userpic">
-                <a href="#" rel="nofollow">
-                  @if ($company->cover)
-                  <img class="img-fluid" src="{{ $company->cover }}" alt="{{ $company->name }}" title="{{ $company->name }}">
-                  @else
-                  Нет картинки
-                  @endif
+                <a href="{{ route('companies.show', $company) }}" rel="nofollow">
+                  <img class="img-fluid"
+                       src="{{ $company->cover ?? asset('img/placeholder150.png')}}"
+                       alt="{{ $company->name }}">
                 </a>
               </div>
-              <div class="brief">
-                <div>
+
+              <div class="pt-3">
+                <a href="{{ route('companies.reviews', $company) }}" rel="nofollow">{{ $company->reviews->count() }} отзывов</a>
+              </div>
+
+            </div>
+            {{-- Описание --}}
+            <div class="col-12 col-md-9">
+              <div class="user_brief">
+                <div class="brief">
                   <span class="name">
-                    <a href="#">{{ $company->name }}</a>
+                    <a href="{{ route('companies.show', $company) }}">{{ $company->name }}</a>
                   </span>
                 </div>
-                <div>
-                  <a href="#" rel="nofollow">{{ $company->reviews->count() }} отзывов</a>
-                </div>
+              </div>
+              <div class="pt-5">
+                <p class="text_field">{{ $company->description }}</p>
               </div>
             </div>
-            <a class="btn btn-outline-info" data-btn_type="freelancers_hire" href="#" data-toggle="tooltip" title="" data-original-title="Предложить заказ">Заказать</a>
           </div>
-
-
-          <div class="col-12">
-            <p class="blockquote text_field">{{ $company->description }}</p>
-          </div>
-        </div>
         @empty
-        <p>Ничего не найдено.</p>
+          <p>Ничего не найдено.</p>
         @endforelse
+            {{$companies->links()}}
       </div>
     </div>
   </div>

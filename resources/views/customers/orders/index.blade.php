@@ -39,17 +39,17 @@
                   <p>Нет категорий</p>
                   @endif
 
-{{/*
-<h1>Все заказы</h1>
-    <br>
-    <div>
-        @foreach($tasks as $task)
-            <a href="{{route('tasks.show',['task' => $task->id])}}">{{$task->id}}</a>
-            <h4>{{$task->title}}</h4>
-            <p>{{$task->description}}</p>
-            <p>{{$task->categoryName->name}}</p>
-            <br><br>
-*/}}
+
+{{--<h1>Все заказы</h1>--}}
+{{--    <br>--}}
+{{--    <div>--}}
+{{--        @foreach($tasks as $task)--}}
+{{--            <a href="{{route('tasks.show',['task' => $task->id])}}">{{$task->id}}</a>--}}
+{{--            <h4>{{$task->title}}</h4>--}}
+{{--            <p>{{$task->description}}</p>--}}
+{{--            <p>{{$task->categoryName->name}}</p>--}}
+{{--            <br><br>--}}
+
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@
             <div class="title">
               <a class="text-bold show_visited" href="{{ route('tasks.show', $task->id) }}">{{ $task->title }}</a>
             </div>
-            <div class="text_field text-inline"><span class="snippet">{{ $task->description }}</div>
+            <div class="text_field text-inline"><span class="snippet">{!! $task->description !!}</div>
           </div>
           <div class="col-sm-2 text-sm-right">
             <div class="float-right float-sm-none title amount indent-xs-b0"><span data-toggle="tooltip" title="" data-original-title="725 грн • 1 959 руб">$25</span></div>
@@ -88,15 +88,18 @@
           <div class="col-sm-4 text-sm-right"><span class="text-muted">Открыт <span data-toggle="tooltip" title="" data-timestamp="1618322266" class="time_ago" data-original-title="13.04.2021 в 16:57">17 часов назад</span></span></div>
         </div>
         @endforeach
+            {{$tasks->links()}}
         @else
         Нет заказов
         @endif
       </div>
     </div>
-{{/*
-    {{$tasks->links()}}
-@endsection
-*/}}
+
+
+{{--@endsection--}}
+
   </div>
+
 </div>
+
 @endsection
