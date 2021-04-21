@@ -12,6 +12,7 @@
   <!-- styles -->
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/new_style.css">
   <title>СтройХаус</title>
 </head>
 
