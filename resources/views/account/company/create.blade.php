@@ -86,7 +86,7 @@
                 @endforeach
               </div>
               @enderror
-              
+
               <div class="form-group indent-b0">
                 <label for="description" class="form-control-label">Расскажите подробнее о Вашей компании</label>
                 <textarea name="description" id="description" cols="30" rows="10" placeholder="Расскажите подробнее о Вашей компании">{!! old('description') !!}</textarea>
@@ -107,6 +107,7 @@
                       <label for="category" class="form-control-label">Категория</label>
                       <select name="category_id" id="category" class="form-control" style="position: relative">
                         <option disabled value="No" @if(old('category_id')) '' @else selected @endif>Укажите категорию</option>
+                        <option value="9999">9999</option>
                         @foreach($categories as $category)
                         <option value="{{$category->id}}" @if(old('category_id')==$category->id) selected @else""@endif>{{$category->name}}</option>
                         @endforeach

@@ -12,54 +12,8 @@
 </div>
 <div class="wrapper tab-content">
   <div class="clearfix tab-pane fade show active" id="tab_pane-main">
-    <div class="sidebar sidebar-left">
-      <div class="navbar navbar-toggleable">
-        <div class="navbar-collapse">
-          <div>
-            <div class="block-content">
-              <a class="btn btn-success btn-md btn-block" href="{{ route('tasks.create') }}" data-btn_type="freelancers" rel="nofollow">
-                <b>Разместить заказ</b>
-              </a>
-            </div>
-            <hr>
-            <div class="navbar-nav">
-              <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Категория</a>
-                <div class="dropdown-menu block-content text_field">
-                  @if(isset($categories)&&(!empty($categories)))
-                  <ul class="list-unstyled list-wide category_tree toggle_parents">
-                    @foreach ($categories as $category)
-                    <li>
-                      <a> $category->name </a>
-                      <span class="num"> $category->projects->count()</span>
-                    </li>
-                    @endforeach
-                  </ul>
-                  @else
-                  <p>Нет категорий</p>
-                  @endif
-<<<<<<< HEAD
-=======
-
-
-{{--<h1>Все заказы</h1>--}}
-{{--    <br>--}}
-{{--    <div>--}}
-{{--        @foreach($tasks as $task)--}}
-{{--            <a href="{{route('tasks.show',['task' => $task->id])}}">{{$task->id}}</a>--}}
-{{--            <h4>{{$task->title}}</h4>--}}
-{{--            <p>{{$task->description}}</p>--}}
-{{--            <p>{{$task->categoryName->name}}</p>--}}
-{{--            <br><br>--}}
-
->>>>>>> eba6c839c6f55ef6752cbdee9cb6c02d67819230
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    @component('components.home.categories', ["showCreateTaskButton" => true, "categories" => $categories, "linkRoute" => 'tasks.index'])
+    @endcomponent
     <div class="page_content d-flex flex-column">
       <div class="cols_table no_hover indent-b10">
         <div class="row">
@@ -74,8 +28,7 @@
         </div>
       </div>
       <div class="cols_table divided_rows">
-        @if(isset($tasks)&&(!empty($tasks)))
-        @foreach ($tasks as $task)
+        @forelse($tasks as $task)
         <div class="row click_container-link set_href">
           <div class="col-sm-10">
             <div class="title">
@@ -94,26 +47,13 @@
           <div class="col-sm-8 text-muted dot_divided d-flex"><span class="text-nowrap"><a class="text-muted" href="/jobs/nejming-i-slogany-86/">Нейминг и&nbsp;Слоганы</a></span></div>
           <div class="col-sm-4 text-sm-right"><span class="text-muted">Открыт <span data-toggle="tooltip" title="" data-timestamp="1618322266" class="time_ago" data-original-title="13.04.2021 в 16:57">17 часов назад</span></span></div>
         </div>
-        @endforeach
-            {{$tasks->links()}}
-        @else
+        @empty
         Нет заказов
-        @endif
+        @endforelse
+        {{ $tasks->appends(['category' => $category])->links() }}
       </div>
     </div>
-<<<<<<< HEAD
-=======
-
-
-{{--@endsection--}}
-
->>>>>>> eba6c839c6f55ef6752cbdee9cb6c02d67819230
   </div>
 
 </div>
-<<<<<<< HEAD
 @endsection
-=======
-
-@endsection
->>>>>>> eba6c839c6f55ef6752cbdee9cb6c02d67819230
