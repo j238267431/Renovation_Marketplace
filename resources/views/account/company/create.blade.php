@@ -107,7 +107,6 @@
                       <label for="category" class="form-control-label">Категория</label>
                       <select name="category_id" id="category" class="form-control" style="position: relative">
                         <option disabled value="No" @if(old('category_id')) '' @else selected @endif>Укажите категорию</option>
-                        <option value="9999">9999</option>
                         @foreach($categories as $category)
                         <option value="{{$category->id}}" @if(old('category_id')==$category->id) selected @else""@endif>{{$category->name}}</option>
                         @endforeach

@@ -14,11 +14,9 @@ class Categories extends Component
    * Create a new component instance.
    *
    * @return void
-   */
-  // private Collection $categories;
+   */ 
   public function __construct()
-  {
-    // $this->categories = Category::all();//withCount('projects')->where('projects_count', '>', 0)->get()->sortBy('name');
+  { 
     //
   }
 
