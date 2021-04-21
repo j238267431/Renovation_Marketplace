@@ -25,6 +25,20 @@ class CompanyController extends Controller
 
   }
 
+    public function allFromCategory(Category $category): \Illuminate\Contracts\View\View
+    {
+        $offers = $category->offers()->get()->groupBy('company_id');
+        $categories = Category::all();
+        $categoryId = $category->id;
+        $companies = Company::inRandomOrder()->paginate($this->countOnePagePaginate);
+        return view('companies.index', [
+            'offers' => $offers,
+            'companies' => $companies,
+            'categories' => $categories,
+            'categoryId' => $categoryId,
+            'categoryName' => $category->name]);
+    }
+
     /**
      * Вывод компаний только, у которых есть проекты или заказы
      * @return View

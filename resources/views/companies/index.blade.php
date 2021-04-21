@@ -32,11 +32,26 @@
                 <div class="dropdown-menu block-content text_field">
                   <ul class="list-unstyled list-wide category_tree toggle_parents">
                     @foreach ($categories as $category)
-                      <li>
-                        <a>{{ $category->name }}</a>
-                        <span class="num">{{ $category->projects->count() }}</span>
-                      </li>
+                      @if(isset($categoryId))
+                            @if($category->id == $categoryId)
+                              <li>
+                                  <b>{{$category->name}}</b>
+                                  <span class="num"> {{$category->offers->count()}}</span>
+                              </li>
+                            @else
+                              <li>
+                                <a href="{{route('categories.companies', ['category' => $category->id])}}">{{ $category->name }}</a>
+                                <span class="num">{{ $category->offers->count() }}</span>
+                              </li>
+                            @endif
+                          @else
+                              <li>
+                                  <a href="{{route('categories.companies', ['category' => $category->id])}}">{{ $category->name }}</a>
+                                  <span class="num">{{ $category->offers->count() }}</span>
+                              </li>
+                          @endif
                     @endforeach
+
                   </ul>
 
                 </div>
@@ -66,11 +81,20 @@
         </div>
       </div>
       <div class="cols_table divided_rows">
+{{--          @if(isset($offers))--}}
+{{--              @foreach($offers as $companies)--}}
+{{--                  @foreach($offer as $company)--}}
+{{--                  <p>{{$company->name}}</p>--}}
+{{--                  @endforeach--}}
+{{--              @endforeach--}}
+{{--          @endif--}}
+      @foreach($offers as $companies)
         @forelse($companies as $company)
+{{--@dd($company->reviews)--}}
           <div class="row">
             {{-- Картинка и отзывы --}}
             <div class="col-12 col-md-3">
-
+@dd($company->company->reviews->count())
               <div class="userpic">
                 <a href="{{ route('companies.show', $company) }}" rel="nofollow">
                   <img class="img-fluid"
@@ -101,7 +125,8 @@
         @empty
           <p>Ничего не найдено.</p>
         @endforelse
-            {{$companies->links()}}
+      @endforeach
+{{--            {{$companies->links()}}--}}
       </div>
     </div>
   </div>
