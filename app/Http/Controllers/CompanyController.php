@@ -29,7 +29,8 @@ class CompanyController extends Controller
     return view('companies.index', [
       'companies'  => $companies,
       'categories' => $categories,
-      'category'   => Category::find($category)
+      'category'   => Category::find($category),
+        'categoryId' => null,
     ]);
   }
 

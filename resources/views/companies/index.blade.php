@@ -15,7 +15,11 @@
 
 <div class="wrapper tab-content">
   <div class="clearfix tab-pane fade show active" id="tab_pane-main">
-    @component('components.home.categories', ["showCreateTaskButton" => true, "categories" => $categories, "linkRoute" => 'companies.index'])
+    @component('components.home.categories', [
+     "showCreateTaskButton" => true,
+     "categories" => $categories,
+     "linkRoute" => 'companies.index',
+     "categoryId" => $categoryId,])
     @endcomponent
 
     <div class="page_content d-flex flex-column">
