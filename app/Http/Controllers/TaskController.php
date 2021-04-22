@@ -14,17 +14,36 @@ use Illuminate\Support\Facades\Auth;
 class TaskController extends Controller
 {
 
-    /**
-     * Выводит список всех заявок
-     *
-     * @return View
-     */
-    public function index(): View
-    {
+  /**
+   * Выводит список всех заявок
+   *
+   * @return View
+   */
+  public function index(Request $request): View
+  {
+    $categories = Category::withCount('tasks as counter')->get()->where('counter', '>', 0);
+    $category = null;
+    if ($request->input("category")) {
+      $category = $request->input("category");
+      $tasks = Task::where('category_id', '=', $category)->paginate(4);
+    } else {
+      // $companies = Company::inRandomOrder();
       $tasks = Task::latest('id')->paginate(4);
+
       $categories = Category::all();
       return view('customers.orders.index', ['tasks' => $tasks, 'categories' => $categories, 'categoryId' => null]);
+
     }
+    return view(
+      'customers.orders.index',
+      [
+        'tasks' => $tasks,
+        'categories' => $categories,
+        'category'   => $category,
+        'categoryId' => null,
+      ]
+    );
+  }
 
 
 
@@ -34,17 +53,18 @@ class TaskController extends Controller
    * @return View
    */
 
-    public function allFromCategory(Category $category): View
-    {
-      $tasks = $category->tasks()->paginate(4);
-        $categories = Category::all();
-        $categoryId = $category->id;
-      return view('customers.orders.index', [
-          'tasks' => $tasks,
-          'categories' => $categories,
-          'categoryId' => $categoryId,
-          'categoryName' => $category->name]);
-    }
+  public function allFromCategory(Category $category): View
+  {
+    $tasks = $category->tasks()->paginate(4);
+    $categories = Category::withCount('tasks as counter')->get()->where('counter', '>', 0);
+    $categoryId = $category->id;
+    return view('customers.orders.index', [
+      'tasks' => $tasks,
+      'categories' => $categories,
+      'categoryId' => $categoryId,
+      'categoryName' => $category->name
+    ]);
+  }
 
 
 
@@ -79,22 +99,22 @@ class TaskController extends Controller
   }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Task $task
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Task $task)
-    {
-        $user = $task->with('user')->get();
-        $id = $task->id;
+  /**
+   * Display the specified resource.
+   *
+   * @param  \App\Models\Task $task
+   * @return \Illuminate\Http\Response
+   */
+  public function show(Task $task)
+  {
+    $user = $task->with('user')->get();
+    $id = $task->id;
 
-        return view('customers.orders.show', [
-            'id' => $id,
-            'task' => $task,
-        ]);
-    }
+    return view('customers.orders.show', [
+      'id' => $id,
+      'task' => $task,
+    ]);
+  }
 
 
   /**
