@@ -36,7 +36,7 @@ class CompanyCreate extends FormRequest
   {
     return [
       'required'              => 'Поле :attribute обязательно для заполнения',
-      'min'                   => 'Поле :attribute должно быть не меньше :min букв.',
+      'min'                   => 'Поле :attribute должно быть не меньше :min символов',
       'category_id.required'  => 'Необходимо выбрать Категорию'
     ];
   }

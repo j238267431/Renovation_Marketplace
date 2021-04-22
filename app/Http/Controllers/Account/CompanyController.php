@@ -58,7 +58,7 @@ class CompanyController extends Controller
         ->attach($company->id, ['user_id' => Auth::id(), 'role_id' => 1]);
 
       return redirect()
-        ->route('company.index')
+        ->route('account.companies.index')
         ->with('success', 'Компания созадана');
     }
     return back()->with('fail', 'Не удалось создать компанию');
