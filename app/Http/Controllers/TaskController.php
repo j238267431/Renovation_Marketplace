@@ -23,7 +23,7 @@ class TaskController extends Controller
     {
       $tasks = Task::latest('id')->paginate(4);
       $categories = Category::all();
-      return view('customers.orders.index', ['tasks' => $tasks, 'categories' => $categories]);
+      return view('customers.orders.index', ['tasks' => $tasks, 'categories' => $categories, 'categoryId' => null]);
     }
 
 
