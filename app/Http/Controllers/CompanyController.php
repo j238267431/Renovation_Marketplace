@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 
+use App\Models\Offer;
 use Illuminate\View\View;
 
 use App\Models\Category;
@@ -16,23 +17,26 @@ class CompanyController extends Controller
    */
   public function index()
   {
+      $offers = Offer::all();
         $categories = Category::all();
       $companies = Company::inRandomOrder()->paginate($this->countOnePagePaginate);
         return view('companies.index', [
             'companies' => $companies,
-            'categories' => $categories
+            'categories' => $categories,
+//            'offers' => $offers,
         ]);
 
   }
 
     public function allFromCategory(Category $category): \Illuminate\Contracts\View\View
     {
-        $offers = $category->offers()->get()->groupBy('company_id');
+//        $offers = $category->offers()->with('company')->get()->unique('company_id');
+        $companies = $category->companiesByCategory()->distinct()->get();
         $categories = Category::all();
         $categoryId = $category->id;
-        $companies = Company::inRandomOrder()->paginate($this->countOnePagePaginate);
+//        $companies = Company::inRandomOrder()->paginate($this->countOnePagePaginate);
         return view('companies.index', [
-            'offers' => $offers,
+//            'offers' => $offers,
             'companies' => $companies,
             'categories' => $categories,
             'categoryId' => $categoryId,

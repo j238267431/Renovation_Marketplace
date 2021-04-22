@@ -36,18 +36,18 @@
                             @if($category->id == $categoryId)
                               <li>
                                   <b>{{$category->name}}</b>
-                                  <span class="num"> {{$category->offers->count()}}</span>
+                                  <span class="num"> {{$category->companiesByCategory()->distinct()->get()->count()}}</span>
                               </li>
                             @else
                               <li>
                                 <a href="{{route('categories.companies', ['category' => $category->id])}}">{{ $category->name }}</a>
-                                <span class="num">{{ $category->offers->count() }}</span>
+                                <span class="num">{{ $category->companiesByCategory()->distinct()->get()->count() }}</span>
                               </li>
                             @endif
                           @else
                               <li>
                                   <a href="{{route('categories.companies', ['category' => $category->id])}}">{{ $category->name }}</a>
-                                  <span class="num">{{ $category->offers->count() }}</span>
+                                  <span class="num">{{ $category->companiesByCategory()->distinct()->get()->count() }}</span>
                               </li>
                           @endif
                     @endforeach
@@ -82,19 +82,20 @@
       </div>
       <div class="cols_table divided_rows">
 {{--          @if(isset($offers))--}}
-{{--              @foreach($offers as $companies)--}}
-{{--                  @foreach($offer as $company)--}}
+
+{{--              @foreach($offers as $company)--}}
+{{--@dd($companies)--}}
 {{--                  <p>{{$company->name}}</p>--}}
-{{--                  @endforeach--}}
+
 {{--              @endforeach--}}
-{{--          @endif--}}
-      @foreach($offers as $companies)
+
+
         @forelse($companies as $company)
-{{--@dd($company->reviews)--}}
+
           <div class="row">
             {{-- Картинка и отзывы --}}
             <div class="col-12 col-md-3">
-@dd($company->company->reviews->count())
+
               <div class="userpic">
                 <a href="{{ route('companies.show', $company) }}" rel="nofollow">
                   <img class="img-fluid"
@@ -125,7 +126,8 @@
         @empty
           <p>Ничего не найдено.</p>
         @endforelse
-      @endforeach
+
+{{--          @endif--}}
 {{--            {{$companies->links()}}--}}
       </div>
     </div>
