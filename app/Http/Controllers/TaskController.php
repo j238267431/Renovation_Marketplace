@@ -35,7 +35,8 @@ class TaskController extends Controller
       [
         'tasks' => $tasks,
         'categories' => $categories,
-        'category'   => $category
+        'category'   => $category,
+        'categoryId' => null,
       ]
     );
   }
@@ -51,7 +52,7 @@ class TaskController extends Controller
   public function allFromCategory(Category $category): View
   {
     $tasks = $category->tasks()->paginate(4);
-    $categories = Category::all();
+    $categories = Category::withCount('tasks as counter')->get()->where('counter', '>', 0);
     $categoryId = $category->id;
     return view('customers.orders.index', [
       'tasks' => $tasks,
