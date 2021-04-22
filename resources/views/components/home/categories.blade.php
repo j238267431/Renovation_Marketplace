@@ -16,10 +16,21 @@
             <div class="dropdown-menu block-content text_field">
               <ul class="list-unstyled list-wide category_tree toggle_parents">
                 @foreach ($categories as $category)
-                <li>
-                  <a href='{{ route($linkRoute, ['category' => $category->id]) }}'>{{ $category->name }}</a>
-                  <span class="num">{{ $category->counter }}</span>
-                </li>
+{{--                <li>--}}
+{{--                  <a href='{{ route($linkRoute, ['category' => $category->id]) }}'>{{ $category->name }}</a>--}}
+{{--                  <span class="num">{{ $category->counter }}</span>--}}
+{{--                </li>--}}
+                      @if($category->id == $categoryId)
+                          <li>
+                              <b>{{$category->name}}</b>
+                              <span class="num"> {{$category->tasks->count()}}</span>
+                          </li>
+                      @else
+                          <li>
+                              <a href="{{route('categories.tasks', ['category' => $category->id])}}"> {{$category->name}} </a>
+                              <span class="num"> {{$category->tasks->count()}}</span>
+                          </li>
+                      @endif
                 @endforeach
               </ul>
 
