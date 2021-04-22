@@ -29,6 +29,10 @@ class TaskController extends Controller
     } else {
       // $companies = Company::inRandomOrder();
       $tasks = Task::latest('id')->paginate(4);
+
+      $categories = Category::all();
+      return view('customers.orders.index', ['tasks' => $tasks, 'categories' => $categories, 'categoryId' => null]);
+
     }
     return view(
       'customers.orders.index',
