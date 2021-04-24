@@ -2,21 +2,32 @@
 @section('content')
     @include('includes.title', ['title' => 'Отзывы о компании ' . optional($company)->name])
 
-    @forelse($reviews as $review)
-        <h2><a style=""
-               href="{{ route('reviews.show', $review) }}">{{$review->title}}</a>
-        </h2>
-        <p>{{$review->content}}</p>
+    <div class="wrapper tab-content">
+        <div class="clearfix tab-pane fade show active" id="tab_pane-main">
+            <div class="cols_table no_hover divided_rows">
+                <div class="row">
+                    <div class="col-12">
+                        @forelse($reviews as $review)
 
-        @if($review->user === Auth::user())
-            <a href="{{route('reviews.edit', $review)}}">редактировать</a>
-            <a style="color: red" href="javascript:;" class="delete" rel="{{ $review->id }}">удалить</a>
-        @endif
-        <br>
-    @empty
-        <p>пока нет ни одного отзыва</p>
-    @endforelse
+                            <x-company.review-card :review="$review"/>
 
+                            @if($review->user === Auth::user())
+                                <a href="{{route('reviews.edit', $review)}}">редактировать</a>
+                                <a style="color: red" href="javascript:;" class="delete" rel="{{ $review->id }}">удалить</a>
+                            @endif
+                            <br>
+                        @empty
+                            <p>пока нет ни одного отзыва</p>
+                        @endforelse
+                    </div>
+                </div>
+
+                <div class="row">
+                    <x-company.review-form />
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('js')
     <script type="text/javascript">

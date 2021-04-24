@@ -13,40 +13,30 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+  private int $countOnePagePaginate = 5;
 
   /**
    * Выводит список всех заявок
    *
    * @return View
    */
-  public function index(Request $request): View
+  public function index(Request $request)
   {
-      $number = 14;
-      $num = ($number % 10 == 1) ? 0	: ((($number % 10 >= 2)  && ($number % 10 <= 4))  ? 1 : 2);
-     if ($number == 11 || $number == 12 || $number == 13 || $number == 14) $num = 2;
-      $test = trans_choice('messages.reviews_choice', $num);
-
-
-    $categories = Category::withCount('tasks as counter')->get()->where('counter', '>', 0);
-    $category = null;
+    $categories = Category::withCount('tasks as counter')->orderBy('name')->get()->where('counter', '>', 0);
+    $categoryId = null;
     if ($request->input("category")) {
-      $category = $request->input("category");
-      $tasks = Task::where('category_id', '=', $category)->paginate(4);
+      $categoryId = $request->input("category");
+      $tasks = Task::where('category_id', '=', $categoryId);
     } else {
-      // $companies = Company::inRandomOrder();
-      $tasks = Task::latest('id')->paginate(4);
-
-      $categories = Category::all();
-      return view('customers.orders.index', ['tasks' => $tasks, 'categories' => $categories, 'categoryId' => null]);
-
-    }
+      $tasks = Task::latest('id');
+    } 
+    $tasks = $tasks->paginate($this->countOnePagePaginate); 
     return view(
       'customers.orders.index',
       [
         'tasks' => $tasks,
         'categories' => $categories,
-        'category'   => $category,
-        'categoryId' => null,
+        'category'   => Category::find($categoryId)
       ]
     );
   }

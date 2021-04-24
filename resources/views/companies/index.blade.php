@@ -1,28 +1,18 @@
 @extends('layouts.index')
 
 @section('content')
-{{-- Список полей компании --}}
-{{-- $company->name --}}
-{{-- $company->cover ?? '<Нет картинки> --}}
-{{-- $company->description --}}
-{{-- $company->phone --}}
-{{-- $company->email --}}
-{{-- $company->address --}}
-{{-- $company->orders->count() --}}
-{{-- $company->reviews->count()--}}
 
 @include('includes.title', ['title' => 'Все организации' . ($category ? ' в категории ' . $category->name : '')])
 
 <div class="wrapper tab-content">
   <div class="clearfix tab-pane fade show active" id="tab_pane-main">
-
     @component('components.home.categories', [
-     "showCreateTaskButton" => true,
-     "categories" => $categories,
-     "linkRoute" => 'companies.index',
-     "categoryId" => $categoryId,])
-      @endcomponent
-
+    "showCreateTaskButton" => true,
+    "categories" => $categories,
+    "linkRoute" => 'companies.index',
+    "category" => $category
+    ])
+    @endcomponent
     <div class="page_content d-flex flex-column">
       <div class="cols_table no_hover indent-b10">
         <div class="row">
@@ -41,31 +31,20 @@
         </div>
       </div>
       <div class="cols_table divided_rows">
-{{--          @if(isset($offers))--}}
-
-{{--              @foreach($offers as $company)--}}
-{{--@dd($companies)--}}
-{{--                  <p>{{$company->name}}</p>--}}
-
-{{--              @endforeach--}}
-
-
         @forelse($companies as $company)
+        <div class="row click_container-link set_href">
+          {{-- Картинка и отзывы --}}
 
-
-          <div class="row">
-            {{-- Картинка и отзывы --}}
-            <div class="col-12 col-md-3">
-
-              <div class="userpic">
-                <a href="{{ route('companies.show', $company) }}" rel="nofollow">
-                  <img class="img-fluid"
-                       src="{{ $company->cover ?? asset('img/placeholder150.png')}}"
-                       alt="{{ $company->name }}">
-                </a>
-              </div>
-
-
+          <div class="col-sm-12">
+            <div class="title">
+              <a class="text-bold show_visited" href="{{ route('companies.show', $company) }}">{{ $company->name }}</a>
+            </div>
+            <div class="companypic">
+              <a href="{{ route('companies.show', $company) }}" rel="nofollow">
+                <img class="img-fluid" src="{{ $company->cover ?? asset('img/placeholder150.png')}}" alt="{{ $company->name }}">
+              </a>
+            </div>
+            {{-- Описание --}}
             <div class="pt-3">
                 @if($company->reviews->count())
                   <a href="{{ route('companies.reviews', $company) }}" rel="nofollow">
@@ -75,32 +54,15 @@
                     {{'пока нет ни одного отзыва'}}
                 @endif
             </div>
-
-          </div>
-          {{-- Описание --}}
-          <div class="col-12 col-md-9">
-            <div class="user_brief">
-              <div class="brief">
-                <span class="name">
-                  <a href="{{ route('companies.show', $company) }}">{{ $company->name }}</a>
-                </span>
-              </div>
-            </div>
-            <div class="pt-5">
-              <p class="text_field">{{ $company->description }}</p>
+            <div class="pt-3">
+              <p class="text_field">{!! $company->description !!}</p>
             </div>
           </div>
         </div>
         @empty
         <p>Ничего не найдено.</p>
         @endforelse
-
-
-{{--          @endif--}}
-{{--            {{$companies->links()}}--}}
-
         {{ $companies->appends(['category' => $category])->links() }}
-
       </div>
     </div>
   </div>
