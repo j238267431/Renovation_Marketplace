@@ -22,7 +22,6 @@ class TaskController extends Controller
    */
   public function index(Request $request)
   {
-    $categories = Task::with("category")->get(); 
     $categories = Category::with("tasks")->withCount('tasks as counter')->orderBy('name')->get()->where('counter', '>', 0);
     $categoryId = null;
     if ($request->input("category")) {
