@@ -29,6 +29,10 @@ class TaskController extends Controller
     } else {
       // $companies = Company::inRandomOrder();
       $tasks = Task::latest('id')->paginate(4);
+
+      $categories = Category::all();
+      return view('customers.orders.index', ['tasks' => $tasks, 'categories' => $categories, 'categoryId' => null]);
+
     }
     return view(
       'customers.orders.index',
@@ -57,8 +61,9 @@ class TaskController extends Controller
     return view('customers.orders.index', [
       'tasks' => $tasks,
       'categories' => $categories,
-      'categoryId' => $categoryId,
-      'categoryName' => $category->name
+      'category' => $category,
+      'categoryName' => $category->name,
+        'categoryId' => $categoryId,
     ]);
   }
 

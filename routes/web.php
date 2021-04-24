@@ -28,7 +28,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
  * Компании
  */
 Route::resource('companies', CompanyController::class)->only(['index', 'show']);
+Route::get('categories/{category:id}/companies', [CompanyController::class, 'allFromCategory'])
+    ->name('categories.companies');
 Route::prefix('companies')->name('companies.')->group(function () {
+
     Route::get('/active', [CompanyController::class, 'activeIndex'])
         ->name('active');
     Route::get('/{company:id}/projects', [ProjectController::class, 'showAllProjectsOfOneCompany'])

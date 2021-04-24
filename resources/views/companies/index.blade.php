@@ -15,8 +15,13 @@
 
 <div class="wrapper tab-content">
   <div class="clearfix tab-pane fade show active" id="tab_pane-main">
-    @component('components.home.categories', ["showCreateTaskButton" => true, "categories" => $categories, "linkRoute" => 'companies.index'])
-    @endcomponent
+
+    @component('components.home.categories', [
+     "showCreateTaskButton" => true,
+     "categories" => $categories,
+     "linkRoute" => 'companies.index',
+     "categoryId" => $categoryId,])
+      @endcomponent
 
     <div class="page_content d-flex flex-column">
       <div class="cols_table no_hover indent-b10">
@@ -36,16 +41,30 @@
         </div>
       </div>
       <div class="cols_table divided_rows">
-        @forelse($companies as $company)
-        <div class="row">
-          {{-- Картинка и отзывы --}}
-          <div class="col-12 col-md-3">
+{{--          @if(isset($offers))--}}
 
-            <div class="userpic">
-              <a href="{{ route('companies.show', $company) }}" rel="nofollow">
-                <img class="img-fluid" src="{{ $company->cover ?? asset('img/placeholder150.png')}}" alt="{{ $company->name }}">
-              </a>
-            </div>
+{{--              @foreach($offers as $company)--}}
+{{--@dd($companies)--}}
+{{--                  <p>{{$company->name}}</p>--}}
+
+{{--              @endforeach--}}
+
+
+        @forelse($companies as $company)
+
+
+          <div class="row">
+            {{-- Картинка и отзывы --}}
+            <div class="col-12 col-md-3">
+
+              <div class="userpic">
+                <a href="{{ route('companies.show', $company) }}" rel="nofollow">
+                  <img class="img-fluid"
+                       src="{{ $company->cover ?? asset('img/placeholder150.png')}}"
+                       alt="{{ $company->name }}">
+                </a>
+              </div>
+
 
             <div class="pt-3">
               <a href="{{ route('companies.reviews', $company) }}" rel="nofollow">{{ $company->reviews->count() }} отзывов</a>
@@ -69,7 +88,13 @@
         @empty
         <p>Ничего не найдено.</p>
         @endforelse
+
+
+{{--          @endif--}}
+{{--            {{$companies->links()}}--}}
+
         {{ $companies->appends(['category' => $category])->links() }}
+
       </div>
     </div>
   </div>

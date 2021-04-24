@@ -18,20 +18,20 @@
         <div class="row">
           <div class="col-12">
             <div class="float-right text-muted hidden-xs-down">
-              <span data-toggle="tooltip" title="" data-timestamp="1618322266" class="time_ago" data-original-title="13.04.2021 в 16:57">17 часов назад</span>
+              <span data-toggle="tooltip" title="" data-timestamp="1618322266" class="time_ago" data-original-title="13.04.2021 в 16:57">{{$task->created_at->diffForHumans()}}</span>
             </div>
             <div class="user_brief">
               <div class="userpic"><img src="/img/userpic_male.png" alt=""></div>
               <div class="brief">
                 <div><span class="name">
-                    <b>Заказчик</b>
+                    <b>{{$task->user->name}}</b>
                   </span>
                   <span class="login hidden">
                     <span class="nickname hidden">&nbsp;</span>
                   </span>
                 </div>
                 <div>34 года, Россия</div>
-                <div class="text-muted">11 лет в сервисе</div>
+                <div class="text-muted">Зарегистрировался в сервисе {{$task->user->created_at->diffForHumans()}}</div>
                 <div class="text-muted">Был онлайн <span data-toggle="tooltip" title="" data-timestamp="1618325833" class="time_ago" data-original-title="13.04.2021 в 17:57">16 часов назад</span></div>
                 <div>
                   <span>27 отзывов</span>
@@ -42,9 +42,11 @@
           </div>
           <div class="col-12 text_field">
             <div class="float-right text-muted block-top_right hidden-sm-up">
-              <span data-toggle="tooltip" title="" data-timestamp="1618322266" class="time_ago" data-original-title="13.04.2021 в 16:57">17 часов назад</span>
+              <span data-toggle="tooltip" title="" data-timestamp="1618322266" class="time_ago" data-original-title="13.04.2021 в 16:57">{{$task->created_at->diffForHumans()}}</span>
             </div>
             <p>{!! $task->description !!}</p>
+              <p class="amount"> @if($task->budget)объявленная стоимость {{ $task->budget }}&#8381;@else заказчик не заявил желаемую стоимость @endif</p>
+              <div class="btn btn-success">откликнуться на заявку</div>
           </div>
         </div>
       </div>
