@@ -13,34 +13,30 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+  private int $countOnePagePaginate = 5;
 
   /**
    * Выводит список всех заявок
    *
    * @return View
    */
-  public function index(Request $request): View
+  public function index(Request $request)
   {
-    $categories = Category::withCount('tasks as counter')->get()->where('counter', '>', 0);
-    $category = null;
+    $categories = Category::withCount('tasks as counter')->orderBy('name')->get()->where('counter', '>', 0);
+    $categoryId = null;
     if ($request->input("category")) {
-      $category = $request->input("category");
-      $tasks = Task::where('category_id', '=', $category)->paginate(4);
+      $categoryId = $request->input("category");
+      $tasks = Task::where('category_id', '=', $categoryId);
     } else {
-      // $companies = Company::inRandomOrder();
-      $tasks = Task::latest('id')->paginate(4);
-
-      $categories = Category::all();
-      return view('customers.orders.index', ['tasks' => $tasks, 'categories' => $categories, 'categoryId' => null]);
-
-    }
+      $tasks = Task::latest('id');
+    } 
+    $tasks = $tasks->paginate($this->countOnePagePaginate); 
     return view(
       'customers.orders.index',
       [
         'tasks' => $tasks,
         'categories' => $categories,
-        'category'   => $category,
-        'categoryId' => null,
+        'category'   => Category::find($categoryId)
       ]
     );
   }
@@ -56,14 +52,11 @@ class TaskController extends Controller
   public function allFromCategory(Category $category): View
   {
     $tasks = $category->tasks()->paginate(4);
-    $categories = Category::withCount('tasks as counter')->get()->where('counter', '>', 0);
-    $categoryId = $category->id;
+    $categories = Category::withCount('tasks as counter')->get()->where('counter', '>', 0); 
     return view('customers.orders.index', [
       'tasks' => $tasks,
       'categories' => $categories,
-      'category' => $category,
-      'categoryName' => $category->name,
-        'categoryId' => $categoryId,
+      'category' => $category
     ]);
   }
 
