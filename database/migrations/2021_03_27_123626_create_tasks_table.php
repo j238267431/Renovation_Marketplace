@@ -20,7 +20,7 @@ class CreateTasksTable extends Migration
             $table->text('description');
             $table->string('file')->nullable()->comment('Дополнительный файл к заданию');
             $table->decimal('budget', 10)->nullable();
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->nullable()->default(null);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
 

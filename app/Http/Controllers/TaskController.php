@@ -22,7 +22,8 @@ class TaskController extends Controller
    */
   public function index(Request $request)
   {
-    $categories = Category::withCount('tasks as counter')->orderBy('name')->get()->where('counter', '>', 0);
+    $categories = Task::with("category")->get(); 
+    $categories = Category::with("tasks")->withCount('tasks as counter')->orderBy('name')->get()->where('counter', '>', 0);
     $categoryId = null;
     if ($request->input("category")) {
       $categoryId = $request->input("category");
@@ -52,14 +53,11 @@ class TaskController extends Controller
   public function allFromCategory(Category $category): View
   {
     $tasks = $category->tasks()->paginate(4);
-    $categories = Category::withCount('tasks as counter')->get()->where('counter', '>', 0);
-    $categoryId = $category->id;
+    $categories = Category::withCount('tasks as counter')->get()->where('counter', '>', 0); 
     return view('customers.orders.index', [
       'tasks' => $tasks,
       'categories' => $categories,
-      'category' => $category,
-      'categoryName' => $category->name,
-        'categoryId' => $categoryId,
+      'category' => $category
     ]);
   }
 

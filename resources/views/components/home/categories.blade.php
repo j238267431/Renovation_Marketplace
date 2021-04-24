@@ -21,7 +21,7 @@
                   @else
                   <b>Все категории</b>
                   @endif
-                  <span class="num"></span>
+                  <span class="num">{{$categories->sum("counter")}}</span>
                 </li>
 
                 @forelse ($categories as $cat)

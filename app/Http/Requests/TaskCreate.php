@@ -28,7 +28,7 @@ class TaskCreate extends FormRequest
             'description'   => 'required|min:10',
             'file'          => 'sometimes|file',
             'budget'        => 'sometimes|numeric|nullable',
-            'category_id'   => 'required|numeric|min:1'
+            'category_id'   => 'sometimes|numeric|min:1'
         ];
     }
     public function messages()
