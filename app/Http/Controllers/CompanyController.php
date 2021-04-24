@@ -25,7 +25,7 @@ class CompanyController extends Controller
         $q->where("category_id", $categoryId);
       });
     } else {
-      $companies = Company::inRandomOrder();
+      $companies = Company::orderBy("name");
     }
     $companies = $companies->paginate($this->countOnePagePaginate);
     
