@@ -20,7 +20,10 @@ use App\View\Components\Main\{
   RightMenu
 };
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -61,5 +64,8 @@ class AppServiceProvider extends ServiceProvider
     Blade::component(Portfolio::class, 'home-portfolio');
     Blade::component(TopCategories::class, 'home-top-categories');
     Paginator::useBootstrap();
+    Validator::extend('reviews_choice', function($attribute, $value, $parameters, $validator) {
+          return Hash::check($value, Auth::user()->password);
+      });
   }
 }
