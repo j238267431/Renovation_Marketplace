@@ -38,8 +38,18 @@
             </div>
             <div class="float-left float-sm-none text_field">23 заявки</div>
           </div>
-          <div class="col-sm-8 text-muted dot_divided d-flex"><span class="text-nowrap"><a class="text-muted" href="{{route('categories.tasks', ['category'=>$task->categoryName->id])}}">@if(isset($categoryName)){{$categoryName}}@else{{$task->categoryName->name}}@endif</a></span></div>
-          <div class="col-sm-4 text-sm-right"><span class="text-muted">Открыт <span data-toggle="tooltip" title="" data-timestamp="1618322266" class="time_ago" data-original-title="13.04.2021 в 16:57">{{$task->created_at->diffForHumans()}}</span></span></div>
+          <div class="col-sm-8 text-muted dot_divided d-flex">
+            <span class="text-nowrap">
+              @if($task->category)
+              <a class="text-muted" href="{{route('tasks.index', ['category'=>$task->category])}}">#{{ $task->category->name }}</a>
+              @endif
+            </span>
+          </div>
+          <div class="col-sm-4 text-sm-right">
+            <span class="text-muted">Открыт
+              <span data-toggle="tooltip" title="" data-timestamp="1618322266" class="time_ago" data-original-title="13.04.2021 в 16:57">{{ $task->created_at->diffForHumans() }}</span>
+            </span>
+          </div>
         </div>
         @empty
         Нет заказов
