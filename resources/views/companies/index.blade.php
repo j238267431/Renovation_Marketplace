@@ -67,7 +67,13 @@
 
 
             <div class="pt-3">
-              <a href="{{ route('companies.reviews', $company) }}" rel="nofollow">{{ $company->reviews->count() }} отзывов</a>
+                @if($company->reviews->count())
+                  <a href="{{ route('companies.reviews', $company) }}" rel="nofollow">
+                    {{ $company->reviews->count() }} {{trans_choice('messages.reviews_choice', $company->reviews->count())}}
+                  </a>
+                @else
+                    {{'пока нет ни одного отзыва'}}
+                @endif
             </div>
 
           </div>

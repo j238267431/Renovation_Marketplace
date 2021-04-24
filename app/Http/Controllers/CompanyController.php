@@ -23,7 +23,7 @@ class CompanyController extends Controller
         $offers = Offer::all();
 
         $categories = Category::all();
-        $companies = Company::inRandomOrder()->paginate($this->countOnePagePaginate);
+        $companies = Company::paginate($this->countOnePagePaginate);
         return view('companies.index', [
             'companies' => $companies,
             'categories' => $categories,

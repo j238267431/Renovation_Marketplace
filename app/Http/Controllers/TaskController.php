@@ -21,6 +21,12 @@ class TaskController extends Controller
    */
   public function index(Request $request): View
   {
+      $number = 14;
+      $num = ($number % 10 == 1) ? 0	: ((($number % 10 >= 2)  && ($number % 10 <= 4))  ? 1 : 2);
+     if ($number == 11 || $number == 12 || $number == 13 || $number == 14) $num = 2;
+      $test = trans_choice('messages.reviews_choice', $num);
+
+
     $categories = Category::withCount('tasks as counter')->get()->where('counter', '>', 0);
     $category = null;
     if ($request->input("category")) {
