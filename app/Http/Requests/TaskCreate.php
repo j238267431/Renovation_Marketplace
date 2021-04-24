@@ -27,6 +27,7 @@ class TaskCreate extends FormRequest
             'title'         => 'required|min:5',
             'description'   => 'required|min:10',
             'file'          => 'sometimes|file',
+            'budget'        => 'sometimes|numeric|nullable',
             'category_id'   => 'required|numeric|min:1'
         ];
     }
@@ -44,6 +45,7 @@ class TaskCreate extends FormRequest
             'title'         => 'Заголовок',
             'description'   => 'Описание',
             'file'          => 'Файл',
+            'budget'        => 'Бюджет',
             'category_id'   => 'Категория'
         ];
     }
