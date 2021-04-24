@@ -1,16 +1,8 @@
 @extends('layouts.index')
 
 @section('content')
-
-
-
-{{-- нужно --}}
-
-{{-- $categories --}}
-
-
-
-@include('includes.title', ['title' => 'Все организации'])
+<x-company.navigation :company="$company->name"/>
+{{--@include('includes.title', ['title' => 'Организации'])--}}
 
 <div class="wrapper tab-content">
     <div class="clearfix tab-pane fade show active" id="tab_pane-main">
@@ -24,7 +16,7 @@
                                 {{ $company->name }}
                             </h1>
                             <div class="pt-3">
-                                <img class="img-fluid "
+                                <img class="container-fluid no-padding"
                                      src="{{ $company->cover ?? asset('img/placeholder150.png')}}"
                                      alt="{{ $company->name }}">
                             </div>
@@ -74,27 +66,51 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="h2">Проекты </h2>
-                        <div class="pt-3">Запрос проектов</div>
-                        {{ $company->projects }}
+                        <h2 class="h2">
+                            <a href="{{route('projects.index')}}">Проекты </a>
+                        </h2>
+
+                        <div class="row no-padding justify-content-between pt-3">
+
+                        @forelse($company->projects as $project)
+
+                            <x-company.project-card :project="$project"/>
+
+                        @empty
+                            <div class="no-padding">
+                                <p>Проекты не найдены</p>
+                            </div>
+                        @endforelse
+
+                        </div>
+
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <h2 class="h2">Отзывы </h2>
-                        <div class="pt-3">Запрос списка отзывов</div>
-                        {{ $company->reviews }}
-                        @foreach($company->reviews as $reviews)
-                            <div class="row">
-                            <div>{{$reviews->title}}</div>
-                            <div>{{$reviews->rating}}</div>
-                            <div>{{$reviews->content}}</div>
-                        </div>
-                        @endforeach
+
+                        @forelse($company->reviews as $review)
+
+                            <x-company.review-card :review="$review"/>
+
+                        @empty
+                            <div class="pt-3">
+                                <p>Отзывы не найдены</p>
+                            </div>
+                        @endforelse
+
                     </div>
                 </div>
 
+                <div class="row">
+
+                    <x-company.review-form />
+
+                </div>
+
             </div>
+
         </div>
     </div>
 </div>

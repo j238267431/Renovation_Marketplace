@@ -1,8 +1,8 @@
 /*Вввод рейтинга*/
 .rating-area {
     overflow: hidden;
-    width: 265px;
-    margin: 0 auto;
+    width: 210px;
+    /*margin: 0 auto;*/
 }
 .rating-area:not(:checked) > input {
     display: none;
@@ -43,7 +43,7 @@
 /*Вывод рейтинга*/
 .rating-result {
     width: 265px;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
 }
 .rating-result span {
     padding: 0;
@@ -59,4 +59,32 @@
 .rating-result > span.active {
     color: gold;
     text-shadow: 1px 1px #c60;
+}
+
+.row .no-padding,
+.no-padding{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.row .no-border{
+    border-bottom: 0 solid #000000;
+}
+
+.vertical-align{
+    align-items: center;
+}
+
+.project-card{
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.project-card:last-child{
+    margin-right: 0;
+}
+
+.no-margin{
+    margin-right: 0;
+    margin-left: 0;
 }
