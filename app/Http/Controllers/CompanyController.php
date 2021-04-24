@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+
   private int $countOnePagePaginate = 5;
   /**
    * Вывод все компаний
    */
   public function index(Request $request)
   {
+
     $categories = Category::withCount('projects as counter')->orderBy('name')->get()->where('counter', '>', 0);
     $categoryId = null;
     if ($request->input("category")) {
