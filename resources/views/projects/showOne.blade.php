@@ -1,6 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
+
     <div class="container">
         <div class="mb-3">
             <h1>Страница подробная одного проекта</h1>
@@ -34,4 +35,5 @@
             <p>content проекта : {{$project->content}}</p>
         </div>
     </div>
+
 @endsection
