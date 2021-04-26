@@ -22,19 +22,28 @@ class TaskController extends Controller
    */
   public function index(Request $request)
   {
-    $categories = Category::withCount('tasks as counter')->orderBy('name')->get()->where('counter', '>', 0);
+    $categories = Category::whereNotNull('categories.parent_id')
+      ->withCount('tasks as counter')
+      ->leftjoin("categories as parent_cat", "categories.parent_id", "=", "parent_cat.id")
+      ->orderBy("parent_cat.name", "ASC")
+      ->orderBy("categories.name")
+      ->get()
+      ->where('counter', '>', '0');
+    $parentCategories = Category::whereIn("id", $categories->pluck("parent_id")->toArray())->orderBy("name")->get(); 
+
     $categoryId = null;
     if ($request->input("category")) {
       $categoryId = $request->input("category");
       $tasks = Task::where('category_id', '=', $categoryId);
     } else {
       $tasks = Task::latest('id');
-    } 
-    $tasks = $tasks->paginate($this->countOnePagePaginate); 
+    }
+    $tasks = $tasks->paginate($this->countOnePagePaginate);
     return view(
       'customers.orders.index',
       [
         'tasks' => $tasks,
+        'parentCategories' => $parentCategories,
         'categories' => $categories,
         'category'   => Category::find($categoryId)
       ]
@@ -52,7 +61,7 @@ class TaskController extends Controller
   public function allFromCategory(Category $category): View
   {
     $tasks = $category->tasks()->paginate(4);
-    $categories = Category::withCount('tasks as counter')->get()->where('counter', '>', 0); 
+    $categories = Category::withCount('tasks as counter')->get()->where('counter', '>', 0);
     return view('customers.orders.index', [
       'tasks' => $tasks,
       'categories' => $categories,

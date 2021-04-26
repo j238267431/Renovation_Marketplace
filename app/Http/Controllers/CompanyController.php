@@ -17,7 +17,16 @@ class CompanyController extends Controller
   public function index(Request $request)
   {
 
-    $categories = Category::withCount('projects as counter')->orderBy('name')->get()->where('counter', '>', 0);
+    // $categories = Category::withCount('projects as counter')->orderBy('name')->get()->where('counter', '>', 0);
+    $categories = Category::whereNotNull('categories.parent_id')
+      ->withCount('projects as counter')
+      ->leftjoin("categories as parent_cat", "categories.parent_id", "=", "parent_cat.id")
+      ->orderBy("parent_cat.name", "ASC")
+      ->orderBy("categories.name")
+      ->get()
+      ->where('counter', '>', '0');
+    $parentCategories = Category::whereIn("id", $categories->pluck("parent_id")->toArray())->orderBy("name")->get(); 
+
     $categoryId = null;
     if ($request->input("category")) {
       $categoryId = $request->input("category");
@@ -32,6 +41,7 @@ class CompanyController extends Controller
     return view('companies.index', [
       'companies'  => $companies,
       'categories' => $categories,
+      'parentCategories' => $parentCategories,
       'category'   => Category::find($categoryId)
     ]);
   }
