@@ -7,9 +7,7 @@ use App\Models\Image;
 use App\Models\Offer;
 use App\Models\Project;
 use App\Models\Review;
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,7 +18,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+        $this->call(CountrySeeder::class);
+        $this->call(CitySeeder::class);
+
+        $this->call(UserSeeder::class);
+        $this->call(StatusSeeder::class);
         Company::factory(20)->create();
         $this->call(StatusSeeder::class);
         $this->call(RoleSeeder::class);
@@ -29,5 +31,9 @@ class DatabaseSeeder extends Seeder
         Review::factory(10)->create();
         Project::factory(15)->create();
         Image::factory(40)->create();
+
+
+
+
     }
 }
