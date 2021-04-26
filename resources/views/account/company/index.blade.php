@@ -19,9 +19,18 @@
       </div>
     </div>
     <div class="page_content">
+        @if(session('success'))
+            <div class="block-content">
+                <div class="alert-success">{{session('success')}}</div>
+            </div>
+        @elseif(session('fail'))
+            <div class="block-content">
+                <div class="alert-danger">{{session('fail')}}</div>
+            </div>
+        @endif
       <div class="block-content">
         <div class="title indent-b30">
-          <a href="#">Мои компании</a>
+          <a class="btn btn-success" href="{{route('account.companies.offer.create')}}">Создать услугу</a>
         </div>
         <table class="table table-striped">
           <thead>

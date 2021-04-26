@@ -5,7 +5,7 @@
  */
 
 require('./bootstrap');
-
+require('../../public/js/offer');
 window.Vue = require('vue').default;
 import store from './store'
 Vue.use(_);

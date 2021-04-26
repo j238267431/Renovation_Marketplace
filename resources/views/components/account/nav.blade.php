@@ -2,7 +2,7 @@
   <div class="wrapper cols_table no_hover">
     <div class="row">
       <div class="col page_header_content">
-        <h1>Я заказчик</h1>
+        <h1>Мои компании</h1>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Строительная биржа</a></li>
           <li class="breadcrumb-item"><a href="{{route('account.index')}}">Личный кабинет</a></li>

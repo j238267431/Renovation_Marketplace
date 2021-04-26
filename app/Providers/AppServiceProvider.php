@@ -64,8 +64,6 @@ class AppServiceProvider extends ServiceProvider
     Blade::component(Portfolio::class, 'home-portfolio');
     Blade::component(TopCategories::class, 'home-top-categories');
     Paginator::useBootstrap();
-    Validator::extend('reviews_choice', function($attribute, $value, $parameters, $validator) {
-          return Hash::check($value, Auth::user()->password);
-      });
+
   }
 }

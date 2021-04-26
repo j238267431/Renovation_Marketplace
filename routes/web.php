@@ -9,6 +9,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Account\OffersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::prefix('companies')->name('companies.')->group(function () {
         ->name('companyProjects');
     Route::get('/{company:id}/reviews', [ReviewController::class, 'allFromCompany'])
         ->name('reviews');
+
 });
 
 /**
@@ -70,3 +72,11 @@ Route::prefix('account')->name('account.')->middleware('auth')->group(function (
         ->name('orders');
     Route::resource('companies', AccountCompanyController::class);
     });
+Route::middleware('auth')->group(function (){
+    Route::get('account/companies/offer/index', [OffersController::class, 'index'])->name('account.companies.offer.index');
+    Route::get('account/companies/offer/create', [OffersController::class, 'create'])->name('account.companies.offer.create');
+    Route::get('account/companies/offer/{offer:id}/edit', [OffersController::class, 'edit'])->name('account.companies.offer.edit');
+    Route::delete('account/companies/offer/destroy', [OffersController::class, 'destroy'])->name('account.companies.offer.destroy');
+    Route::post('account/companies/offer/store', [OffersController::class, 'store'])->name('account.companies.offer.store');
+    Route::put('account/companies/offer/{offer:id}', [OffersController::class, 'update'])->name('account.companies.offer.update');
+});
