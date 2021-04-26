@@ -2,13 +2,15 @@
 
 @section('content')
 
-@include('includes.title', ['title' => 'Все организации' . ($category ? ' в категории ' . $category->name : '')])
+@include('includes.title', ['title' => 'Все подрядчики' . ($category ? ' в категории ' . $category->name : '')])
 
 <div class="wrapper tab-content">
   <div class="clearfix tab-pane fade show active" id="tab_pane-main">
     @component('components.home.categories', [
+    "allItemsText" => "Все подрядчики",
     "showCreateTaskButton" => true,
     "categories" => $categories,
+    'parentCategories' => $parentCategories,
     "linkRoute" => 'companies.index',
     "category" => $category
     ])
@@ -46,13 +48,13 @@
             </div>
             {{-- Описание --}}
             <div class="pt-3">
-                @if($company->reviews->count())
-                  <a href="{{ route('companies.reviews', $company) }}" rel="nofollow">
-                    {{ $company->reviews->count() }} {{trans_choice('messages.reviews_choice', $company->reviews->count())}}
-                  </a>
-                @else
-                    {{'пока нет ни одного отзыва'}}
-                @endif
+              @if($company->reviews->count())
+              <a href="{{ route('companies.reviews', $company) }}" rel="nofollow">
+                {{ $company->reviews->count() }} {{trans_choice('messages.reviews_choice', $company->reviews->count())}}
+              </a>
+              @else
+              {{'пока нет ни одного отзыва'}}
+              @endif
             </div>
             <div class="pt-3">
               <p class="text_field">{!! $company->description !!}</p>

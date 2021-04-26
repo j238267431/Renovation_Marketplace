@@ -2,12 +2,14 @@
 
 @section('content')
 
-@include('includes.title', ['title' => 'Все заявки' . ($category ? ' в категории ' . $category->name : '')])
+@include('includes.title', ['title' => 'Все заказы' . ($category ? ' в категории ' . $category->name : '')])
 
 <div class="wrapper tab-content">
   <div class="clearfix tab-pane fade show active" id="tab_pane-main">
     @component('components.home.categories', [
+    "allItemsText" => "Все заказы",
     "showCreateTaskButton" => true,
+    "parentCategories" => $parentCategories,
     "categories" => $categories,
     "linkRoute" => 'tasks.index',
     "category" => $category,
