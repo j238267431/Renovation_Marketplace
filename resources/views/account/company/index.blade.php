@@ -1,6 +1,11 @@
 @extends('layouts.index')
 @section('content')
-<x-account.nav />
+
+@include('includes.title', [
+'title' => 'Мои компании',
+'breadcrumbs' => 'account.companies',
+'hasCompany' => $hasCompany
+]) 
 
 <div class="wrapper tab-content">
   <div class="clearfix tab-pane fade show active">
