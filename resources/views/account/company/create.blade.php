@@ -31,7 +31,6 @@
                 @endforeach
               </div>
               @enderror
-              
               <div class="form-group">
                 <label for="name" class="form-control-label">Телефон</label>
                 <input type="text" class="form-control" id="phone" name="phone" placeholder="телефон для связи в формате 9 123 456 78 90" value="{{ old('phone') }}">
@@ -43,7 +42,7 @@
                 @endforeach
               </div>
               @enderror
-              
+
               <div class="form-group">
                 <label for="name" class="form-control-label">Электронная почта</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Адрес электронной почты" value="{{ old('email') }}">
@@ -55,7 +54,7 @@
                 @endforeach
               </div>
               @enderror
-              
+
               <div class="form-group">
                 <label for="name" class="form-control-label">Адрес</label>
                 <input type="text" class="form-control" id="address" name="address" placeholder="Адрес расположения офиса" value="{{ old('address') }}">
@@ -67,7 +66,7 @@
                 @endforeach
               </div>
               @enderror
-              
+
               <div class="form-group">
                 <div class="attachment file buttons">
                   <div id="files_form">
