@@ -22,7 +22,11 @@ class CompanyController extends Controller
   public function index()
   {
     $companies = Auth::user()->companies;
-    return view('account.company.index', ['companies' => $companies]);
+    $hasCompany = Auth::user()->companies()->exists();
+    return view('account.company.index', [
+      'companies' => $companies,
+      'hasCompany' => $hasCompany,
+    ]);
   }
 
   /**
@@ -44,10 +48,10 @@ class CompanyController extends Controller
    */
   public function store(CompanyCreate $request)
   {
-    $data = $request->validated(); 
+    $data = $request->validated();
     if ($request->file('cover')) {
       $filePath = Storage::putFile('public', $request->file('cover'));
-      $data["cover"] = Storage::url($filePath); 
+      $data["cover"] = Storage::url($filePath);
     }
 
     $company = Company::create($data);
@@ -63,7 +67,7 @@ class CompanyController extends Controller
     }
     return back()->with('fail', 'Не удалось создать компанию');
   }
-  
+
   /**
    * Display the specified resource.
    *
