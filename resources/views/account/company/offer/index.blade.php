@@ -1,7 +1,6 @@
 @extends('layouts.index')
 @section('content')
     <x-account.nav />
-
     <div class="wrapper tab-content">
         <div class="clearfix tab-pane fade show active">
             <div class="sidebar">
@@ -58,39 +57,3 @@
         </div>
     </div>
 @endsection
-@push('js')
-<script>
-function offerDelete()
-{
-event.preventDefault();
-var id = event.toElement.dataset.id
-$.ajax({
-
-url: "http://localhost:8888/account/companies/offer/destroy?id="+id,
-{{--url: "{{route('account.companies.offer.destroy', ['offer' => ${id}])}}"--}}
-method: "DELETE",
-// data: {id:id},
-
-headers: {
-
-'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
-'Content-type': 'application/json; charset=utf-8',
-},
-
-success: function (data) {
-
-    document.location.href = "http://localhost:8888/account/companies/offer/index"
-
-},
-
-error: function (msg) {
-
-    console.log(msg)
-
-}
-
-});
-
-}
-</script>
-@endpush

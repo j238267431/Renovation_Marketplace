@@ -6,7 +6,7 @@
                 <div class="col page_header_content">
                     <h1>Создание предложения</h1>
                     @if(session()->has('fail'))
-                        <div class="alert alert-danger">Предложение не создано</div>
+                        <div class="alert alert-danger">{{session('fail')}}</div>
                     @endif
                 </div>
             </div>

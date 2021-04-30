@@ -6,6 +6,9 @@
     <div class="row">
       <div class="col page_header_content">
         <h1>{{ $task->title }} <span class="small text-muted">– №{{ $task->id }}</span></h1>
+          @if(session()->has('success'))
+              <div class="alert alert-success">{{session('success')}}</div>
+          @endif
       </div>
     </div>
   </div>
@@ -30,9 +33,9 @@
                     <span class="nickname hidden">&nbsp;</span>
                   </span>
                 </div>
-                <div>34 года, Россия</div>
+                <div>{{$age}} {{trans_choice('messages.age_choice', $age)}}, {{$country->name}}</div>
                 <div class="text-muted">Зарегистрировался в сервисе {{$task->user->created_at->diffForHumans()}}</div>
-                <div class="text-muted">Был онлайн <span data-toggle="tooltip" title="" data-timestamp="1618325833" class="time_ago" data-original-title="13.04.2021 в 17:57">16 часов назад</span></div>
+                <div class="text-muted">Дата последнего входа <span data-toggle="tooltip" title="" data-timestamp="1618325833" class="time_ago" data-original-title="13.04.2021 в 17:57">16 часов назад</span></div>
                 <div>
                   <span>27 отзывов</span>
                   <span class="text-danger ml-1">(-1)</span>
@@ -46,7 +49,12 @@
             </div>
             <p>{!! $task->description !!}</p>
               <p class="amount"> @if($task->budget)объявленная стоимость {{ $task->budget }}&#8381;@else заказчик не заявил желаемую стоимость @endif</p>
-              <div class="btn btn-success">откликнуться на заявку</div>
+              @if($companyAlreadyResponded)
+                  <div class="block-info alert alert-info">Вы уже откликались на эту заявку</div>
+                  <a href="{{route('tasks.response.edit', ['task' => $task->id])}}" class="btn btn-success">редактировать отклик</a>
+              @else
+                <a href="{{route('tasks.response.create', ['task' => $task->id])}}" class="btn btn-success">откликнуться на заявку</a>
+              @endif
           </div>
         </div>
       </div>

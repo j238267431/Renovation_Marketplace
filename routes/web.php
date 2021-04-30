@@ -80,3 +80,14 @@ Route::middleware('auth')->group(function (){
     Route::post('account/companies/offer/store', [OffersController::class, 'store'])->name('account.companies.offer.store');
     Route::put('account/companies/offer/{offer:id}', [OffersController::class, 'update'])->name('account.companies.offer.update');
 });
+Route::middleware('auth')->group(function(){
+    Route::middleware('created:{id}')->get('tasks/response/{task:id}/create', [TaskController::class, 'taskResponseCreate'])
+        ->name('tasks.response.create');
+    Route::post('tasks/response/{task:id}/store', [TaskController::class, 'taskResponseStore'])
+        ->name('tasks.response.store');
+    Route::get('tasks/response/{task:id}/edit', [TaskController::class, 'taskResponseEdit'])
+        ->name('tasks.response.edit');
+    Route::put('tasks/{task:id}/response/{response:id}', [TaskController::class, 'taskResponseUpdate'])
+        ->name('tasks.response.update');
+});
+
