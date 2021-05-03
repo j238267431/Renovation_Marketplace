@@ -19,7 +19,14 @@ class OffersController extends Controller
     public function index()
     {
         $companies = Auth::user()->companies;
-        return view('account.company.offer.index', ['companies' => $companies]);
+        $hasCompany = Auth::user()->companies()->exists();
+        return view(
+            'account.company.offer.index',
+            [
+                'companies' => $companies,
+                'hasCompany' => $hasCompany
+            ]
+        );
     }
 
     /**
@@ -31,7 +38,13 @@ class OffersController extends Controller
     {
         $companies = Auth::user()->companies;
         $categories = Category::all();
-        return view('account.company.offer.create', ['categories' => $categories, 'companies' => $companies]);
+        return view(
+            'account.company.offer.create',
+            [
+                'categories' => $categories,
+                'companies' => $companies
+            ]
+        );
     }
 
     /**
@@ -49,7 +62,7 @@ class OffersController extends Controller
             'description' => $request->description,
             'price' => $request->price,
         ]);
-        if($offer){
+        if ($offer) {
             return redirect()->route('account.companies.index')->with('success', 'Услуга успешно добавлена');
         }
         return redirect()->route('account.companies.index')->with('fail', 'Услуга не добавлена');
@@ -77,7 +90,11 @@ class OffersController extends Controller
         $companies = Auth::user()->companies;
         $categories = Category::all();
         $offer = Offer::query()->find($id);
-        return view('account.company.offer.edit', ['offer' => $offer, 'companies' => $companies, 'categories' => $categories]);
+        return view('account.company.offer.edit', [
+            'offer' => $offer,
+            'companies' => $companies,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -96,7 +113,7 @@ class OffersController extends Controller
             'description' => $request->description,
             'price' => $request->price,
         ]);
-        if($offer){
+        if ($offer) {
             return redirect()->route('account.companies.offer.index')->with('success', 'Услуга успешно изменена');
         }
         return back()->with('fail', 'Услуга не изменена');
@@ -113,5 +130,4 @@ class OffersController extends Controller
         $id = $request->id;
         Offer::query()->find($id)->delete();
     }
-
 }

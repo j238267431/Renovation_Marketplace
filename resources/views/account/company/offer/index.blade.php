@@ -1,6 +1,11 @@
 @extends('layouts.index')
-@section('content')
-    <x-account.nav />
+
+@section('content') 
+@include('includes.title', [
+'title' => 'Услуги',
+'breadcrumbs' => 'account.companies.offer',
+'hasCompany' => $hasCompany
+]) 
     <div class="wrapper tab-content">
         <div class="clearfix tab-pane fade show active">
             <div class="sidebar">
@@ -34,7 +39,7 @@
                             <th scope="col">название</th>
                             <th scope="col">описание</th>
                             <th scope="col">стоимость</th>
-                            <th scope="col">редактировать</th>
+                            <th scope="col" colspan="2">редактировать</th>
                         </tr>
                         </thead>
                         @foreach($companies as $company)
@@ -57,3 +62,36 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+<script>
+function offerDelete()
+{
+event.preventDefault();
+var id = event.toElement.dataset.id
+$.ajax({
+
+url: "/account/companies/offer/destroy?id="+id, 
+method: "DELETE",
+// data: {id:id},
+
+headers: {
+
+'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+'Content-type': 'application/json; charset=utf-8',
+},
+
+success: function (data) {
+    document.location.href = "/account/companies/offer/index"
+},
+
+error: function (msg) {
+    console.log(msg)
+}
+
+});
+
+}
+</script>
+@endpush
+
