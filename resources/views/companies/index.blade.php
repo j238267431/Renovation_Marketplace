@@ -2,7 +2,10 @@
 
 @section('content')
 
-@include('includes.title', ['title' => 'Все подрядчики' . ($category ? ' в категории ' . $category->name : '')])
+@include('includes.title', [
+'title' => 'Все подрядчики' . ($category ? ' в категории ' . $category->name : ''),
+'breadcrumbs' => 'companies'
+])
 
 <div class="wrapper tab-content">
   <div class="clearfix tab-pane fade show active" id="tab_pane-main">

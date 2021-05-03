@@ -6,10 +6,12 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Account\OffersController;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +82,7 @@ Route::middleware('auth')->group(function (){
     Route::post('account/companies/offer/store', [OffersController::class, 'store'])->name('account.companies.offer.store');
     Route::put('account/companies/offer/{offer:id}', [OffersController::class, 'update'])->name('account.companies.offer.update');
 });
+
 Route::middleware('auth')->group(function(){
     Route::middleware('created:{id}')->get('tasks/response/{task:id}/create', [TaskController::class, 'taskResponseCreate'])
         ->name('tasks.response.create');
@@ -89,5 +92,14 @@ Route::middleware('auth')->group(function(){
         ->name('tasks.response.edit');
     Route::put('tasks/{task:id}/response/{response:id}', [TaskController::class, 'taskResponseUpdate'])
         ->name('tasks.response.update');
+});
+
+
+
+Route::group(['middleware' => 'guest'], function (){
+    Route::group(['prefix' => 'login'], function (){
+        Route::get('{service}', [SocialController::class, 'redirectToProvider'])->name('social.login');
+        Route::get('{service}/callback', [SocialController::class, 'handleProviderCallback']);
+    });
 });
 
