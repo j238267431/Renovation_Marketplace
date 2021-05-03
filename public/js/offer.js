@@ -16,7 +16,7 @@ function offerDelete()
 
         success: function (data) {
 
-            document.location.href = "http://localhost:8888/account/companies/offer/index"
+            document.location.href = "/account/companies/offer/index"
 
         },
 

@@ -116,21 +116,18 @@ class TaskController extends Controller
   public function show(Task $task)
   {
       $companiesResponded = $task->response()->get();
+      $TESTcompaniesResponded = $task->responses()->get();
       $companyAlreadyResponded = false;
       foreach ($companiesResponded as $company){
           $companyAlreadyResponded = $company->users()->get()->contains(Auth::id()) ? true : false;
       }
     $id = $task->id;
-      $user = User::query()->find($task->user_id);
-    $profile = $user->profile()->get()[0];
-    $age = Carbon::parse($profile->birthday)->diffInYears();
-      $country = $profile->country()->get()[0];
+    $user = $task->user;
+    $profile = $user->profile;
     return view('customers.orders.show', [
         'id' => $id,
         'task' => $task,
         'profile' => $profile,
-        'age' => $age,
-        'country' => $country,
         'companyAlreadyResponded' => $companyAlreadyResponded,
     ]);
   }
@@ -206,7 +203,7 @@ class TaskController extends Controller
         $response = CompaniesTasks::query()
             ->where('company_id', '=', $respondedCompany->id)
             ->where('task_id', '=', $id)
-            ->get()[0];
+            ->first();
         return view('companies.response.edit',[
             'task' => $task,
             'companies' => $companies,

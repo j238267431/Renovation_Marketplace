@@ -40,4 +40,8 @@ class Task extends Model
     {
         return $this->hasManyThrough(Company::class, CompaniesTasks::class, 'task_id', 'id', 'id','company_id');
     }
+    public function responses(): HasMany
+    {
+        return $this->hasMany(CompaniesTasks::class);
+    }
 }

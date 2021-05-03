@@ -33,7 +33,7 @@
                     <span class="nickname hidden">&nbsp;</span>
                   </span>
                 </div>
-                <div>{{$age}} {{trans_choice('messages.age_choice', $age)}}, {{$country->name}}</div>
+                <div>{{$profile->getAgeAttribute()}} {{trans_choice('messages.age_choice', $profile->getAgeAttribute())}}, {{$profile->country->name}}</div>
                 <div class="text-muted">Зарегистрировался в сервисе {{$task->user->created_at->diffForHumans()}}</div>
                 <div class="text-muted">Дата последнего входа <span data-toggle="tooltip" title="" data-timestamp="1618325833" class="time_ago" data-original-title="13.04.2021 в 17:57">16 часов назад</span></div>
                 <div>
