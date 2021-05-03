@@ -6,10 +6,12 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Account\OffersController;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,4 +81,11 @@ Route::middleware('auth')->group(function (){
     Route::delete('account/companies/offer/destroy', [OffersController::class, 'destroy'])->name('account.companies.offer.destroy');
     Route::post('account/companies/offer/store', [OffersController::class, 'store'])->name('account.companies.offer.store');
     Route::put('account/companies/offer/{offer:id}', [OffersController::class, 'update'])->name('account.companies.offer.update');
+});
+
+Route::group(['middleware' => 'guest'], function (){
+    Route::group(['prefix' => 'login'], function (){
+        Route::get('{service}', [SocialController::class, 'redirectToProvider'])->name('social.login');
+        Route::get('{service}/callback', [SocialController::class, 'handleProviderCallback']);
+    });
 });
