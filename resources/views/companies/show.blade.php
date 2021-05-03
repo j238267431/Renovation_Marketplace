@@ -36,11 +36,11 @@
                             </div>
 
                             <div class="pt-3">
-                                <a href="{{ route('companies.reviews', $company) }}" rel="nofollow">{{ $company->reviews->count() }} отзывов</a>
+                                <a href="{{ route('companies.reviews', $company) }}" rel="nofollow">{{ $company->reviews->count() }} {{trans_choice('messages.reviews_choice', $company->reviews->count())}}</a>
                             </div>
 
                             <div class="pt-3">
-                                <a href="{{ route('account.orders', $company) }}" rel="nofollow">{{ $company->orders->count() }} заказов</a>
+                                <a href="{{ route('account.orders', $company) }}" rel="nofollow">{{ $company->orders->count() }} {{trans_choice('messages.orders_choice', $company->orders->count())}}</a>
                             </div>
 
                             <h2 class="h2 pt-4">Контакты</h2>

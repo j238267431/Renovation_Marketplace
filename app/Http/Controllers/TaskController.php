@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\ProposalCreate;
 use App\Http\Requests\TaskCreate;
 use App\Models\Category;
+use App\Models\CompaniesTasks;
+use App\Models\Country;
 use App\Models\Order;
 use App\Models\Task;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +34,7 @@ class TaskController extends Controller
       ->orderBy("categories.name")
       ->get()
       ->where('counter', '>', '0');
-    $parentCategories = Category::whereIn("id", $categories->pluck("parent_id")->toArray())->orderBy("name")->get(); 
+    $parentCategories = Category::whereIn("id", $categories->pluck("parent_id")->toArray())->orderBy("name")->get();
 
     $categoryId = null;
     if ($request->input("category")) {
@@ -110,12 +115,20 @@ class TaskController extends Controller
    */
   public function show(Task $task)
   {
-    $user = $task->with('user')->get();
+      $companiesResponded = $task->response()->get();
+      $TESTcompaniesResponded = $task->responses()->get();
+      $companyAlreadyResponded = false;
+      foreach ($companiesResponded as $company){
+          $companyAlreadyResponded = $company->users()->get()->contains(Auth::id()) ? true : false;
+      }
     $id = $task->id;
-
+    $user = $task->user;
+    $profile = $user->profile;
     return view('customers.orders.show', [
-      'id' => $id,
-      'task' => $task,
+        'id' => $id,
+        'task' => $task,
+        'profile' => $profile,
+        'companyAlreadyResponded' => $companyAlreadyResponded,
     ]);
   }
 
@@ -153,4 +166,60 @@ class TaskController extends Controller
   {
     //
   }
+
+  public function taskResponseCreate($id)
+  {
+      $companies = Auth::user()->companies;
+      $task = Task::query()->find($id);
+
+    return view('companies.response.create',[
+        'task' => $task,
+        'companies' => $companies,
+
+    ]);
+  }
+    public function taskResponseStore(ProposalCreate $request, $id)
+    {
+
+        $response = Task::query()->find($id)->response()->attach($request->company_id, [
+            'price'=>$request->budget,
+            'comment' => $request->description,
+            'created_at' => Carbon::now()->timezone('Europe/Moscow'),
+            'updated_at' => Carbon::now()->timezone('Europe/Moscow'),
+        ]);
+            return redirect()->route('tasks.show', $id)->with('success', 'Вы откликнулись на эту заявку');
+    }
+
+    public function taskResponseEdit($id)
+    {
+
+        $companies = Auth::user()->companies;
+        $task = Task::query()->find($id);
+        $respondedCompanies = $task->companies()->get();
+        $respondedCompany = null;
+        foreach ($respondedCompanies as $respondedCompany){
+            $companies->contains($respondedCompany->id) ? $respondedCompany = $respondedCompany : $respondedCompany = null;
+        }
+        $response = CompaniesTasks::query()
+            ->where('company_id', '=', $respondedCompany->id)
+            ->where('task_id', '=', $id)
+            ->first();
+        return view('companies.response.edit',[
+            'task' => $task,
+            'companies' => $companies,
+            'respondedCompany' => $respondedCompany,
+            'response' => $response,
+        ]);
+    }
+
+    public function taskResponseUpdate(ProposalCreate $request, Task $task, $response)
+    {
+        CompaniesTasks::query()->find($response)->update([
+            'price'=>$request->budget,
+            'comment' => $request->description,
+            'updated_at' => Carbon::now()->timezone('Europe/Moscow'),
+        ]);
+        return redirect()->route('tasks.show', $task)->with('success', 'Отклик успешно отредактирован');
+
+    }
 }

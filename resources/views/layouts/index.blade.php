@@ -13,6 +13,7 @@
   <!-- <link rel="stylesheet" href="/css/app.css"> -->
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/new_style.css">
+    <script src="/js/app.js"></script>
   <title>СтройХаус</title>
 </head>
 
@@ -35,6 +36,7 @@
   <script src="/js/bootstrap.js"></script>
   <script src="/js/bootstrap-typeahead.min.js"></script>
   <script src="/js/offer.js"></script>
+
 
   <!-- summernote css/js -->
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">

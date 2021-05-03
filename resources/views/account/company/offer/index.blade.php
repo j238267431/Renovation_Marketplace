@@ -1,11 +1,11 @@
 @extends('layouts.index')
+
 @section('content') 
 @include('includes.title', [
 'title' => 'Услуги',
 'breadcrumbs' => 'account.companies.offer',
 'hasCompany' => $hasCompany
 ]) 
-
     <div class="wrapper tab-content">
         <div class="clearfix tab-pane fade show active">
             <div class="sidebar">
@@ -62,6 +62,7 @@
         </div>
     </div>
 @endsection
+
 @push('js')
 <script>
 function offerDelete()
@@ -93,3 +94,4 @@ error: function (msg) {
 }
 </script>
 @endpush
+
