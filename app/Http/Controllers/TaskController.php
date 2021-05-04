@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\Task;
 use App\Models\User;
 use Carbon\Carbon;
+use http\Cookie;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -131,6 +132,7 @@ class TaskController extends Controller
         'profile' => $profile,
         'companyAlreadyResponded' => $companyAlreadyResponded,
         'user' => $user,
+        'taskCreator' => $taskCreator,
     ]);
   }
 
