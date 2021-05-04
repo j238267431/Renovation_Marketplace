@@ -121,14 +121,16 @@ class TaskController extends Controller
       foreach ($companiesResponded as $company){
           $companyAlreadyResponded = $company->users()->get()->contains(Auth::id()) ? true : false;
       }
+      $user = Auth::user();
     $id = $task->id;
-    $user = $task->user;
-    $profile = $user->profile;
+    $taskCreator = $task->user;
+    $profile = $taskCreator->profile;
     return view('customers.orders.show', [
         'id' => $id,
         'task' => $task,
         'profile' => $profile,
         'companyAlreadyResponded' => $companyAlreadyResponded,
+        'user' => $user,
     ]);
   }
 

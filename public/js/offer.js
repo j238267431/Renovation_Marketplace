@@ -4,7 +4,7 @@ function offerDelete()
     var id = event.toElement.dataset.id
     $.ajax({
 
-        url: "http://localhost:8888/account/companies/offer/destroy?id="+id,
+        url: "/account/companies/offer/destroy?id="+id,
         method: "DELETE",
 // data: {id:id},
 
