@@ -52,15 +52,19 @@
             </div>
             <p>{!! $task->description !!}</p>
               <p class="amount"> @if($task->budget)объявленная стоимость {{ $task->budget }}&#8381;@else заказчик не заявил желаемую стоимость @endif</p>
-              @if($user->companies->first())
-                  @if($companyAlreadyResponded)
-                      <div class="block-info alert alert-info">Вы уже откликались на эту заявку</div>
-                      <a href="{{route('tasks.response.edit', ['task' => $task->id])}}" class="btn btn-success">редактировать отклик</a>
+              @if(isset($user))
+                  @if($user->companies->first())
+                      @if($companyAlreadyResponded)
+                          <div class="block-info alert alert-info">Вы уже откликались на эту заявку</div>
+                          <a href="{{route('tasks.response.edit', ['task' => $task->id])}}" class="btn btn-success">редактировать отклик</a>
+                      @else
+                        <a href="{{route('tasks.response.create', ['task' => $task->id])}}" class="btn btn-success">откликнуться на заявку</a>
+                      @endif
                   @else
-                    <a href="{{route('tasks.response.create', ['task' => $task->id])}}" class="btn btn-success">откликнуться на заявку</a>
+                      <div class="block-info alert alert-danger">Для отклика на заявку необходимо зарегистрировать компанию в личном кабинете</div>
                   @endif
               @else
-                  <div class="block-info alert alert-danger">Для отклика на заявку необходимо зарегистрировать компанию в личном кабинете</div>
+                  <div class="block-info alert alert-danger">Для отклика на заявку необходимо авторизоваться и создать компанию в личном кабинете</div>
               @endif
           </div>
         </div>

@@ -52,7 +52,10 @@ Route::resource('projects', ProjectController::class)->only(['index', 'show']);
 /**
  * Заявки
  */
-Route::resource('tasks', TaskController::class);
+Route::middleware('auth')->resource('tasks', TaskController::class)
+    ->only('create','store','update','delete','edit');
+Route::resource('tasks', TaskController::class)
+    ->only('index', 'show');
 Route::get('categories/{category:id}/tasks', [TaskController::class, 'allFromCategory'])
     ->name('categories.tasks');
 
