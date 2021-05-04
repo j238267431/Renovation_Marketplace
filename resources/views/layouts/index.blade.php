@@ -10,10 +10,9 @@
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
   <!-- styles -->
-  <!-- <link rel="stylesheet" href="/css/app.css"> -->
-  <link rel="stylesheet" href="/css/normalize.css">
-  <link rel="stylesheet" href="/css/new_style.css">
-    <script src="/js/app.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+
+  <script src="/js/app.js"></script>
   <title>СтройХаус</title>
 </head>
 
