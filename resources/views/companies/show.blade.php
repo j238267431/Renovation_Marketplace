@@ -1,8 +1,12 @@
 @extends('layouts.index')
 
 @section('content')
-<x-company.navigation :company="$company->name"/>
+{{--<x-company.navigation :company="$company->name"/>--}}
 {{--@include('includes.title', ['title' => 'Организации'])--}}
+@include('includes.title', [
+'title' => 'Все заказы',
+'breadcrumbs' => 'companies.index'
+])
 
 <div class="wrapper tab-content">
     <div class="clearfix tab-pane fade show active" id="tab_pane-main">

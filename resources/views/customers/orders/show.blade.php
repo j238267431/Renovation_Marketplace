@@ -1,6 +1,9 @@
 @extends('layouts.index')
 
 @section('content')
+    @include('includes.title', [
+'breadcrumbs' => 'tasks.index'
+])
 <div class="page_header">
   <div class="wrapper cols_table no_hover">
     <div class="row">
