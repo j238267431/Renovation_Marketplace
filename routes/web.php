@@ -75,8 +75,13 @@ Route::prefix('account')->name('account.')->middleware('auth')->group(function (
         ->name('executor');
     Route::get('/orders', [\App\Http\Controllers\Account\OrderController::class, 'orders'])
         ->name('orders');
+    Route::get('/tasks/{task:id}/show', [\App\Http\Controllers\Account\TaskController::class, 'show'])
+        ->name('tasks.show');
     Route::resource('companies', AccountCompanyController::class);
-    });
+    Route::get('/chat/{company:id}', function (){
+        return view('account.chat'); //TODO
+    })->name('chat');
+});
 Route::middleware('auth')->group(function (){
     Route::get('account/companies/offer/index', [OffersController::class, 'index'])->name('account.companies.offer.index');
     Route::get('account/companies/offer/create', [OffersController::class, 'create'])->name('account.companies.offer.create');

@@ -43,6 +43,10 @@ Breadcrumbs::register('account.tasks', function ($breadcrumbs) {
   $breadcrumbs->parent('account');
   $breadcrumbs->push('Список заявок', route('account.tasks'));
 });
+Breadcrumbs::register('account.tasks.show', function ($breadcrumbs, $task) {
+    $breadcrumbs->parent('account.tasks');
+    $breadcrumbs->push($task->title, route('account.tasks'));
+});
 
 Breadcrumbs::register('account.orders', function ($breadcrumbs) {
   $breadcrumbs->parent('account');
