@@ -4,7 +4,7 @@
             <div class="col page_header_content">
                 <h1>{{ $title ?? ''}}</h1>
                 @if(isset($breadcrumbs))
-                {{ Breadcrumbs::render($breadcrumbs) }}
+                {{ Breadcrumbs::render($breadcrumbs, $task ?? '') }}
                 @endif
             </div>
             <div class="col-aut d-flex flex-column page_header_sidebar">

@@ -39,6 +39,12 @@ class Task extends Model
     public function companies(): HasManyThrough
     {
         return $this->hasManyThrough(Company::class, CompaniesTasks::class, 'task_id', 'id', 'id','company_id');
+
+    }
+    public function companiesAndResponses(): BelongsToMany
+    {
+        return $this->belongsToMany(Company::class, CompaniesTasks::class)
+            ->withPivot('price', 'comment', 'created_at', 'updated_at');
     }
     public function responses(): HasMany
     {
