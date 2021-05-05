@@ -28,4 +28,5 @@ class Profile extends Model
     {
         return Carbon::parse($this->birthday)->diffInYears();
     }
+
 }

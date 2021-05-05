@@ -38,7 +38,7 @@
                 </div>
                 <div>{{$profile->getAgeAttribute()}} {{trans_choice('messages.age_choice', $profile->getAgeAttribute())}}, {{$profile->country->name}}</div>
                 <div class="text-muted">Зарегистрировался в сервисе {{$task->user->created_at->diffForHumans()}}</div>
-                <div class="text-muted">Дата последнего входа <span data-toggle="tooltip" title="" data-timestamp="1618325833" class="time_ago" data-original-title="13.04.2021 в 17:57">16 часов назад</span></div>
+                <div class="text-muted">Дата последнего входа <span data-toggle="tooltip" title="" data-timestamp="1618325833" class="time_ago" data-original-title="13.04.2021 в 17:57">{{$taskCreator->getLastLoginAt()}}</span></div>
                 <div>
                   <span>27 отзывов</span>
                   <span class="text-danger ml-1">(-1)</span>
