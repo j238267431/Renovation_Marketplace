@@ -13,11 +13,13 @@
   <!-- <link rel="stylesheet" href="/css/app.css"> -->
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/new_style.css">
+
   <title>СтройХаус</title>
 </head>
 
 <body class="web">
-  <div class="main-wrapper">
+<div id="app">
+  <div  class="main-wrapper">
     <x-main-header></x-main-header>
 
     <main class="content">
@@ -26,8 +28,9 @@
 
     <x-main-footer></x-main-footer>
   </div>
-
+</div>
   <!-- scripts -->
+    <script src="{{asset('js/app.js')}}"></script>
   <script src="/js/jquery.js"></script>
   <script src="/js/jquery.visible.min.js"></script>
   <script src="/js/popper.min.js"></script>
@@ -35,6 +38,7 @@
   <script src="/js/bootstrap.js"></script>
   <script src="/js/bootstrap-typeahead.min.js"></script>
   <script src="/js/offer.js"></script>
+
 
   <!-- summernote css/js -->
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">

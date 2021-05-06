@@ -6,10 +6,12 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Account\OffersController;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +52,10 @@ Route::resource('projects', ProjectController::class)->only(['index', 'show']);
 /**
  * Заявки
  */
-Route::resource('tasks', TaskController::class);
+Route::middleware('auth')->resource('tasks', TaskController::class)
+    ->only('create','store','update','delete','edit');
+Route::resource('tasks', TaskController::class)
+    ->only('index', 'show');
 Route::get('categories/{category:id}/tasks', [TaskController::class, 'allFromCategory'])
     ->name('categories.tasks');
 
@@ -70,8 +75,13 @@ Route::prefix('account')->name('account.')->middleware('auth')->group(function (
         ->name('executor');
     Route::get('/orders', [\App\Http\Controllers\Account\OrderController::class, 'orders'])
         ->name('orders');
+    Route::get('/tasks/{task:id}/show', [\App\Http\Controllers\Account\TaskController::class, 'show'])
+        ->name('tasks.show');
     Route::resource('companies', AccountCompanyController::class);
-    });
+    Route::get('/chat/{company:id}', function (){
+        return view('account.chat'); //TODO
+    })->name('chat');
+});
 Route::middleware('auth')->group(function (){
     Route::get('account/companies/offer/index', [OffersController::class, 'index'])->name('account.companies.offer.index');
     Route::get('account/companies/offer/create', [OffersController::class, 'create'])->name('account.companies.offer.create');
@@ -80,3 +90,24 @@ Route::middleware('auth')->group(function (){
     Route::post('account/companies/offer/store', [OffersController::class, 'store'])->name('account.companies.offer.store');
     Route::put('account/companies/offer/{offer:id}', [OffersController::class, 'update'])->name('account.companies.offer.update');
 });
+
+Route::middleware('auth')->group(function(){
+    Route::middleware('created:{id}')->get('tasks/response/{task:id}/create', [TaskController::class, 'taskResponseCreate'])
+        ->name('tasks.response.create');
+    Route::post('tasks/response/{task:id}/store', [TaskController::class, 'taskResponseStore'])
+        ->name('tasks.response.store');
+    Route::get('tasks/response/{task:id}/edit', [TaskController::class, 'taskResponseEdit'])
+        ->name('tasks.response.edit');
+    Route::put('tasks/{task:id}/response/{response:id}', [TaskController::class, 'taskResponseUpdate'])
+        ->name('tasks.response.update');
+});
+
+
+
+Route::group(['middleware' => 'guest'], function (){
+    Route::group(['prefix' => 'login'], function (){
+        Route::get('{service}', [SocialController::class, 'redirectToProvider'])->name('social.login');
+        Route::get('{service}/callback', [SocialController::class, 'handleProviderCallback']);
+    });
+});
+

@@ -1,5 +1,6 @@
 @extends('layouts.index')
 @section('content')
+
 @include('includes.title', [
 'title' => 'Создание предложения',
 'breadcrumbs' => 'account.companies.offer',
@@ -13,6 +14,7 @@
                 @if(!session()->has('fail'))
                 <div class="alert alert-danger">Предложение не создано</div>
                 @endif
+
             </div>
         </div>
     </div>
