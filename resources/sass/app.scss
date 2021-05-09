@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import 'fonts';
 
 // Variables
 @import 'variables';
@@ -7,12 +7,13 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-
 //normalize
-@import '../css/normalize.css';
+//@import '../css/normalize.css';
 
 //old_style
-@import '../css/normalize_old.css';
+@import '../css/normalize_old_2.css';
 
 //new_style
-@import '../css/star-rating.css';
+@import 'star-rating';
+
+
