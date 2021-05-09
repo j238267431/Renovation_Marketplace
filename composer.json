@@ -18,7 +18,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "socialiteproviders/facebook": "^4.1",
-        "socialiteproviders/vkontakte": "^4.2"
+        "socialiteproviders/vkontakte": "^4.2",
+        "twbs/bootstrap": "5.0.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
