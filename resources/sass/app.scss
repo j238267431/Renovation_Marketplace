@@ -7,11 +7,8 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-//normalize
-//@import '../css/normalize.css';
-
 //old_style
-@import '../css/normalize_old_2.css';
+@import '../css/style_old.css';
 
 //new_style
 @import 'star-rating';
