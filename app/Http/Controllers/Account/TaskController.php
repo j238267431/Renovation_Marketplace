@@ -18,4 +18,13 @@ class TaskController extends Controller
 
     return view('account.tasks', ['tasks' => $tasks, 'hasCompany' => $hasCompany]);
   }
+  public function show(Task $task)
+  {
+//      $companiesAndResponses = $task->load('companiesAndResponses');
+      $companiesAndResponses = $task->companiesAndResponses()->paginate(4);
+      return view('account.tasks.show', [
+          'task' => $task,
+          'companiesAndResponses' => $companiesAndResponses,
+      ]);
+  }
 }

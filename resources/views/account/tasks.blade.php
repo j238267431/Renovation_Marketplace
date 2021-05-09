@@ -36,11 +36,14 @@
           </thead>
           @foreach($tasks as $task)
           <tbody>
+
             <tr>
-              <td>{{$task->title}}</td>
+
+              <td><a href="{{route('account.tasks.show', $task)}}">{{$task->title}}</a></td>
               <td>{{$task->description}}</td>
               <td>{{$task->budget}}</td>
             </tr>
+
             @endforeach
           </tbody>
         </table>

@@ -41,7 +41,11 @@
             <div class="float-right float-sm-none title amount indent-xs-b0">
               <span data-toggle="tooltip" title="" data-original-title="725 грн • 1 959 руб">@if($task->budget){{$task->budget}} &#8381;@else цена не указана @endif</span>
             </div>
-            <div class="float-left float-sm-none text_field">23 заявки</div>
+              @if($task->responses()->count())
+                <div class="float-left float-sm-none text_field">{{$task->responses()->count()}} {{trans_choice('messages.responses_choice', $task->responses()->count())}}</div>
+              @else
+                  <div class="float-left float-sm-none text_field">пока нет ни одного отклика</div>
+              @endif
           </div>
           <div class="col-sm-8 text-muted dot_divided d-flex">
             <span class="text-nowrap">
