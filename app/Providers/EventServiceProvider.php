@@ -20,6 +20,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            LoginListener::class,
         ],
         SocialiteWasCalled::class => [
             'SocialiteProviders\\Facebook\\FacebookExtendSocialite@handle',
@@ -27,7 +28,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         Login::class => [
             LoginListener::class,
-        ]
+        ],
 
     ];
 

@@ -16,7 +16,11 @@
 </template>
 
 <script>
+import {mapActions, mapState} from 'vuex'
 export default {
-    props: ['messages']
+    props: ['messages'],
+    methods:{
+        // ...mapActions(['addMessage'])
+    }
 };
 </script>

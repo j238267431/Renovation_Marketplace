@@ -80,5 +80,9 @@ class User extends Authenticatable
     {
         return $this->last_login_at->diffForHumans();
     }
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 
 }

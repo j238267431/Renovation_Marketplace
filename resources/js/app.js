@@ -30,8 +30,44 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  */
 
 const app = new Vue({
-    store,
     el: '#app',
+    data: {
+        messages: []
+    },
+
+    created() {
+        this.fetchMessages();
+        Echo.private('chat')
+            .listen('MessageSent', (e) => {
+                this.messages.push({
+                    message: e.message.message,
+                    user: e.user
+                });
+            });
+    },
+
+    methods: {
+        fetchMessages() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const toUserId = urlParams.get('toUserId');
+
+            axios.get('/account/messages?toUserId='+toUserId).then(response => {
+                this.messages = response.data;
+            });
+        },
+
+        addMessage(message) {
+            this.messages.push(message);
+            const urlParams = new URLSearchParams(window.location.search);
+            const touserid = urlParams.get('toUserId');
+
+            axios.post('/account/messages', {message, touserid}).then(response => {
+                console.log(response.data);
+            }).catch(err => {
+                console.log(err)
+            });
+        }
+    }
 });
 
 import AppContainer from '../js/components/AppContainer';
