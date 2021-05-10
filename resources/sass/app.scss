@@ -8,9 +8,12 @@
 @import '~bootstrap/scss/bootstrap';
 
 //old_style
-@import '../css/style_old.css';
+//@import '../css/style_old.css';
 
 //new_style
+@import 'main';
+@import 'header';
+@import 'footer';
 @import 'star-rating';
 
 
