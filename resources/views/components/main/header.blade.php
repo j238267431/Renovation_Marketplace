@@ -1,15 +1,7 @@
 <header>
-  <div class="wrapper">
-    <nav class="navbar navbar-toggleable">
-      <x-main-hamburger></x-main-hamburger>
+    <div class="wrapper">
 
-      <x-main-logo classList="navbar-brand"></x-main-logo>
+        <x-navigation></x-navigation>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <x-main-left-menu></x-main-left-menu>
-
-        <x-main-right-menu></x-main-right-menu>
-      </div>
-    </nav>
-  </div>
+    </div>
 </header>

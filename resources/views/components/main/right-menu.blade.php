@@ -1,4 +1,4 @@
-<ul class="nav navbar-nav navbar-right">
+<ul class="navbar-nav d-flex">
 
   @guest
   @if (Route::has('register'))

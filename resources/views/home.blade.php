@@ -19,18 +19,6 @@
 
         <x-home-top-categories></x-home-top-categories>
 
-{{--        <div class="cols_table no_hover divided_cols divided_cols-wide index order-1">--}}
-{{--          <div class="row">--}}
-{{--            <div class="col-xl-6 d-flex align-items-stretch">--}}
-{{--              <x-home-top-developers></x-home-top-developers>--}}
-{{--            </div>--}}
-
-{{--            <div class="col-xl-6 d-flex align-items-stretch">--}}
-{{--              <x-home-top-developers></x-home-top-developers>--}}
-{{--            </div>--}}
-{{--          </div>--}}
-{{--        </div>--}}
-
         <x-home-active-developers></x-home-active-developers>
 
         <x-home-portfolio></x-home-portfolio>

@@ -1,4 +1,4 @@
-<footer>
+<footer >
   <div class="wrapper cols_table no_hover">
     <div class="row border-0">
       <div class="col-12 col-md">

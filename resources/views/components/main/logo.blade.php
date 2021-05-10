@@ -1,5 +1,5 @@
-<a class="{{ $classList }}" href="/" title="СтройХаус" alt="СтройХаус">
-  <div class="logo">
+<a class="" href="/" title="СтройХаус" alt="СтройХаус">
+  <div class="{{ $classList }}">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 31" width="128" height="31">
       <rect y="26" width="30" height="5" />
       <rect x="11" y="15" width="8" height="8" />

@@ -1,4 +1,4 @@
-<ul class="nav navbar-nav left-nav">
+<ul class="navbar-nav navbar-left">
   @foreach ($menu as $item)
     @empty($item['submenu'])
       <li class="nav-item">
@@ -15,7 +15,7 @@
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false"
            @isset($item['title']) title="{{ $item['title'] }}" @endisset>
-          {{ $item['value'] }}
+          {{ $item['value'] }} tttt
         </a>
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

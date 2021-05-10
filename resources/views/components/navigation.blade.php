@@ -1,18 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('home') }}">Marketplace</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar"
-                aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+    <div class="container">
+        <x-main-logo classList="navbar-brand"></x-main-logo>
 
-        <div class="collapse navbar-collapse" id="main-navbar">
-            <div class="navbar-nav">
-                @include('includes.menu')
-                <!-- Authentication Links -->
-                @include('includes.auth-links')
-            </div>
+
+        <x-main-hamburger></x-main-hamburger>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <x-main-left-menu></x-main-left-menu>
+
+            <x-main-right-menu></x-main-right-menu>
         </div>
+
     </div>
 </nav>
 
