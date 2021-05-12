@@ -18,6 +18,11 @@ class ChatsController extends Controller
         $this->middleware('auth');
     }
 
+    public function getUserId()
+    {
+        return Auth::id();
+    }
+
     /**
      * Show chats
      *

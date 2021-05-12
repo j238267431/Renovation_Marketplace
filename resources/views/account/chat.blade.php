@@ -9,7 +9,7 @@
                 <div class="panel-body">
                     <chat-messages :messages="messages"></chat-messages>
                 </div>
-                <div class="panel-footer">
+                <div id="user_tag" data-id="{{Auth::id()}}" class="panel-footer">
                     <chat-form
                         v-on:messagesent="addMessage"
                         :user="{{ Auth::user() }}"

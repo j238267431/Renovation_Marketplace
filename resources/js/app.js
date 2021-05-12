@@ -32,12 +32,18 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 const app = new Vue({
     el: '#app',
     data: {
-        messages: []
+        messages: [],
+        userId: null,
+
     },
 
     created() {
         this.fetchMessages();
-        Echo.private('chat')
+         this.userId = document.getElementById('user_tag').dataset.id
+        const urlParams = new URLSearchParams(window.location.search);
+        // const toUserId = urlParams.get('toUserId');
+        const toUserId = 11;
+        Echo.private(`user.${this.userId}`)
             .listen('MessageSent', (e) => {
                 this.messages.push({
                     message: e.message.message,
@@ -47,6 +53,7 @@ const app = new Vue({
     },
 
     methods: {
+
         fetchMessages() {
             const urlParams = new URLSearchParams(window.location.search);
             const toUserId = urlParams.get('toUserId');
