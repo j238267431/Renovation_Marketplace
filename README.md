@@ -18,3 +18,9 @@ _____________
 ______
 ### При необходимости 
 *  npm run watch
+
+### для работы Breadcrumbs
+
+php artisan vendor:publish
+
+composer require davejamesmiller/laravel-breadcrumbs
