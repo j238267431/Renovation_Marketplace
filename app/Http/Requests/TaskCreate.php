@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TaskCreate extends FormRequest
@@ -28,7 +29,17 @@ class TaskCreate extends FormRequest
             'description'   => 'required|min:10',
             'file'          => 'sometimes|file',
             'budget'        => 'sometimes|numeric|nullable',
-            'category_id'   => 'sometimes|numeric|min:1'
+            'category_id'   => [
+                'sometimes',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if (!(
+                        (Category::where("id", $value)->count() > 0)
+                        && (Category::find($value)->parent_id !== null))) {
+                        $fail('Выбранное значение для ' . $attribute . ' некорректно.');
+                    }
+                }
+            ]
         ];
     }
     public function messages()
