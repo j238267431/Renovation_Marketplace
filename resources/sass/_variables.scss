@@ -2,8 +2,8 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
+$font-family-sans-serif: 'PT Sans', sans-serif;
+$font-size-base: 1rem;
 $line-height-base: 1.6;
 
 // Colors
@@ -17,3 +17,19 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+//NEW
+// Typography
+$mainFont: 'PT Sans', sans-serif;
+$sizeFont: 1rem;
+//$line-height-base: 1.6;
+
+// Colors
+$color-primary: #1a9c0c;
+$color-secondary: #0c6276;
+$color-accent: #bb0f17;
+
+// Body
+$bg-color: #f7f7f7;
+$text-color: #333;
+$text-color_2: lighten($text-color, 50%);

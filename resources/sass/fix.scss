@@ -1,0 +1,11 @@
+.navbar-nav .dropdown-menu {
+    position: absolute;
+}
+
+.navbar{
+    flex-wrap: nowrap;
+}
+
+.track_progress[data-steps="4"] > li {
+    width: 24.6%;
+}

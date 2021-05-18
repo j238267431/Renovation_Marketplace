@@ -11,8 +11,7 @@
 
   <!-- styles -->
   <!-- <link rel="stylesheet" href="/css/app.css"> -->
-  <link rel="stylesheet" href="/css/normalize.css">
-  <link rel="stylesheet" href="/css/new_style.css">
+  <link rel="stylesheet" href="/css/app.css">
 
   <title>СтройХаус</title>
 </head>
@@ -31,13 +30,13 @@
 </div>
   <!-- scripts -->
     <script src="{{asset('js/app.js')}}"></script>
-  <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+<!--<script src="/js/jquery.js"></script>
   <script src="/js/jquery.visible.min.js"></script>
   <script src="/js/popper.min.js"></script>
   <script src="/js/tether.min.js"></script>
-  <script src="/js/bootstrap.js"></script>
   <script src="/js/bootstrap-typeahead.min.js"></script>
-  <script src="/js/offer.js"></script>
+  <script src="/js/offer.js"></script>-->
 
 
   <!-- summernote css/js -->
