@@ -13,7 +13,7 @@ class OrderController extends Controller
   {
     $user = Auth::user();
     $hasCompany = $user->companies()->exists();
-    $orders = $user->orders();
+    $orders = $user->orders;
     return view('account.orders', ['orders' => $orders, 'hasCompany' => $hasCompany]);
   }
 }
