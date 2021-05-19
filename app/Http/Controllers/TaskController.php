@@ -226,4 +226,5 @@ class TaskController extends Controller
         return redirect()->route('tasks.show', $task)->with('success', 'Отклик успешно отредактирован');
 
     }
+
 }

@@ -83,6 +83,10 @@ Route::prefix('account')->name('account.')->middleware('auth')->group(function (
     )->name('chat');
     Route::get('messages', [\App\Http\Controllers\Account\ChatsController::class, 'fetchMessages']);
     Route::post('messages', [\App\Http\Controllers\Account\ChatsController::class, 'sendMessage']);
+    Route::get('confirm/{task:id}/{company:id}', [\App\Http\Controllers\Account\TaskController::class, 'confirmOffer'])
+        ->name('confirm.task');
+    Route::get('offer/destroy', [\App\Http\Controllers\Account\TaskController::class, 'deleteOffers'])
+        ->name('offer.destroy');
 });
 Route::middleware('auth')->group(function (){
     Route::get('account/companies/offer/index', [OffersController::class, 'index'])->name('account.companies.offer.index');
