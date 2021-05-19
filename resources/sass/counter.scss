@@ -1,0 +1,26 @@
+.counter{
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+
+    &__order{
+        color: $color-primary;
+    }
+
+    &__message{
+        color: $color-secondary;
+    }
+
+    & > a {
+        text-decoration: none;
+    }
+
+    & > a span{
+        margin-left: 10px;
+
+        &:hover{
+            color: $color-accent;
+        }
+    }
+}

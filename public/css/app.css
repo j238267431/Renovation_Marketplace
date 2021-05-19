@@ -23807,6 +23807,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+a {
+  text-decoration: none;
+}
+
 .navbar-nav .dropdown-menu {
   position: absolute;
 }
@@ -23817,6 +23821,91 @@ textarea.form-control-lg {
 
 .track_progress[data-steps="4"] > li {
   width: 24.6%;
+}
+
+form .input-group .form-control {
+  border-radius: 30px 0 0 30px;
+}
+
+.order-1 ul {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.cell_list li {
+  padding: 20px;
+}
+
+.card-company {
+  padding: 0;
+  background-color: white;
+  position: relative;
+  min-width: 200px;
+}
+.card-company__section {
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: #1a9c0c;
+  color: white;
+  width: 100%;
+  height: 30px;
+}
+.card-company__body {
+  flex: 1 1 auto;
+  padding: 1rem 0 2rem;
+}
+.card-company__name {
+  color: #0c6276;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.card-company__text {
+  color: #333;
+  font-size: 16px;
+  margin-bottom: 0;
+}
+.card-company > img {
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.card-company__info {
+  bottom: 0;
+  /*padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;*/
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.card-company__info .rating-result span {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.counter {
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+.counter__order {
+  color: #1a9c0c;
+}
+.counter__message {
+  color: #0c6276;
+}
+.counter > a {
+  text-decoration: none;
+}
+.counter > a span {
+  margin-left: 10px;
+}
+.counter > a span:hover {
+  color: #bb0f17;
 }
 
 /*Вввод рейтинга*/
@@ -23870,15 +23959,15 @@ textarea.form-control-lg {
 
 /*Вывод рейтинга*/
 .rating-result {
-  width: 265px;
+  /*width: 265px;*/
   /*margin: 0 auto;*/
 }
 
 .rating-result span {
   padding: 0;
   font-size: 32px;
-  margin: 0 3px;
-  line-height: 1;
+  /*margin: 0 3px;
+  line-height: 1;*/
   color: lightgrey;
   text-shadow: 1px 1px #bbb;
 }

@@ -16,17 +16,17 @@
   <title>СтройХаус</title>
 </head>
 
-<body class="web">
-<div id="app">
-  <div  class="main-wrapper">
+<body class="web d-flex flex-column h-100">
+<div id="app ">
     <x-main-header></x-main-header>
+    <div  class="main-wrapper">
 
     <main class="content">
         @yield('content')
     </main>
 
+    </div>
     <x-main-footer></x-main-footer>
-  </div>
 </div>
   <!-- scripts -->
     <script src="{{asset('js/app.js')}}"></script>
