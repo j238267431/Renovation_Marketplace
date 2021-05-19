@@ -47,7 +47,8 @@
                                 <td>{{$companyAndResponse->pivot->price}}</td>
                                 <td>{!! $companyAndResponse->pivot->comment !!}</td>
                                 <td>{{$companyAndResponse->pivot->created_at->diffForHumans()}}</td>
-                                <td><a href="{{route('account.chat', $companyAndResponse)}}"><div class="btn btn-success">чат с застройщиком</div></a></td>
+
+                                <td><a href="{{route('account.chat', ['toUserId'=>$companyAndResponse->users()->first()->id])}}"><div class="btn btn-success">чат с застройщиком</div></a></td>
                                 <td><a href="#"><div class="btn btn-success">подтверждаю предложение</div></a></td>
                             </tr>
                         @endforeach

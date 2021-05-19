@@ -28,7 +28,7 @@
                                                 <select name="company_id" id="company" class="form-control">
                                                     <option disabled value="No" @if(old('company_id')) '' @else selected @endif>Выберите компанию</option>
                                                     @foreach($companies as $company)
-                                                        <option value="{{$company->id}}" @if(old('company_id')==$company->id) selected @else""@endif>{{$company->name}}</option>
+                                                        <option value="{{$company->id}}" @if(old('company_id')==$company->id) selected @endif>{{$company->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
