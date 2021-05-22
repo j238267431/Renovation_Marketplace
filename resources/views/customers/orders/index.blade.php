@@ -3,7 +3,7 @@
 @section('content')
 
 @include('includes.title', [
-'title' => 'Все заказы' . ($category && $category != 'no' ? ' в категории ' . $category->name : ''),
+'title' => 'Все заказы' . ($category ? ' в категории ' . $category->name : ''),
 'breadcrumbs' => 'tasks'
 ])
 
@@ -15,8 +15,7 @@
     "parentCategories" => $parentCategories,
     "categories" => $categories,
     "linkRoute" => 'tasks.index',
-    "category" => $category,
-    "itemsWithoutCategories" => $tasksWithoutCategories,
+    "category" => $category, 
     ])
     @endcomponent
     <div class="page_content d-flex flex-column">
