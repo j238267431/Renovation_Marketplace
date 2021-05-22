@@ -3,7 +3,7 @@
 @section('content')
 
 @include('includes.title', [
-'title' => 'Все заказы' . ($category ? ' в категории ' . $category->name : ''),
+'title' => 'Все заказы' . ($category && $category != 'no' ? ' в категории ' . $category->name : ''),
 'breadcrumbs' => 'tasks'
 ])
 
@@ -16,6 +16,7 @@
     "categories" => $categories,
     "linkRoute" => 'tasks.index',
     "category" => $category,
+    "itemsWithoutCategories" => $tasksWithoutCategories,
     ])
     @endcomponent
     <div class="page_content d-flex flex-column">
@@ -41,11 +42,11 @@
             <div class="float-right float-sm-none title amount indent-xs-b0">
               <span data-toggle="tooltip" title="" data-original-title="725 грн • 1 959 руб">@if($task->budget){{$task->budget}} &#8381;@else цена не указана @endif</span>
             </div>
-              @if($task->responses()->count())
-                <div class="float-left float-sm-none text_field">{{$task->responses()->count()}} {{trans_choice('messages.responses_choice', $task->responses()->count())}}</div>
-              @else
-                  <div class="float-left float-sm-none text_field">пока нет ни одного отклика</div>
-              @endif
+            @if($task->responses()->count())
+            <div class="float-left float-sm-none text_field">{{$task->responses()->count()}} {{trans_choice('messages.responses_choice', $task->responses()->count())}}</div>
+            @else
+            <div class="float-left float-sm-none text_field">пока нет ни одного отклика</div>
+            @endif
           </div>
           <div class="col-sm-8 text-muted dot_divided d-flex">
             <span class="text-nowrap">

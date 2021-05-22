@@ -127,9 +127,9 @@
                       <div class="form-group col-sm-6 mb-sm-0">
                         <label for="category" class="form-control-label">Категория</label>
                         <select name="category_id" id="category" class="form-control">
-                          <option disabled  value="No" @if(old('category_id')) '' @else selected @endif>Укажите категорию</option>
+                          <option disabled  value="No" @if(!old('category_id')) selected @endif>Укажите категорию</option>
                           @foreach($categories as $category)
-                            <option value="{{$category->id}}" @if(old('category_id') == $category->id) selected @else""@endif>{{$category->name}}</option>
+                            <option value="{{ $category->id }}" @if(old('category_id') == $category->id) selected @endif>{{ $category->name }}</option>
                           @endforeach
                         </select>
                       </div>
