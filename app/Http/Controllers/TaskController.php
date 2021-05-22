@@ -44,7 +44,7 @@ class TaskController extends Controller
     } else {
       $tasks = Task::latest('id');
     }
-    $tasks = $tasks->paginate($this->countOnePagePaginate);
+    $tasks = $tasks->where('user_id', '!=', Auth::id())->paginate($this->countOnePagePaginate);
     return view(
       'customers.orders.index',
       [
@@ -226,4 +226,5 @@ class TaskController extends Controller
         return redirect()->route('tasks.show', $task)->with('success', 'Отклик успешно отредактирован');
 
     }
+
 }

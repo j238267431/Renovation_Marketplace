@@ -28,13 +28,17 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Описание</th>
+              <th scope="col">Описание заказа</th>
+                <th scope="col">Компания исполнитель</th>
+                <th scope="col">Статус заказа</th>
             </tr>
           </thead>
           @foreach($orders as $order)
           <tbody>
             <tr>
-              <td>{{$order->details}}</td>
+              <td>{!! $order->details !!}</td>
+                <td>{{$order->company->name}}</td>
+                <td>{{$order->status->name}}</td>
             </tr>
             @endforeach
           </tbody>

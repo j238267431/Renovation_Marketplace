@@ -47,8 +47,9 @@
                                 <td>{{$companyAndResponse->pivot->price}}</td>
                                 <td>{!! $companyAndResponse->pivot->comment !!}</td>
                                 <td>{{$companyAndResponse->pivot->created_at->diffForHumans()}}</td>
-                                <td><a href="{{route('account.chat', $companyAndResponse)}}"><div class="btn btn-success">чат с застройщиком</div></a></td>
-                                <td><a href="#"><div class="btn btn-success">подтверждаю предложение</div></a></td>
+
+                                <td><a href="{{route('account.chat', ['toUserId'=>$companyAndResponse->users()->first()->id])}}"><div class="btn btn-success">чат с застройщиком</div></a></td>
+                                <td><a onclick="offerDelete({{$task}})" href="{{route('account.confirm.task', ['task' => $task, 'company' => $companyAndResponse])}}"><div class="btn btn-success">подтверждаю предложение</div></a></td>
                             </tr>
                         @endforeach
                             </tbody>
@@ -63,3 +64,38 @@
     </div>
 
 @endsection
+
+@push('js')
+<script>
+    function offerDelete(task)
+    {
+    var id = event.toElement.dataset.id
+    $.ajax({
+
+    url: "/account/offer/destroy",
+    method: "get",
+    data: {task: task},
+
+    headers: {
+
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+    'Content-type': 'application/json; charset=utf-8',
+    },
+
+    success: function (data) {
+
+    document.location.href = "/account/orders"
+
+    },
+
+    error: function (msg) {
+
+    console.log(msg)
+
+    }
+
+    });
+
+    }
+</script>
+@endpush

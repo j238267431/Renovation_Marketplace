@@ -6,8 +6,20 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {},
-    state: {},
+    state: {
+        messages:[],
+    },
     getters: {},
-    actions: {},
+    actions: {
+        addMessage({commit, state}, message) {
+            this.messages.push(message);
+
+            axios.post('/account/messages', message).then(response => {
+                console.log(response.data);
+            }).catch(err => {
+                console.log(err)
+            });
+        }
+    },
     mutations: {},
 });
