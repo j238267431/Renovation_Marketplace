@@ -26,10 +26,10 @@ class CompanyCreate extends FormRequest
     return [
       'name'          => 'required|min:2',
       'phone'         => 'required|min:11',
-      'email'         => 'required|email:rfc,dns',
+      'email'         => 'required|email',
       'cover'         => 'sometimes|file|mimetypes:image/bmp,image/png,image/jpeg|max:1024|dimensions:width=150,height=150',
       'address'       => 'required|string|min:10',
-      'description'   => 'required|string|min:10', 
+      'description'   => 'required|string|min:10',
     ];
   }
   public function messages()
@@ -46,7 +46,7 @@ class CompanyCreate extends FormRequest
       'name'          => 'Название',
       'phone'         => 'Телефон',
       'email'         => 'Email',
-      'cover'         => 'Логотип', 
+      'cover'         => 'Логотип',
       'address'       => 'Адрес',
       'description'   => 'Описание',
     ];

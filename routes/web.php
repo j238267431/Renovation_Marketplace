@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Account\OffersController;
 use Laravel\Socialite\Facades\Socialite;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,9 +79,14 @@ Route::prefix('account')->name('account.')->middleware('auth')->group(function (
     Route::get('/tasks/{task:id}/show', [\App\Http\Controllers\Account\TaskController::class, 'show'])
         ->name('tasks.show');
     Route::resource('companies', AccountCompanyController::class);
-    Route::get('/chat/{company:id}', function (){
-        return view('account.chat'); //TODO
-    })->name('chat');
+    Route::get('/chat', [\App\Http\Controllers\Account\ChatsController::class, 'index']
+    )->name('chat');
+    Route::get('messages', [\App\Http\Controllers\Account\ChatsController::class, 'fetchMessages']);
+    Route::post('messages', [\App\Http\Controllers\Account\ChatsController::class, 'sendMessage']);
+    Route::get('confirm/{task:id}/{company:id}', [\App\Http\Controllers\Account\TaskController::class, 'confirmOffer'])
+        ->name('confirm.task');
+    Route::get('offer/destroy', [\App\Http\Controllers\Account\TaskController::class, 'deleteOffers'])
+        ->name('offer.destroy');
 });
 Route::middleware('auth')->group(function (){
     Route::get('account/companies/offer/index', [OffersController::class, 'index'])->name('account.companies.offer.index');
