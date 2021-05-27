@@ -10,6 +10,10 @@
       <li><a href="{{route('account.companies.offer.index')}}">Услуги</a></li>
   @endif
       <li><a href="#">Отклики на заявки</a></li>
-      <li><a href="#">Заказы в работе</a></li>
+      @if(request()->routeIs('account.project'))
+          <li><b>Заказы в работе</b></li>
+      @else
+        <li><a href="{{route('account.project')}}">Заказы в работе</a></li>
+      @endif
       <li><a href="#">Рейтинг</a></li>
 </ul>
