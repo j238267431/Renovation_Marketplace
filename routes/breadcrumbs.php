@@ -39,6 +39,11 @@ Breadcrumbs::register('account.companies.offer', function ($breadcrumbs) {
   $breadcrumbs->push('Услуги', route('account.companies.offer.index'));
 });
 
+Breadcrumbs::register('account.project', function ($breadcrumbs) {
+    $breadcrumbs->parent('account');
+    $breadcrumbs->push('Заказы в работе', route('account.project'));
+});
+
 Breadcrumbs::register('account.tasks', function ($breadcrumbs) {
   $breadcrumbs->parent('account');
   $breadcrumbs->push('Список заявок', route('account.tasks'));

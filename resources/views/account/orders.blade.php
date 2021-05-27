@@ -31,6 +31,7 @@
               <th scope="col">Описание заказа</th>
                 <th scope="col">Компания исполнитель</th>
                 <th scope="col">Статус заказа</th>
+                <th scope="col">Подтверждение</th>
             </tr>
           </thead>
           @foreach($orders as $order)
@@ -39,6 +40,9 @@
               <td>{!! $order->details !!}</td>
                 <td>{{$order->company->name}}</td>
                 <td>{{$order->status->name}}</td>
+                <td>@if($order->status->id == 4)
+                    <div onclick="confirmOrderFulfilled({{$order->id}})" class="btn btn-success">подтвердить выполнение</div>
+                @endif</td>
             </tr>
             @endforeach
           </tbody>
@@ -48,3 +52,34 @@
   </div>
 </div>
 @endsection
+
+@push('js')
+    <script>
+        function confirmOrderFulfilled(id)
+        {
+            event.preventDefault();
+            $.ajax({
+                url: "/account/order/confirm",
+                method: "get",
+                data: {id:id},
+
+                headers: {
+
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+                    'Content-type': 'application/json; charset=utf-8',
+                },
+
+                success: function (data) {
+                    document.location.href = "/account/orders"
+                },
+
+                error: function (msg) {
+                    console.log(msg)
+                }
+
+            });
+
+        }
+    </script>
+@endpush
+
