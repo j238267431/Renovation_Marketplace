@@ -1,6 +1,5 @@
 <div class="h3 no-padding pt-3 ">
-    <a style=""
-       href="{{ route('reviews.show', $review) }}">{{$review->title}}</a>
+    {{$review->title}}
 </div>
 <div class="row pt-3 no-border vertical-align no-margin">
 

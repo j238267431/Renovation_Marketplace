@@ -3,8 +3,10 @@
 
 @section('content')
     <div class="container">
+
         <div class="mb-3">
             <h1>Страница всех проектов всех компаний</h1>
+
             @forelse($projects as $project)
                 <a href="{{ route('projects.show', ['project' => $project->id])}} ">{{$project->id}}</a> <br>
                 {{ $project->name }} <br>
