@@ -3,7 +3,6 @@
 @section('content')
 
     <div class="container">
-        <div class="mb-3">
             <x-project.project-card-one :category="$category" :project="$project" :images="$images" />
 
         <!--<h1>Страница подробная одного проекта</h1>
@@ -36,7 +35,6 @@
             <p>description проекта : {{$project->description}}</p>
             <p>content проекта : {{$project->content}}</p>
 -->
-        </div>
     </div>
 
 @endsection

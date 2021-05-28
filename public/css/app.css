@@ -23973,6 +23973,114 @@ li.project-list__item:last-child {
   padding-right: 0;
 }
 
+.card-project-one {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.card-project-one__body {
+  display: flex;
+  margin-bottom: 20px;
+}
+.card-project-one__cover {
+  position: relative;
+  width: 20%;
+  margin-right: 20px;
+}
+.card-project-one__img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.card-project-one__section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #1a9c0c;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 5px;
+}
+.card-project-one__price {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: #bb0f17;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 5px;
+}
+.card-project-one__title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.card-project-one__text {
+  font-size: 1.2rem;
+}
+.card-project-one__img-row {
+  display: flex;
+}
+.card-project-one__item {
+  width: 33.3%;
+  margin-right: 20px;
+}
+.card-project-one__item:nth-last-child(1) {
+  margin-right: 0;
+}
+
+.card-project-all {
+  background-color: white;
+  height: 100%;
+  position: relative;
+}
+.card-project-all__section {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #1a9c0c;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.card-project-all__title {
+  font-weight: 700;
+  color: #0c6276;
+}
+.card-project-all__cover {
+  position: relative;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-bottom: 10px;
+}
+.card-project-all__img {
+  width: 100%;
+}
+.card-project-all__like {
+  position: absolute;
+  bottom: 5px;
+  right: 7px;
+}
+.card-project-all__like i {
+  color: white;
+  font-size: 1.2rem;
+}
+.card-project-all__like i:hover {
+  color: #bb0f17;
+}
+.card-project-all__text {
+  padding-bottom: 10px;
+  font-size: 1rem;
+  color: #333;
+}
+.card-project-all__price {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #bb0f17;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: right;
+}
+
 .counter {
   font-size: 15px;
   font-weight: 700;
