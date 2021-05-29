@@ -7,35 +7,37 @@
   <ul class="cell_list cell-xs-1 cell-sm-2 cell-lg-3 cell-xl-4">
     @forelse($companies as $company)
       <li class="click_container-link set_href">
-        <div class="pr_block">
-          <div class="clearfix user_brief">
-            {{--TODO Исправить разметку (отображение картинок и кол-во столбцов)--}}
-            <div class="userpic">
+
+          <div class="card-company">
+              <div class="card-company__section">Загородное строительство</div>
               <a href="{{ route('companies.show', $company) }}" rel="nofollow">
-                <img class="img-fluid"
-                     src="{{ $company->cover ?? asset('img/placeholder150.png')}}"
-                     alt="{{ $company->name }}">
+                <img src="{{ $company->cover ?? asset('img/placeholder150.png')}}" class="card-img-top" alt="{{ $company->name }}">
               </a>
-            </div>
-
-            <div class="brief">
-              <span class="name">
-                <a href="{{ route('companies.show', $company) }}" rel="nofollow">
-                  {{ $company->name }}
-                </a>
-              </span>
-              <span class="login"><span>{{ $company->description }}</span></span>
-            </div>
+              <div class="card-company__body">
+                  <a href="{{ route('companies.show', $company) }}" rel="nofollow">
+                    <div class="card-company__name">{{ $company->name }}</div>
+                  </a>
+                  <p class="card-company__text">{{ $company->description }}</p>
+              </div>
+              <div class="card-company__info">
+                  <div class="rating-result">
+                      <span class="active"></span>
+                      <span class="active"></span>
+                      <span class="active"></span>
+                      <span class="active"></span>
+                      <span></span>
+                  </div>
+                  <div class="counter ">
+                      <a href="{{ route('account.orders', $company) }}" title="Заказы">
+                          <span class="counter__order"><i class="bi bi-check-square-fill"></i> {{ $company->orders_count }}</span>
+                      </a>
+                      <a href="{{ route('companies.reviews', $company) }}" title="Отзывы">
+                          <span class="counter__message"><i class="bi bi-chat-right-text-fill"></i> {{ $company->reviews_count }}</span>
+                      </a>
+                  </div>
+              </div>
           </div>
 
-          <div class="pr_title text_field">{{ $company->category ?? 'Загородное строительство' }}</div>
-
-          <div class="pr_text text_field dot_divided">
-            <span class="text-gold">Заказы: {{ $company->orders_count }}</span>
-            <span class="text-success">Отзывы: {{ $company->reviews_count }}</span>
-          </div>
-
-        </div>
       </li>
     @empty
       <p>Ничего не найдено.</p>
