@@ -104,6 +104,8 @@ Route::prefix('account')->name('account.')->middleware('auth')->group(function (
         ->name('project');
     Route::get('/order/status', [\App\Http\Controllers\Account\OrderController::class, 'changeStatus']);
     Route::get('/order/confirm', [\App\Http\Controllers\Account\OrderController::class, 'orderConfirm']);
+    Route::get('/responses', [\App\Http\Controllers\Account\ResponsesController::class, 'index'])
+    ->name('responses');
 });
 Route::middleware('auth')->group(function () {
     Route::get('account/companies/offer/index', [OffersController::class, 'index'])->name('account.companies.offer.index');

@@ -29,6 +29,13 @@ class Company extends Model
       ->withPivot('role_id');
   }
 
+
+    public function tasks(): HasManyThrough
+    {
+        return $this->HasManyThrough(Task::class, CompaniesTasks::class, 'company_id', 'id','id', 'task_id');
+
+    }
+
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);

@@ -48,7 +48,7 @@
                                     <td>{{$company->name}}</td>
                                     <td>{!!$order->details!!}</td>
                                     <td>
-                                        <Select id="status" @if($order->status->id == 5) disabled @endif>
+                                        <Select class="form-select" id="status{{$order->id}}" @if($order->status->id == 5) disabled @endif>
                                             @foreach($statuses as $status)
                                                 <option value="{{$status->id}}"
                                                     @if($status->id == $order->status->id) selected @endif
@@ -74,7 +74,7 @@
         function changeStatus(id)
         {
             event.preventDefault();
-            let statusId = document.getElementById('status').value
+            let statusId = document.getElementById('status'+id).value
             $.ajax({
 
                 url: "/account/order/status",
