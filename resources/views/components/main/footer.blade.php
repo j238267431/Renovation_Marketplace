@@ -45,32 +45,31 @@
 
       <div class="col-sm-auto col-md-2 links">
         <b class="h3 header">О сервисе</b>
-        <a href="#">О компании</a>
-        <a href="#">Контакты</a>
+        <a href="{{ route('home') }}">О компании</a>
+        <a href="{{ route('home') }}">Контакты</a>
       </div>
 
       <div class="col-sm-auto col-md-3 links">
         <b class="h3 header">Пользователям</b>
-        <a href="#">Тарифы</a>
+        <a href="{{ route('home') }}">Тарифы</a>
         <a href="{{ route('tasks.create') }}">Разместить заказ</a>
         <a href="{{ route('companies.index') }}">Каталог подрядчиков</a>
       </div>
 
       <div class="col-sm-auto col-md-3 links">
         <b class="h3 header">Помощь</b>
-        <a href="#">Помощь</a>
-        <a href="#">Правила сервиса</a>
+        <a href="{{ route('home') }}">Помощь</a>
+        <a href="{{ route('home') }}">Правила сервиса</a>
         <a href="mailto:{{ $email }}">Служба поддержки</a>
       </div>
     </div>
 
     <div class="row text_field">
-      <div class="col text-muted" data-toggle="tooltip" title=""
-           data-original-title="Россия - Москва, Санкт-Петербург">© СтройХаус, 2021
+      <div class="col text-muted" data-toggle="tooltip" title="" data-original-title="Россия - Москва, Санкт-Петербург">© СтройХаус, 2021
       </div>
 
       <div class="col-sm-5 text-muted">
-        <a class="text-muted" href="#">Пользовательское соглашение</a>
+        <a class="text-muted" href="{{ route('home') }}">Пользовательское соглашение</a>
       </div>
 
       <div class="col-sm-3 text-muted">
