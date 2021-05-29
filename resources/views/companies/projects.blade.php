@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="mb-3">
-            <h1>Страница всех проектов одной  компаний</h1>
+            <h1>Страница всех проектов одной компаний</h1>
             <br>
             <p>Имя компании : {{$company->name}}</p>
             <p>Phone компании : {{$company->phone}}</p>

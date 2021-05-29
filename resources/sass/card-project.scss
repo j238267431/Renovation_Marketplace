@@ -1,0 +1,173 @@
+.card-project {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid gray;
+    height: 100%;
+
+    &__body{
+        padding-top: 10px;
+    }
+
+    &__img{
+        width: 100%;
+        max-height: 150px;
+        object-fit: cover;
+    }
+
+    &__title{
+        color: $color-secondary;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    &__text{
+        color: $text-color;
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+}
+
+ul.project-list{
+    display: flex;
+    padding-left: 0;
+}
+
+li.project-list__item{
+    padding: 10px;
+
+    &:first-child{
+        padding-left: 0;
+    }
+
+    &:last-child{
+        padding-right: 0;
+    }
+}
+
+.card-project-one{
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    &__body{
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    &__cover{
+        position: relative;
+        width: 20%;
+        margin-right: 20px;
+    }
+
+    &__img{
+        width: 100%;
+        object-fit: cover;
+    }
+
+    &__section{
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $color-primary;
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 5px;
+    }
+
+    &__price{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background-color: $color-accent;
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 5px;
+    }
+
+    &__title{
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    &__text{
+        font-size: 1.2rem;
+    }
+
+    &__img-row{
+        display: flex;
+    }
+
+    &__item{
+        width: 33.3%;
+        margin-right: 20px;
+
+        &:nth-last-child(1){
+            margin-right: 0;
+        }
+    }
+}
+
+.card-project-all{
+    background-color: white;
+    height: 100%;
+    position: relative;
+
+    &__section{
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        color: $color-primary;
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+    &__title{
+        font-weight: 700;
+        color: $color-secondary;
+    }
+
+    &__cover{
+        position: relative;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    &__img{
+        width: 100%;
+    }
+
+    &__like{
+        position: absolute;
+        bottom: 5px;
+        right: 7px;
+
+        & i{
+            color: white;
+            font-size: 1.2rem;
+
+            &:hover{
+                color: $color-accent;
+            }
+        }
+
+    }
+
+    &__text{
+        padding-bottom: 10px;
+        font-size: 1rem;
+        color: $text-color;
+    }
+
+    &__price{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        color: $color-accent;
+        font-weight: 700;
+        font-size: 1rem;
+        text-align: right;
+    }
+}
+
