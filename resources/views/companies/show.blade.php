@@ -88,7 +88,7 @@
 
                             @forelse($company->projects as $project)
 
-                            <x-company.project-card :project="$project" />
+                            <x-project.project-card :project="$project" />
 
                             @empty
                             <div class="no-padding">
