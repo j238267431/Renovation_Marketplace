@@ -5,7 +5,8 @@
 {{--@include('includes.title', ['title' => 'Организации'])--}}
 @include('includes.title', [
 'title' => 'Все заказы',
-'breadcrumbs' => 'companies.index'
+'breadcrumbs' => 'companies.show',
+'breadcrumbsAttrs' => ['company' => $company]
 ])
 
 <div class="wrapper tab-content">
@@ -20,16 +21,13 @@
                                 {{ $company->name }}
                             </h1>
                             <div class="pt-3">
-                                <img class="container-fluid no-padding"
-                                     src="{{ $company->cover ?? asset('img/placeholder150.png')}}"
-                                     alt="{{ $company->name }}">
+                                <img class="container-fluid no-padding" src="{{ $company->cover ?? asset('img/placeholder150.png')}}" alt="{{ $company->name }}">
                             </div>
                             <div class=" pt-3">
                                 <a href="" class="btn btn-primary container-fluid">Заказать</a>
                             </div>
                             <div class="pt-4">
                                 Рейтинг
-
                                 <div class="rating-result">
                                     <span class="active"></span>
                                     <span class="active"></span>
@@ -48,9 +46,9 @@
                             </div>
 
                             <h2 class="h2 pt-4">Контакты</h2>
-                                <p class="text_field pt-3"><b>Адрес:</b> {{ $company->address }}</p>
-                                <p class="text_field pt-3"><b>Телефон:</b> {{ $company->phone }}</p>
-                                <p class="text_field pt-3"><b>Электронная почта:</b> {{ $company->email }}</p>
+                            <p class="text_field pt-3"><b>Адрес:</b> {{ $company->address }}</p>
+                            <p class="text_field pt-3"><b>Телефон:</b> {{ $company->phone }}</p>
+                            <p class="text_field pt-3"><b>Электронная почта:</b> {{ $company->email }}</p>
 
                         </div>
                     </div>
@@ -76,15 +74,15 @@
 
                         <div class="row no-padding justify-content-between pt-3">
 
-                        @forelse($company->projects as $project)
+                            @forelse($company->projects as $project)
 
-                            <x-company.project-card :project="$project"/>
+                            <x-company.project-card :project="$project" />
 
-                        @empty
+                            @empty
                             <div class="no-padding">
                                 <p>Проекты не найдены</p>
                             </div>
-                        @endforelse
+                            @endforelse
 
                         </div>
 
@@ -96,12 +94,12 @@
 
                         @forelse($company->reviews as $review)
 
-                            <x-company.review-card :review="$review"/>
+                        <x-company.review-card :review="$review" />
 
                         @empty
-                            <div class="pt-3">
-                                <p>Отзывы не найдены</p>
-                            </div>
+                        <div class="pt-3">
+                            <p>Отзывы не найдены</p>
+                        </div>
                         @endforelse
 
                     </div>

@@ -27,7 +27,7 @@ class TaskCreate extends FormRequest
         return [
             'title'         => 'required|min:5',
             'description'   => 'required|min:10',
-            'file'          => 'sometimes|file',
+            // 'file'          => 'sometimes|mimes:jpg,jpeg,png,bmp,tiff',
             'budget'        => 'sometimes|numeric|nullable',
             'category_id'   => [
                 'sometimes',
@@ -55,7 +55,7 @@ class TaskCreate extends FormRequest
         return [
             'title'         => 'Заголовок',
             'description'   => 'Описание',
-            'file'          => 'Файл',
+            // 'file'          => 'Файл',
             'budget'        => 'Бюджет',
             'category_id'   => 'Категория'
         ];

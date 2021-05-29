@@ -1,17 +1,9 @@
 @extends('layouts.index')
 @section('content')
-<div class="page_header">
-  <div class="wrapper cols_table no_hover">
-    <div class="row">
-      <div class="col page_header_content">
-        <h1>Создание компании</h1>
-        @if(session()->has('fail'))
-        <div class="alert alert-danger">Компания не создана</div>
-        @endif
-      </div>
-    </div>
-  </div>
-</div>
+@include('includes.title', [
+'title'=> 'Создание компании',
+'breadcrumbs' => 'account.companies.create'
+]) 
 <div class="wrapper tab-content">
   <div class="clearfix tab-pane fade show active" id="tab_pane-main">
     <div class="page_content no_sidebar">
