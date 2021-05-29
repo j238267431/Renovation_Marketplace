@@ -37,7 +37,12 @@ class CompanyController extends Controller
   public function create()
   {
     $categories = Category::all();
-    return view('account.company.create', ['categories' => $categories]);
+    return view(
+      'account.company.create',
+      [
+        'categories' => $categories
+      ]
+    );
   }
 
   /**
@@ -63,7 +68,7 @@ class CompanyController extends Controller
 
       return redirect()
         ->route('account.companies.index')
-        ->with('success', 'Компания созадана');
+        ->with('success', 'Компания создана');
     }
     return back()->with('fail', 'Не удалось создать компанию');
   }

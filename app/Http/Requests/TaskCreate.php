@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TaskCreate extends FormRequest
@@ -26,9 +27,19 @@ class TaskCreate extends FormRequest
         return [
             'title'         => 'required|min:5',
             'description'   => 'required|min:10',
-            'file'          => 'sometimes|file',
+            // 'file'          => 'sometimes|mimes:jpg,jpeg,png,bmp,tiff',
             'budget'        => 'sometimes|numeric|nullable',
-            'category_id'   => 'sometimes|numeric|min:1'
+            'category_id'   => [
+                'sometimes',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if (!(
+                        (Category::where("id", $value)->count() > 0)
+                        && (Category::find($value)->parent_id !== null))) {
+                        $fail('Выбранное значение для ' . $attribute . ' некорректно.');
+                    }
+                }
+            ]
         ];
     }
     public function messages()
@@ -44,7 +55,7 @@ class TaskCreate extends FormRequest
         return [
             'title'         => 'Заголовок',
             'description'   => 'Описание',
-            'file'          => 'Файл',
+            // 'file'          => 'Файл',
             'budget'        => 'Бюджет',
             'category_id'   => 'Категория'
         ];

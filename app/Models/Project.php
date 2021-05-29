@@ -36,4 +36,8 @@ class Project extends Model
     {
         return $this->hasMany(Image::class);
     }
+    public function images2()
+    {
+        return $this->morphToMany(Attachment::class, 'attachmentable');
+    }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFromUserIdAndToUserIdToMessagesTable extends Migration
+class CreateAttachmentablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddFromUserIdAndToUserIdToMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::table('messages', function (Blueprint $table) {
-            $table->integer('to_user_id')->unsigned();
+        Schema::create('attachmentables', function (Blueprint $table) {
+            $table->integer('attachment_id');
+            $table->integer('attachmentable_id');
+            $table->string('attachmentable_type');
         });
     }
 
@@ -25,8 +27,6 @@ class AddFromUserIdAndToUserIdToMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::table('messages', function (Blueprint $table) {
-            $table->dropColumn('to_user_id');
-        });
+        Schema::dropIfExists('attachmentables');
     }
 }

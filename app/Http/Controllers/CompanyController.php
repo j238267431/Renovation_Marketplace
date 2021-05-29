@@ -25,19 +25,20 @@ class CompanyController extends Controller
       ->orderBy("categories.name")
       ->get()
       ->where('counter', '>', '0');
-    $parentCategories = Category::whereIn("id", $categories->pluck("parent_id")->toArray())->orderBy("name")->get(); 
+    $parentCategories = Category::whereIn("id", $categories->pluck("parent_id")->toArray())->orderBy("name")->get();
 
     $categoryId = null;
     if ($request->input("category")) {
       $categoryId = $request->input("category");
-      $companies = Company::with('projects')->whereHas('projects', function ($q) use ($categoryId) {
-        $q->where("category_id", $categoryId);
-      });
+      $companies = Company::with('projects')
+        ->whereHas('projects', function ($q) use ($categoryId) {
+          $q->where("category_id", $categoryId);
+        });
     } else {
       $companies = Company::orderBy("name");
     }
     $companies = $companies->paginate($this->countOnePagePaginate);
-    
+
     return view('companies.index', [
       'companies'  => $companies,
       'categories' => $categories,

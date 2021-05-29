@@ -25,6 +25,7 @@
                 </li>
                 @forelse ($parentCategories as $pcatIndex => $pcat)
                 <li>
+                  @if ($categories->where("parent_id", $pcat->id)->sum("counter") > 0)
                   <a data-toggle="collapse">{{ $pcat->name }}</a>
                   <span class="num">{{ $categories->where("parent_id", $pcat->id)->sum("counter") }}</span>
                   <ul class="collapse @if(($category)&&($pcat->children->contains('id', $category->id))) show  @endif" aria-expanded="@if(($category)&&($pcat->children->contains('id', $category->id))) true @else false @endif">
@@ -41,6 +42,7 @@
                     @endif
                     @endforeach
                   </ul>
+                  @endif
                 </li>
                 @empty
                 @endforelse

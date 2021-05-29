@@ -8,6 +8,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\AttachmentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Account\OffersController;
@@ -42,7 +43,6 @@ Route::prefix('companies')->name('companies.')->group(function () {
         ->name('companyProjects');
     Route::get('/{company:id}/reviews', [ReviewController::class, 'allFromCompany'])
         ->name('reviews');
-
 });
 
 /**
@@ -54,15 +54,26 @@ Route::resource('projects', ProjectController::class)->only(['index', 'show']);
  * Заявки
  */
 Route::middleware('auth')->resource('tasks', TaskController::class)
-    ->only('create','store','update','delete','edit');
+    ->only('create', 'store', 'update', 'destroy', 'edit');
 Route::resource('tasks', TaskController::class)
     ->only('index', 'show');
 Route::get('categories/{category:id}/tasks', [TaskController::class, 'allFromCategory'])
     ->name('categories.tasks');
+// Route::middleware('auth')->resource('attachments', AttachmentController::class)
+//     ->only('store', 'update', 'delete');
 
 
 Route::resource('reviews', \App\Http\Controllers\ReviewController::class);
 
+/***
+ * Аттачи
+ */
+Route::get("/download/{attachment}", [\App\Http\Controllers\AttachmentController::class, "download"])
+    ->name("attachment.download");
+Route::middleware('auth')->prefix("attachment")->group(function () {
+    Route::delete("/delete/{task}/{attachment}", [\App\Http\Controllers\AttachmentController::class, "delete"])
+        ->name("attachment.delete");
+});
 
 /**
  * Личный кабинет
@@ -79,7 +90,9 @@ Route::prefix('account')->name('account.')->middleware('auth')->group(function (
     Route::get('/tasks/{task:id}/show', [\App\Http\Controllers\Account\TaskController::class, 'show'])
         ->name('tasks.show');
     Route::resource('companies', AccountCompanyController::class);
-    Route::get('/chat', [\App\Http\Controllers\Account\ChatsController::class, 'index']
+    Route::get(
+        '/chat',
+        [\App\Http\Controllers\Account\ChatsController::class, 'index']
     )->name('chat');
     Route::get('messages', [\App\Http\Controllers\Account\ChatsController::class, 'fetchMessages']);
     Route::post('messages', [\App\Http\Controllers\Account\ChatsController::class, 'sendMessage']);
@@ -94,7 +107,7 @@ Route::prefix('account')->name('account.')->middleware('auth')->group(function (
     Route::get('/responses', [\App\Http\Controllers\Account\ResponsesController::class, 'index'])
     ->name('responses');
 });
-Route::middleware('auth')->group(function (){
+Route::middleware('auth')->group(function () {
     Route::get('account/companies/offer/index', [OffersController::class, 'index'])->name('account.companies.offer.index');
     Route::get('account/companies/offer/create', [OffersController::class, 'create'])->name('account.companies.offer.create');
     Route::get('account/companies/offer/{offer:id}/edit', [OffersController::class, 'edit'])->name('account.companies.offer.edit');
@@ -103,7 +116,7 @@ Route::middleware('auth')->group(function (){
     Route::put('account/companies/offer/{offer:id}', [OffersController::class, 'update'])->name('account.companies.offer.update');
 });
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::middleware('created:{id}')->get('tasks/response/{task:id}/create', [TaskController::class, 'taskResponseCreate'])
         ->name('tasks.response.create');
     Route::post('tasks/response/{task:id}/store', [TaskController::class, 'taskResponseStore'])
@@ -116,10 +129,9 @@ Route::middleware('auth')->group(function(){
 
 
 
-Route::group(['middleware' => 'guest'], function (){
-    Route::group(['prefix' => 'login'], function (){
+Route::group(['middleware' => 'guest'], function () {
+    Route::group(['prefix' => 'login'], function () {
         Route::get('{service}', [SocialController::class, 'redirectToProvider'])->name('social.login');
         Route::get('{service}/callback', [SocialController::class, 'handleProviderCallback']);
     });
 });
-

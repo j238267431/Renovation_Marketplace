@@ -10,15 +10,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
-
 class Task extends Model
 {
     use HasFactory;
     protected $fillable = [
         'user_id',
         'title',
-        'description',
-        'file',
+        'description', 
         'budget',
         'category_id',
         'is_active',
@@ -38,8 +36,7 @@ class Task extends Model
     }
     public function companies(): HasManyThrough
     {
-        return $this->hasManyThrough(Company::class, CompaniesTasks::class, 'task_id', 'id', 'id','company_id');
-
+        return $this->hasManyThrough(Company::class, CompaniesTasks::class, 'task_id', 'id', 'id', 'company_id');
     }
     public function companiesAndResponses(): BelongsToMany
     {
@@ -49,5 +46,9 @@ class Task extends Model
     public function responses(): HasMany
     {
         return $this->hasMany(CompaniesTasks::class);
+    }
+    public function attachments()
+    {
+        return $this->morphToMany(Attachment::class, 'attachmentable');
     }
 }
