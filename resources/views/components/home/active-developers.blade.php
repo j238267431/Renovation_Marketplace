@@ -28,10 +28,10 @@
                       <span></span>
                   </div>
                   <div class="counter ">
-                      <a href="#" title="Заказы">
+                      <a href="{{ route('account.orders', $company) }}" title="Заказы">
                           <span class="counter__order"><i class="bi bi-check-square-fill"></i> {{ $company->orders_count }}</span>
                       </a>
-                      <a href="#" title="Отзывы">
+                      <a href="{{ route('companies.reviews', $company) }}" title="Отзывы">
                           <span class="counter__message"><i class="bi bi-chat-right-text-fill"></i> {{ $company->reviews_count }}</span>
                       </a>
                   </div>
