@@ -9,9 +9,15 @@
   @else
       <li><a href="{{route('account.companies.offer.index')}}">Услуги</a></li>
   @endif
-      <li><a href="#">Отклики на заявки</a></li>
+
+      @if(request()->routeIs('account.responses'))
+        <li><b>Отклики на заявки</b></li>
+      @else
+        <li><a href="{{route('account.responses')}}">Отклики на заявки</a></li>
+      @endif
+
       @if(request()->routeIs('account.project'))
-          <li><b>Заказы в работе</b></li>
+        <li><b>Заказы в работе</b></li>
       @else
         <li><a href="{{route('account.project')}}">Заказы в работе</a></li>
       @endif
