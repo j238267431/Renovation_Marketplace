@@ -17,7 +17,7 @@
 </head>
 
 <body class="web d-flex flex-column h-100">
-<div id="app ">
+<div id="app">
     <x-main-header></x-main-header>
     <div  class="main-wrapper">
 

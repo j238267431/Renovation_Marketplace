@@ -40,7 +40,7 @@
             <tr>
 
               <td><a href="{{route('account.tasks.show', $task)}}">{{$task->title}}</a></td>
-              <td>{{$task->description}}</td>
+              <td>{!! $task->description !!}</td>
               <td>{{$task->budget}}</td>
             </tr>
 
