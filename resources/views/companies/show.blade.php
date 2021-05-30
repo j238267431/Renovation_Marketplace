@@ -20,7 +20,7 @@
                             </h1>
                             <div class="pt-3">
                                 <img class="container-fluid no-padding"
-                                     src="{{ $company->cover ?? asset('img/placeholder150.png')}}"
+                                     src="{{ $company->cover ?? asset('img/placeholder.jpg')}}"
                                      alt="{{ $company->name }}">
                             </div>
                             <div class=" pt-3">

@@ -23901,6 +23901,8 @@ a.btn-secondary:hover {
   display: flex;
 }
 .card-company-hor__img {
+  width: 200px;
+  height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
   margin-right: 30px;
