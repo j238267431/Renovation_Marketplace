@@ -27,13 +27,9 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(CategorySeeder::class);
-        Offer::factory(25)->create();
-        Review::factory(10)->create();
-        Project::factory(15)->create();
-        Image::factory(40)->create();
-
-
-
-
+        Offer::factory(100)->create();
+        Review::factory(100)->create();
+        Project::factory(30)->create();
+        Image::factory(90)->create();
     }
 }

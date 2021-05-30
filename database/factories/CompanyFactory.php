@@ -14,6 +14,12 @@ class CompanyFactory extends Factory
      */
     protected $model = Company::class;
 
+    protected function getImage()
+    {
+        $imagePath = '/img/house/house_' . random_int(1,6) . '.jpg';
+        return $imagePath;
+    }
+
     /**
      * Define the model's default state.
      *
@@ -26,6 +32,7 @@ class CompanyFactory extends Factory
             'phone' => $this->faker->phoneNumber,
             'email' => $this->faker->safeEmail,
             'address' => $this->faker->address,
+            'cover' => $this->getImage(),
             'description' => $this->faker->text,
             'created_at' => now(),
             'updated_at' => now(),

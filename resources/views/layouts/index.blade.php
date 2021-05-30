@@ -10,7 +10,6 @@
           integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
     <!-- styles -->
-    <!-- <link rel="stylesheet" href="/css/app.css"> -->
     <link rel="stylesheet" href="/css/app.css">
 
     <title>СтройХаус</title>
@@ -29,7 +28,7 @@
     <x-main-footer></x-main-footer>
 </div>
 <!-- scripts -->
-<script src="{{asset('js/app.js')}}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="/js/bootstrap.js"></script>
 <!--<script src="/js/jquery.js"></script>
   <script src="/js/jquery.visible.min.js"></script>

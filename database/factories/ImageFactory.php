@@ -15,6 +15,12 @@ class ImageFactory extends Factory
      */
     protected $model = Image::class;
 
+    protected function getImage()
+    {
+        $imagePath = '/img/project/project_' . random_int(1,30) . '.jpg';
+        return $imagePath;
+    }
+
     /**
      * Define the model's default state.
      *
@@ -24,7 +30,7 @@ class ImageFactory extends Factory
     {
         return [
             'project_id' => Project::query()->inRandomOrder()->first(),
-            'path' => $this->faker->imageUrl(300, 300, 'Awesome building'),
+            'path' => $this->getImage(),
         ];
     }
 }
