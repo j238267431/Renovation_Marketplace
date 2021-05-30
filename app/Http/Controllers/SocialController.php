@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 
 
 use App\Services\SocialService;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialController extends Controller
 {
     protected array $supportedServices = ['vkontakte', 'facebook'];
 
+    /**
+     * Отправка запроса на OAuth
+     *
+     * @param $service
+     * @return \Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function redirectToProvider($service)
     {
         if (!in_array($service, $this->supportedServices)) {
@@ -20,15 +25,16 @@ class SocialController extends Controller
         return Socialite::driver($service)->redirect();
     }
 
-    public function handleProviderCallback($service)
+    /**
+     * Возврат запроса и логика входа или регистрации пользователя из соц сети
+     *
+     * @param SocialService $socialService
+     * @param $service
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    public function handleProviderCallback(SocialService $socialService,$service)
     {
         $user = Socialite::driver($service)->user();
-        $result = (new SocialService())->findOrCreateSocialUser($user);
-        if ($result) {
-            Auth::loginUsingId($result->id);
-            return redirect()->route('login');
-        }
-        return back(400);
+        return $socialService->findOrCreateSocialUser($user);
     }
-
 }

@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->unsignedbiginteger('user_id')->unique();
             $table->date('birthday')->nullable();
-            $table->string('avatar', 100)->nullable();
+            $table->string('avatar', 300)->nullable();
             $table->unsignedsmallinteger('country_id')->nullable();
             $table->unsignedbiginteger('city_id')->nullable();
             $table->string('address', 100)->nullable();
