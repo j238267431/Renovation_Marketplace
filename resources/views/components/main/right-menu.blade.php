@@ -10,7 +10,11 @@
     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
   </li>
   @else
-  <li class="nav-item dropdown">
+      @if(Auth::user()->profile->avatar)
+            <img style="width: 50px; height: 50px;"
+                 src="{{ Auth::user()->profile->avatar}}" alt="Ava">
+      @endif
+        <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         {{ Auth::user()->name }}
