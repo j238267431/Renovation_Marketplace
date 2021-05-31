@@ -28,7 +28,7 @@ class OrderFactory extends Factory
             'customer_id' => User::query()->inRandomOrder()->first(),
             'company_id' => Company::query()->inRandomOrder()->first(),
             'status_id' => Status::query()->inRandomOrder()->first(),
-            'details' => $this->faker->sentence,
+            'details' => $this->faker->realText(200),
         ];
     }
 }

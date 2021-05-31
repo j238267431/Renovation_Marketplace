@@ -71,3 +71,9 @@ a.btn-secondary:hover{
     line-height: 25px;
     padding: 11px 30px 0;
 }
+
+@media (max-width: 575px){
+    .sidebar-left .navbar .navbar-collapse > div > div {
+        display: block;
+    }
+}

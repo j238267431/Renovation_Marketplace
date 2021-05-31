@@ -30,18 +30,22 @@
 
 ul.project-list{
     display: flex;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding-right: 0;
     padding-left: 0;
+    flex-wrap: wrap;
 }
 
 li.project-list__item{
     padding: 10px;
 
     &:first-child{
-        padding-left: 0;
+        /*padding-left: 0;*/
     }
 
-    &:last-child{
-        padding-right: 0;
+    &:last-child, &:nth-last-col(1){
+        /*padding-right: 0;*/
     }
 }
 
@@ -56,12 +60,14 @@ li.project-list__item{
 
     &__cover{
         position: relative;
-        width: 20%;
+        width: 200px;
+        height: 200px;
         margin-right: 20px;
     }
 
     &__img{
-        width: 100%;
+        width: 200px;
+        height: 200px;
         object-fit: cover;
     }
 
@@ -97,12 +103,17 @@ li.project-list__item{
     }
 
     &__img-row{
-        display: flex;
+        /*display: flex;*/
+        flex-wrap: wrap;
     }
 
     &__item{
-        width: 33.3%;
-        margin-right: 20px;
+        margin-bottom: 20px;
+
+        & > img{
+            width: 100%;
+            height: auto;
+        }
 
         &:nth-last-child(1){
             margin-right: 0;
@@ -130,11 +141,13 @@ li.project-list__item{
 
     &__cover{
         position: relative;
-        object-fit: cover;
         margin-bottom: 10px;
+        overflow: hidden;
     }
 
     &__img{
+        object-fit: cover;
+        height: 180px;
         width: 100%;
     }
 

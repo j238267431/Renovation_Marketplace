@@ -8,7 +8,7 @@
   <ul class="block-content work_list-bordered">
     @forelse ($projects as $project)
       <li class="col-6 col-sm-4 col-lg-3 hover click_container-link set_href">
-        <div>
+        <div class="crop">
           <a href="{{ route('projects.show', ['project' => $project]) }}" rel="nofollow">
             <img src="{{ $project->cover ?? asset('img/placeholder150.png')}}"
                  alt="{{ $project->name }}"
@@ -20,7 +20,7 @@
           <a href="{{ route('projects.show', ['project' => $project]) }}"
              title="{{ $project->name }}" rel="nofollow">{{ $project->name }}</a>
         </div>
-        <div class="text-secondary">{{ $project->company->name }}</div>
+
       </li>
     @empty
       <p>Ничего не найдено.</p>

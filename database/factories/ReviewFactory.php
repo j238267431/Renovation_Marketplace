@@ -26,8 +26,8 @@ class ReviewFactory extends Factory
         return [
             'order_id' => Order::factory()->create()->id,
             'category_id' => Category::query()->inRandomOrder()->first(),
-            'title' => $this->faker->sentence,
-            'content' => $this->faker->text,
+            'title' => $this->faker->catchPhrase,
+            'content' => $this->faker->realText(200),
             'rating' => $this->faker->numberBetween(1, 5),
             'recommend' => $this->faker->boolean(70),
         ];

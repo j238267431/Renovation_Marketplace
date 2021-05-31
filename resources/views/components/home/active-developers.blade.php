@@ -11,7 +11,7 @@
           <div class="card-company">
               <div class="card-company__section">Загородное строительство</div>
               <a href="{{ route('companies.show', $company) }}" rel="nofollow">
-                <img src="{{ $company->cover ?? asset('img/placeholder150.png')}}" class="card-img-top" alt="{{ $company->name }}">
+                <img src="{{ $company->cover ?? asset('img/placeholder.jpg')}}" class="card-img-top" alt="{{ $company->name }}">
               </a>
               <div class="card-company__body">
                   <a href="{{ route('companies.show', $company) }}" rel="nofollow">

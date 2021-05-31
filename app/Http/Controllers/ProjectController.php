@@ -16,7 +16,7 @@ class ProjectController extends Controller
     public function index()
     {
       $allProjects = Project::with(['company', 'category', 'images'])
-          ->inRandomOrder()->paginate(5);
+          ->inRandomOrder()->paginate(20);
       return view('projects.index', ['projects' => $allProjects]);
     }
 
