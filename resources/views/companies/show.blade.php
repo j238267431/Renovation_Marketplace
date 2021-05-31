@@ -5,7 +5,7 @@
 {{--@include('includes.title', ['title' => 'Организации'])--}}
 @include('includes.title', [
 
-'title' => 'Все заказы',
+'title' => 'О компании ' . $company->name,
 'breadcrumbs' => 'companies.show',
 'breadcrumbsAttrs' => ['company' => $company]
 ])
@@ -50,13 +50,16 @@
 
                             <h2 class="contact-header pt-4">Контакты</h2>
                             <div class="contact-row">
-                                <i class="bi bi-geo-alt-fill contact-icon"></i><div class="text_field pt-3"> {{ $company->address }}</div>
+                                <i class="bi bi-geo-alt-fill contact-icon"></i>
+                                <div class="text_field pt-3"> {{ $company->address }}</div>
                             </div>
                             <div class="contact-row">
-                                <i class="bi bi-telephone-fill contact-icon"></i><div class="text_field pt-3"> {{ $company->phone }}</div>
+                                <i class="bi bi-telephone-fill contact-icon"></i>
+                                <div class="text_field pt-3"> {{ $company->phone }}</div>
                             </div>
                             <div class="contact-row">
-                                <i class="bi bi-envelope-fill contact-icon"></i><div class="text_field pt-3"> {{ $company->email }}</div>
+                                <i class="bi bi-envelope-fill contact-icon"></i>
+                                <div class="text_field pt-3"> {{ $company->email }}</div>
                             </div>
                             <h2 class="h2 pt-4">Контакты</h2>
                             <p class="text_field pt-3"><b>Адрес:</b> {{ $company->address }}</p>
@@ -88,7 +91,7 @@
 
                             @forelse($company->projects as $project)
 
-                            <x-company.project-card :project="$project" />
+                            <x-project.project-card :project="$project" />
 
                             @empty
                             <div class="no-padding">
@@ -96,36 +99,36 @@
                             </div>
                             @endforelse
 
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="h2">Отзывы </h2>
-
-                        @forelse($company->reviews as $review)
-
-                        <x-company.review-card :review="$review" />
-
-                        @empty
-                        <div class="pt-3">
-                            <p>Отзывы не найдены</p>
                         </div>
-                        @endforelse
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="h2">Отзывы </h2>
+
+                            @forelse($company->reviews as $review)
+
+                            <x-company.review-card :review="$review" />
+
+                            @empty
+                            <div class="pt-3">
+                                <p>Отзывы не найдены</p>
+                            </div>
+                            @endforelse
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <x-company.review-form />
 
                     </div>
-                </div>
-
-                <div class="row">
-
-                    <x-company.review-form />
 
                 </div>
 
             </div>
-
         </div>
     </div>
-</div>
 
 
-@endsection
+    @endsection

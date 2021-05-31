@@ -28,7 +28,7 @@ Breadcrumbs::register('tasks.index', function ($breadcrumbs, $attrs) {
 });
 Breadcrumbs::register('tasks.create', function ($breadcrumbs) {
     $breadcrumbs->parent('tasks');
-    $breadcrumbs->push('Создание заказа', route('tasks.create'));
+    $breadcrumbs->push('Создание проекта', route('tasks.create'));
 });
 
 
@@ -60,8 +60,7 @@ Breadcrumbs::register('account.project', function ($breadcrumbs) {
 Breadcrumbs::register('account.responses', function ($breadcrumbs) {
     $breadcrumbs->parent('account');
     $breadcrumbs->push('Отклики на заявки', route('account.responses'));
-});
-
+}); 
 
 Breadcrumbs::register('account.tasks', function ($breadcrumbs) {
     $breadcrumbs->parent('account');

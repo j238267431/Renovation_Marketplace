@@ -249,7 +249,6 @@ class TaskController extends Controller
 
     public function taskResponseEdit($id)
     {
-
         $companies = Auth::user()->companies;
         $task = Task::query()->find($id);
         $respondedCompanies = $task->companies()->get();

@@ -1,10 +1,8 @@
 @extends('layouts.index')
 @section('content')
-
 @include('includes.title', [
 'title' => 'Личный кабинет',
-'breadcrumbs' => 'account.tasks',
-'hasCompany' => $hasCompany
+'breadcrumbs' => 'account.tasks'
 ])
 <div class="wrapper tab-content">
   <div class="clearfix tab-pane fade show active">
@@ -40,8 +38,8 @@
             <tr>
 
               <td><a href="{{route('account.tasks.show', $task)}}">{{$task->title}}</a></td>
-              <td>{{$task->description}}</td>
-              <td>{{$task->budget}}</td>
+              <td>{{ strip_tags($task->description) }}</td>
+              <td>{{ $task->budget ?? "Не указан" }}</td>
             </tr>
 
             @endforeach

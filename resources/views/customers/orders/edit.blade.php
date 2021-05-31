@@ -131,11 +131,10 @@
                                 <form class="form" action="{{ route('attachment.delete', ['task' => $task, 'attachment' => $attach]) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                                     @csrf
                                     @method('DELETE')
-                                    <div>
-                                        <a class="mr-3" href="{{ route('attachment.download', $attach) }}">{{ $attach->title }}</a>
+                                    <a class="mr-3" href="{{ route('attachment.download', $attach) }}">{{ $attach->title }}</a> 
                                         <a class="btn btn-primary mr-3" href="{{ route('attachment.download', $attach) }}">Скачать</a>
-                                        <input class="btn btn-danger" type="submit" value="Удалить">
-                                    </div>
+                                        <a class="btn btn-danger mr-3" href="{{ route('attachment.download', $attach) }}">Удалить</a>
+                                        <input class="hidden" type="submit" value="Удалить"> 
                                 </form>
                             </li>
                             @endforeach

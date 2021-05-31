@@ -4,21 +4,7 @@
 @include('includes.title', [
 'title' => 'Создание предложения',
 'breadcrumbs' => 'account.companies.offer',
-'hasCompany' => true
 ])
-<div class="page_header">
-    <div class="wrapper cols_table no_hover">
-        <div class="row">
-            <div class="col page_header_content">
-                <h1>Создание предложения</h1>
-                @if(!session()->has('fail'))
-                <div class="alert alert-danger">Предложение не создано</div>
-                @endif
-
-            </div>
-        </div>
-    </div>
-</div>
 <div class="wrapper tab-content">
     <div class="clearfix tab-pane fade show active" id="tab_pane-main">
         <div class="page_content no_sidebar">
@@ -128,7 +114,15 @@
 @push('js')
 <script type="text/javascript">
     $('#description').summernote({
-        height: 400
+        height: 400,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear', 'fontname', 'fontsize', 'color']],
+            ['para', ['ol', 'ul', 'paragraph', 'height']],
+            ['table', ['table']],
+            ['insert', ['link']],
+            ['view', ['undo', 'redo', 'fullscreen', 'codeview', 'help']]
+        ]
     });
 </script>
 @endpush
