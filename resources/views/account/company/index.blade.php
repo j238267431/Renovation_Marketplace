@@ -3,8 +3,7 @@
 
 @include('includes.title', [
 'title' => 'Мои компании',
-'breadcrumbs' => 'account.companies',
-'hasCompany' => $hasCompany
+'breadcrumbs' => 'account.companies'
 ]) 
 
 <div class="wrapper tab-content">
@@ -23,18 +22,10 @@
         </div>
       </div>
     </div>
-    <div class="page_content">
-        @if(session('success'))
-            <div class="block-content">
-                <div class="alert-success">{{session('success')}}</div>
-            </div>
-        @elseif(session('fail'))
-            <div class="block-content">
-                <div class="alert-danger">{{session('fail')}}</div>
-            </div>
-        @endif
+    <div class="page_content"> 
       <div class="block-content">
         <div class="title indent-b30">
+          <a class="btn btn-success" href="{{route('account.companies.create')}}">Создать компанию</a>
           <a class="btn btn-success" href="{{route('account.companies.offer.create')}}">Создать услугу</a>
         </div>
         <table class="table table-striped">

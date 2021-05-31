@@ -133,7 +133,16 @@
 @push('js')
 <script type="text/javascript">
   $('#description').summernote({
-    height: 400
+    height: 400,
+    toolbar: [
+      ['style', ['style']],
+      ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear', 'fontname', 'fontsize', 'color']],
+      ['para', ['ol', 'ul', 'paragraph', 'height']],
+      ['table', ['table']],
+      ['insert', ['link']],
+      ['view', ['undo', 'redo', 'fullscreen', 'codeview', 'help']]
+    ]
+
   });
 </script>
 @endpush
