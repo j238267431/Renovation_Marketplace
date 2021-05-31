@@ -11,6 +11,9 @@
         </div>
     </div>
     <div class="container">
+        @if(session('failed'))
+            <div class="alert alert-danger">{{session('failed')}}</div>
+        @endif
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">

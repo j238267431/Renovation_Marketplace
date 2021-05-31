@@ -43,13 +43,12 @@ class ChatsController extends Controller
         $toUserId = $request->get('toUserId');
         $messages = Message::query()
             ->where('user_id', '=', Auth::id())
+            ->where('to_user_id', '=', $toUserId)
             ->orWhere('to_user_id', '=', Auth::id())
             ->orWhere('user_id', '=', $toUserId)
-            ->orWhere('to_user_id', '=', $toUserId)
             ->with('user')
             ->get();
         return $messages;
-//        return Message::with('user')->get();
     }
 
     /**
@@ -75,9 +74,6 @@ class ChatsController extends Controller
             'user_id' => $userId,
             'to_user_id' => $to_user_id,
         ]);
-//        $message = $user->messages()->create([
-//            'message' => $request->input('message'),
-//        ]);
 
         broadcast(new MessageSent($user, $message))->toOthers();
         return ['status' => 'Message Sent!'];
