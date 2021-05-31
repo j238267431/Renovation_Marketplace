@@ -27,7 +27,7 @@ class OfferFactory extends Factory
             'company_id'  => Company::query()->inRandomOrder()->first(),
             'category_id' => Category::query()->whereNotNull('parent_id')->inRandomOrder()->first(),
             'name'        => $this->faker->catchPhrase,
-            'description' => $this->faker->text(100),
+            'description' => $this->faker->realText(100),
             'price' => $this->faker->randomNumber(),
             'is_active' => 1,
         ];

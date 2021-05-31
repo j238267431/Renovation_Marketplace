@@ -58,8 +58,8 @@
     display: flex;
 
     &__img{
-        width: 200px;
-        height: 200px;
+        width: 150px;
+        height: 150px;
         object-fit: cover;
         margin-right: 30px;
     }
@@ -82,4 +82,9 @@
 .space-between{
     display: flex;
     justify-content: space-between;
+}
+
+.big{
+    font-size: 2rem;
+    word-wrap: break-word;
 }

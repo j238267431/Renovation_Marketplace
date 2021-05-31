@@ -15,7 +15,7 @@
                 <div class="navbar-collapse">
                     <div>
                         <div class="block-content">
-                            <h1 class="h1">
+                            <h1 class="card-company__name big">
                                 {{ $company->name }}
                             </h1>
                             <div class="pt-3">
@@ -80,7 +80,7 @@
                             <a href="{{route('projects.index')}}">Проекты </a>
                         </h2>
 
-                            <ul class="project-list row-cols-md-3 pt-3">
+                            <ul class="project-list row-cols-md-3 row-cols-sm-1 row-cols-xs-1 pt-3">
                                 @forelse($company->projects as $project)
                                 <li class="project-list__item">
                                     <x-project.project-card :project="$project"/>

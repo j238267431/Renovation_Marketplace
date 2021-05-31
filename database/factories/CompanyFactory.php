@@ -28,12 +28,13 @@ class CompanyFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->catchPhrase,
+           // 'name' => $this->faker->catchPhrase,
+            'name' => $this->faker->company,
             'phone' => $this->faker->phoneNumber,
             'email' => $this->faker->safeEmail,
             'address' => $this->faker->address,
             'cover' => $this->getImage(),
-            'description' => $this->faker->text,
+            'description' => $this->faker->realText(200),
             'created_at' => now(),
             'updated_at' => now(),
         ];

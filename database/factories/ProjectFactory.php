@@ -35,8 +35,9 @@ class ProjectFactory extends Factory
             'name' => $this->faker->catchPhrase,
             'price' => $this->faker->randomNumber(),
             'cover' => $this->getImage(),
-            'description' => $this->faker->sentence(mt_rand(4, 10)),
-            'content' => $this->faker->text,
+            //'description' => $this->faker->sentence(mt_rand(4, 10)),
+            'description' => $this->faker->realText(100),
+            'content' => $this->faker->realText(200),
         ];
     }
 }
