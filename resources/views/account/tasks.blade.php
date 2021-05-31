@@ -40,6 +40,7 @@
               <td><a href="{{route('account.tasks.show', $task)}}">{{$task->title}}</a></td>
               <td>{{ strip_tags($task->description) }}</td>
               <td>{{ $task->budget ?? "Не указан" }}</td>
+
             </tr>
 
             @endforeach

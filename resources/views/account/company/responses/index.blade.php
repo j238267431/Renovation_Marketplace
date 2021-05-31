@@ -54,7 +54,7 @@
                                     <td>{{$company->name}}</td>
                                     <td>{{$task->title}}</td>
                                     <td>{!!$task->description !!}</td>
-                                    <td><a class="btn btn-success" href="{{route('account.chat')}}">написать</a></td>
+                                    <td><a class="btn btn-success" href="{{route('account.chat', ['toUserId' => $task->user->id])}}">написать</a></td>
                                 </tr>
                             @endforeach
                         @endforeach
