@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Listeners\CreateProfileUserListener;
 use App\Listeners\LoginListener;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
@@ -19,6 +20,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
+            CreateProfileUserListener::class,
             SendEmailVerificationNotification::class,
             LoginListener::class,
         ],

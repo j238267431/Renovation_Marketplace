@@ -4,26 +4,32 @@
 namespace App\Services;
 
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\RedirectsUsers;
+use Illuminate\Support\Facades\Auth;
 
 class SocialService
 {
+    use RedirectsUsers;
+
+    protected string $redirectTo = RouteServiceProvider::HOME;
+
     public function findOrCreateSocialUser($userFromSocial)
     {
         $email = $userFromSocial->getEmail();
-        $name = $userFromSocial->getName();
-        if (!isset($name) || $name == '') {
-            $name = 'no Name';
+        if (empty($email) || !isset($email)) {
+            return redirect()->route('login')
+                ->with('failed', 'Соц сеть не передала почту, регистрация невозможна');
         }
+
         $user = User::where('email', $email)->first();
         if (!isset($user) || !($user instanceof User)) {
-            return User::create([
-                'name' => $name,
-                'email' => $email,
-                'password' => Hash::make('123'),
-            ]);
+            $registerClass = new RegisterUserBySocialService(new RegisterController());
+            return $registerClass->register(request(), $userFromSocial);
         }
-        return $user;
+        Auth::loginUsingId($user->id);
+        return redirect()->route('login');
     }
 }
