@@ -4,9 +4,6 @@ namespace App\Listeners;
 
 use App\Models\Profile;
 use App\Models\User;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Http\Client\Request;
-use Illuminate\Queue\InteractsWithQueue;
 
 class CreateProfileUserListener
 {

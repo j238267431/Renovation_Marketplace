@@ -6,7 +6,6 @@ namespace App\Services;
 
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
-use MongoDB\Driver\Session;
 
 class RegisterUserBySocialService
 {
@@ -30,7 +29,7 @@ class RegisterUserBySocialService
     public function register(Request $request, $dataUser)
     {
         $user['avatar'] = $dataUser->getAvatar()?? null;
-        $request->session()->put('user', $user);
+        $request->session()->flash('user', $user);
         $request->merge([
             "name" => $dataUser->getName() ?? 'no Name',
             "email" => $dataUser->getEmail() ?? null,
