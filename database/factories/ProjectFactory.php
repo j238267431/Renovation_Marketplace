@@ -16,6 +16,12 @@ class ProjectFactory extends Factory
      */
     protected $model = Project::class;
 
+    protected function getImage()
+    {
+        $imagePath = '/img/project/project_' . random_int(1,30) . '.jpg';
+        return $imagePath;
+    }
+
     /**
      * Define the model's default state.
      *
@@ -28,9 +34,10 @@ class ProjectFactory extends Factory
             'category_id' => Category::query()->whereNotNull('parent_id')->inRandomOrder()->first(),
             'name' => $this->faker->catchPhrase,
             'price' => $this->faker->randomNumber(),
-            'cover' => $this->faker->imageUrl(150, 150, 'building'),
-            'description' => $this->faker->sentence(mt_rand(4, 10)),
-            'content' => $this->faker->text,
+            'cover' => $this->getImage(),
+            //'description' => $this->faker->sentence(mt_rand(4, 10)),
+            'description' => $this->faker->realText(100),
+            'content' => $this->faker->realText(200),
         ];
     }
 }

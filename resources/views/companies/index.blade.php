@@ -49,7 +49,7 @@
                                     {{-- Картинка --}}
                                     <a href="{{ route('companies.show', $company) }}" rel="nofollow">
                                         <img class="card-company-hor__img"
-                                             src="{{ $company->cover ?? asset('img/placeholder150.png')}}"
+                                             src="{{ $company->cover ?? asset('img/placeholder.jpg')}}"
                                              alt="{{ $company->name }}">
                                     </a>
 

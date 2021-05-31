@@ -9,7 +9,7 @@
                 {{$project->price}} &#8381;
             </div>
         </div>
-        <div>
+        <div class="container-fluid">
             <h5 class="card-project-one__title">{{$project->name}}</h5>
             <p class="card-project-one__text">
                 {{$project->description}}

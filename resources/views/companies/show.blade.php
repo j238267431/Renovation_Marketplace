@@ -4,10 +4,7 @@
 {{--<x-company.navigation :company="$company->name"/>--}}
 {{--@include('includes.title', ['title' => 'Организации'])--}}
 @include('includes.title', [
-
-'title' => 'Все заказы',
-'breadcrumbs' => 'companies.show',
-'breadcrumbsAttrs' => ['company' => $company]
+'breadcrumbs' => 'companies.index'
 ])
 
 <div class="wrapper tab-content">
@@ -18,11 +15,13 @@
                 <div class="navbar-collapse">
                     <div>
                         <div class="block-content">
-                            <h1 class="h1">
+                            <h1 class="card-company__name big">
                                 {{ $company->name }}
                             </h1>
                             <div class="pt-3">
-                                <img class="container-fluid no-padding" src="{{ $company->cover ?? asset('img/placeholder150.png')}}" alt="{{ $company->name }}">
+                                <img class="container-fluid no-padding"
+                                     src="{{ $company->cover ?? asset('img/placeholder.jpg')}}"
+                                     alt="{{ $company->name }}">
                             </div>
                             <div class=" pt-3">
                                 <a href="" class="btn btn-primary container-fluid">Заказать</a>
@@ -58,10 +57,7 @@
                             <div class="contact-row">
                                 <i class="bi bi-envelope-fill contact-icon"></i><div class="text_field pt-3"> {{ $company->email }}</div>
                             </div>
-                            <h2 class="h2 pt-4">Контакты</h2>
-                            <p class="text_field pt-3"><b>Адрес:</b> {{ $company->address }}</p>
-                            <p class="text_field pt-3"><b>Телефон:</b> {{ $company->phone }}</p>
-                            <p class="text_field pt-3"><b>Электронная почта:</b> {{ $company->email }}</p>
+
                         </div>
                     </div>
                 </div>
@@ -84,17 +80,17 @@
                             <a href="{{route('projects.index')}}">Проекты </a>
                         </h2>
 
-                        <div class="row no-padding justify-content-between pt-3">
-
-                            @forelse($company->projects as $project)
-
-                            <x-company.project-card :project="$project" />
-
-                            @empty
+                            <ul class="project-list row-cols-md-3 pt-3">
+                                @forelse($company->projects as $project)
+                                <li class="project-list__item">
+                                    <x-project.project-card :project="$project"/>
+                                </li>
+                                @empty
+                            </ul>
                             <div class="no-padding">
                                 <p>Проекты не найдены</p>
                             </div>
-                            @endforelse
+                        @endforelse
 
                     </div>
                 </div>
@@ -104,12 +100,12 @@
 
                         @forelse($company->reviews as $review)
 
-                        <x-company.review-card :review="$review" />
+                            <x-company.review-card :review="$review"/>
 
                         @empty
-                        <div class="pt-3">
-                            <p>Отзывы не найдены</p>
-                        </div>
+                            <div class="pt-3">
+                                <p>Отзывы не найдены</p>
+                            </div>
                         @endforelse
 
                     </div>
